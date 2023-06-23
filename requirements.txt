@@ -1,0 +1,5 @@
+django == 4.2.2
+psycopg2-binary
+python-dotenv == 1.0.0
+pre-commit
+django-debug-toolbar
