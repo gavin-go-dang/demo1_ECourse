@@ -1,5 +1,6 @@
 django == 4.2.2
 psycopg2-binary
 python-dotenv == 1.0.0
-pre-commit
-django-debug-toolbar
+pre-commit==3.3.3
+django-debug-toolbar==4.1.0
+django-material-admin==1.8.6
