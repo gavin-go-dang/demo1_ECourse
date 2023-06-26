@@ -8,21 +8,28 @@ from django.views.generic import View, TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
 from django.contrib.auth import get_user_model
+from .forms import SignUpForm
 
 # Create your views here.
 
 
-class HomeView(TemplateView):
+class HomeView(View):
     template_name = "index.html"
+    title = "Ecourse"
+
+    def get(self, request):
+        context = {"title": self.title}
+        return render(request, self.template_name)
 
 
-class MyLogoutView(LogoutView):
+class LogoutView(LogoutView):
     next_page = "home"
 
 
-class MyLoginView(LoginView):
+class LoginView(LoginView):
     template_name = "login.html"
     success_url = ""
+    title = "Login"
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -37,39 +44,50 @@ class MyLoginView(LoginView):
         response = super().form_valid(form)
         return redirect("home")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        title = self.title
+        context = {"title": title}
+        return context
+
 
 class RegisterView(View):
     template_name = "registeration.html"
+    title = "Register"
 
     def get(self, request):
         if request.user.is_authenticated:
             return redirect("home")
-        return render(request, self.template_name)
+        context = {"title": self.title, "message": ""}
+        return render(request, self.template_name, context)
 
     def post(self, request):
-        username = request.POST["username"]
-        fullname = request.POST["fullname"]
-        email = request.POST["email"]
-        type = request.POST["role"]
-        password = request.POST["password"]
-        confirm_password = request.POST["confirm_password"]
+        form = SignUpForm(request.POST)
+        error = " ".join([" ".join(x for x in l) for l in list(form.errors.values())])
+        if not form.is_valid():
+            form = SignUpForm()
+            context = {"title": self.title, "message": error}
+            return render(request, "registeration.html", context)
 
-        if password == confirm_password:
-            if User.objects.filter(username=username):
-                messages.info(request, "Your name has existed")
-                return redirect("register")
+        username = form.cleaned_data["username"]
+        fullname = form.cleaned_data["fullname"]
+        email = form.cleaned_data["email"]
+        password = form.cleaned_data["password"]
+        type = form.cleaned_data["type"]
+        if type == "student":
+            is_teacher = False
+        else:
+            is_teacher = True
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            email=email,
+            fullname=fullname,
+            type=type,
+            is_staff=is_teacher,
+        )
 
-            elif User.objects.filter(email=email):
-                messages.info(request, "Your email has been used")
-
-                return redirect(register)
-
-            else:
-                user = User.objects.create_user(
-                    username=username, password=password, email=email, type=type
-                )
-                user.save()
-                if type == "student":
-                    return redirect("login")
-                else:
-                    return redirect("../admin")
+        if type == "student":
+            return redirect("login")
+        else:
+            return redirect("../admin")

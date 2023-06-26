@@ -12,3 +12,6 @@ class User(AbstractUser):
     date_joined = models.DateField(auto_now=True)
     date_of_birth = models.DateField(null=True, blank=True)
     type = models.CharField(max_length=9, choices=ROLE_CHOICES, default=0)
+    cover_img = models.ImageField(
+        upload_to=None, height_field=None, width_field=None, max_length=100
+    )
