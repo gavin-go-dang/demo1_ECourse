@@ -15,10 +15,8 @@ from .forms import SignUpForm
 
 class HomeView(View):
     template_name = "index.html"
-    title = "Ecourse"
 
     def get(self, request):
-        context = {"title": self.title}
         return render(request, self.template_name)
 
 
@@ -29,7 +27,6 @@ class LogoutView(LogoutView):
 class LoginView(LoginView):
     template_name = "login.html"
     success_url = ""
-    title = "Login"
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -43,12 +40,6 @@ class LoginView(LoginView):
     def form_valid(self, form):
         response = super().form_valid(form)
         return redirect("home")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        title = self.title
-        context = {"title": title}
-        return context
 
 
 class RegisterView(View):
@@ -65,29 +56,10 @@ class RegisterView(View):
         form = SignUpForm(request.POST)
         error = " ".join([" ".join(x for x in l) for l in list(form.errors.values())])
         if not form.is_valid():
-            form = SignUpForm()
-            context = {"title": self.title, "message": error}
+            context = {"message": error}
             return render(request, "registeration.html", context)
-
-        username = form.cleaned_data["username"]
-        fullname = form.cleaned_data["fullname"]
-        email = form.cleaned_data["email"]
-        password = form.cleaned_data["password"]
-        type = form.cleaned_data["type"]
-        if type == "student":
-            is_teacher = False
-        else:
-            is_teacher = True
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            email=email,
-            fullname=fullname,
-            type=type,
-            is_staff=is_teacher,
-        )
-
-        if type == "student":
+        form.create_user()
+        if form.cleaned_data["type"] == "student":
             return redirect("login")
         else:
             return redirect("../admin")

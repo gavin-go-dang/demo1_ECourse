@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{% block title %}
+<title>Register</title>
+{% endblock %}
+
 <title>Register</title>
 
 </head>
@@ -38,7 +43,7 @@
 					placeholder="Confirm Your Password" Required>
 			</div>
 			<div class="form-group">
-				<label for="type">Role</label>
+				<label for="type">Is teacher?</label>
 				<br>
 				<select class="form-select" name="type" id="type">
 					<option value="student">Student</option>

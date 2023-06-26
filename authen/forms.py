@@ -1,4 +1,5 @@
 from django import forms
+import copy
 from .models import User
 
 
@@ -8,7 +9,7 @@ class SignUpForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
-    type = forms.CharField(max_length=9)
+    type = forms.CharField()
 
     def clean(self):
         cleaned_data = super().clean()
@@ -26,3 +27,10 @@ class SignUpForm(forms.Form):
         email = cleaned_data.get("email")
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email is exist")
+
+    def create_user(self):
+        self.cleaned_data["is_staff"] = self.cleaned_data["type"] == "teacher"
+        # del self.cleaned_data['confirm_password']
+        user_info = copy.deepcopy(self)
+        del user_info.cleaned_data["confirm_password"]
+        user = User.objects.create_user(**user_info.cleaned_data)

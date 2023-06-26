@@ -12,11 +12,9 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
+  {% block title %}
 
-  <title>{{ title }}</title>
-
-
-
+  {% endblock %}
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static '/assets/css/bootstrap.css' %}" />
   <!-- fonts style -->
@@ -27,11 +25,6 @@
   <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
-
-
-
-
-
 
 </head>
 {% block content %}
