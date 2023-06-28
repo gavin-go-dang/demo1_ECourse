@@ -5,5 +5,5 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class LoginRequire(LoginRequiredMixin):
+class LoginRequired(LoginRequiredMixin):
     login_url = "../../login"

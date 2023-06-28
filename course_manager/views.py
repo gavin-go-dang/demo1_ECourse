@@ -12,5 +12,5 @@ from common.views import LoginRequire
 # Create your views here.
 
 
-class SummaryLearning(LoginRequire, TemplateView):
+class SummaryLearning(LoginRequired, TemplateView):
     template_name = "summary.html"
