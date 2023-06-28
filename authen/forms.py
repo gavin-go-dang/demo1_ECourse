@@ -5,7 +5,7 @@ from .models import User
 
 class SignUpForm(forms.Form):
     username = forms.CharField(max_length=30)
-    fullname = forms.CharField(max_length=30)
+    full_name = forms.CharField(max_length=30)
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
@@ -30,7 +30,6 @@ class SignUpForm(forms.Form):
 
     def create_user(self):
         self.cleaned_data["is_staff"] = self.cleaned_data["type"] == "teacher"
-        # del self.cleaned_data['confirm_password']
         user_info = copy.deepcopy(self)
         del user_info.cleaned_data["confirm_password"]
         user = User.objects.create_user(**user_info.cleaned_data)

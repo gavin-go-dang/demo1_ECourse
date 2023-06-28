@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-<title>Home</title>
+{% block css %}
+ <!-- Custom styles for this template -->
+ <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+ <!-- responsive style -->
+ <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
 {% endblock %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="top_container">
