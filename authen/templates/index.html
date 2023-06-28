@@ -65,8 +65,12 @@
     <div class="hero-container container">
       <div class="hero_detail-box">
         <h3>
+
           Welcome to <br>
           Best educations
+
+
+
         </h3>
         <h1>
           school
@@ -75,6 +79,7 @@
           There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
           some form, by injected humour, or randomised
         </p>
+        {% if not user.is_authenticated %}
         <div class="hero_btn-continer">
           <a href="/register" class="call_to-btn btn_white-border">
             <span>
@@ -83,6 +88,16 @@
             <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
           </a>
         </div>
+        {% else %}
+        <div class="hero_btn-continer">
+          <a href="/course/summary" class="call_to-btn btn_white-border">
+            <span>
+              Follow your learning
+            </span>
+            <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+        {% endif %}
       </div>
       <div class="hero_img-container">
         <div>
