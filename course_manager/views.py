@@ -7,10 +7,10 @@ from django.views.generic import View, TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from common.views import LoginRequire
 
 # Create your views here.
 
 
-class SummaryLearning(LoginRequiredMixin, TemplateView):
+class SummaryLearning(LoginRequire, TemplateView):
     template_name = "summary.html"
-    login_url = "../../login"
