@@ -7,7 +7,7 @@ from django.views.generic import View, TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
-from common.views import LoginRequire
+from common.views import LoginRequired
 
 # Create your views here.
 
