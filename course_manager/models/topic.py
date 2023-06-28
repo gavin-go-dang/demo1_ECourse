@@ -6,4 +6,4 @@ class Topic(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.topic_name
+        return self.name_topic

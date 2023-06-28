@@ -1,6 +1,7 @@
 from django import forms
 import copy
 from .models import User
+from django.contrib.auth.models import Group
 
 
 class SignUpForm(forms.Form):
@@ -33,3 +34,5 @@ class SignUpForm(forms.Form):
         user_info = copy.deepcopy(self)
         del user_info.cleaned_data["confirm_password"]
         user = User.objects.create_user(**user_info.cleaned_data)
+        teacher_group = Group.objects.get(name="teacher")
+        teacher_group.user_set.add(user)
