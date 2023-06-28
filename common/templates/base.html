@@ -12,25 +12,23 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  {% block title %}
-
-  {% endblock %}
+  <title>{% block title %}{% endblock %}</title>
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static '/assets/css/bootstrap.css' %}" />
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
   <!-- font wesome stylesheet -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <!-- Custom styles for this template -->
-  <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
+ 
+  {% block css %}
+
+  {% endblock %}
 
 </head>
-{% block content %}
 
-{% endblock %}
 
 <body>
+  {% block content %}
 
+  {% endblock %}
 </html>

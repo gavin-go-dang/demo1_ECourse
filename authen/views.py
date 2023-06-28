@@ -54,7 +54,8 @@ class RegisterView(View):
 
     def post(self, request):
         form = SignUpForm(request.POST)
-        error = " ".join([" ".join(x for x in l) for l in list(form.errors.values())])
+        # error = " ".join([" ".join(x for x in l) for l in list(form.errors.values())])
+        error = " ".join([x for l in form.errors.values() for x in l])
         if not form.is_valid():
             context = {"message": error}
             return render(request, "registeration.html", context)

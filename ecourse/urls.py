@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
+    path("course/", include("course_manager.urls"), name="course"),
     path("", include("authen.urls")),
 ]
 
