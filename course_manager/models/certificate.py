@@ -4,6 +4,6 @@ from .course import Course
 
 
 class Certificate(models.Model):
-    student = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    course = models.ForeignKey(to=Course, on_delete=models.CASCADE)
+    student = models.ForeignKey("authen.User", on_delete=models.CASCADE)
+    course = models.ForeignKey("course_manager.Course", on_delete=models.CASCADE)
     pdf_url = models.URLField()

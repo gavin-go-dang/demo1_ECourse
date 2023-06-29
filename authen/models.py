@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
-from common.models import BaseModel
+from common.models import CreatedUpdatedDateModel
 
 
 # Create your models here.
 
 
-class User(AbstractUser, BaseModel):
+class User(AbstractUser, CreatedUpdatedDateModel):
     ROLE_CHOICES = (("student", "Student"), ("teacher", "Teacher"))
     full_name = models.CharField(max_length=50)
     date_of_birth = models.DateField(null=True, blank=True)
