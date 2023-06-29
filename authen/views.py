@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User, auth
-from django.views import View
 from django.views.generic import View, TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
@@ -44,12 +43,11 @@ class LoginView(LoginView):
 
 class RegisterView(View):
     template_name = "registeration.html"
-    title = "Register"
 
     def get(self, request):
         if request.user.is_authenticated:
             return redirect("home")
-        context = {"title": self.title, "message": ""}
+        context = {"message": ""}
         return render(request, self.template_name, context)
 
     def post(self, request):

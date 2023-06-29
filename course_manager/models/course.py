@@ -12,6 +12,7 @@ class Course(CreatedUpdatedDateModel):
     )
     teacher = models.ForeignKey("authen.User", on_delete=models.CASCADE)
     register = models.IntegerField(default=0)
+    time_to_learn_ets = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name_course
