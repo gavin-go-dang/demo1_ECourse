@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
 from django.contrib.auth import get_user_model
 from .forms import SignUpForm
+from course_manager.models import Course, Topic
 
 # Create your views here.
 
@@ -16,7 +17,15 @@ class HomeView(View):
     template_name = "index.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        top_teacher = User.objects.filter(type="teacher")[:4]
+        top_course = Course.objects.all().order_by("register")[:4]
+        top_topic = Topic.objects.all()
+        context = {
+            "top_teacher": top_teacher,
+            "top_course": top_course,
+            "top_topic": top_topic,
+        }
+        return render(request, self.template_name, context)
 
 
 class LogoutView(LogoutView):

@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block css %}
- <!-- Custom styles for this template -->
- <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
- <!-- responsive style -->
- <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
 {% endblock %}
 
 {% block title %}Home{% endblock %}
@@ -13,59 +14,7 @@
 {% block content %}
 <div class="top_container">
   <!-- header section strats -->
-  <header class="header_section">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="">
-          <img src="{% static '/assets/images/logo.png' %}" alt="">
-          <span>
-            Ecourse
-          </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href=""> Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item ">
-                {% if not user.is_authenticated %}
-                <a class="nav-link" href="/login"> Login </a>
-                {% else %}
-                <a class="nav-link" href=""> Hi, {{ user.username }} </a>
-                {% endif %}
-              </li>
-              {% if not user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="/register"> Register </a>
-              </li>
-              {% endif %}
-
-              <li class="nav-item ">
-                <a class="nav-link" href="teacher.html"> Teacher </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-              </li>
-              {% endif %}
-            </ul>
-            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-            </form>
-          </div>
-      </nav>
-    </div>
-  </header>
+  {% include 'header.html' %}
   <section class="hero_section ">
     <div class="hero-container container">
       <div class="hero_detail-box">
@@ -106,7 +55,7 @@
       </div>
       <div class="hero_img-container">
         <div>
-          <img src="{% static '/assets/iamges/hero.png' %}" alt="" class="img-fluid">
+          <img src="{% static '/assets/images/hero.png' %}" alt="" class="img-fluid">
         </div>
       </div>
     </div>
@@ -118,11 +67,10 @@
 <section class="about_section layout_padding">
   <div class="container">
     <h2 class="main-heading ">
-      About School
+      About My Online School
     </h2>
     <p class="text-center">
-      There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
-      passages of Lorem Ipsum available, but the majority h
+      We provide the online course. My service help you learn every time, every where, more convenient and free
     </p>
     <div class="about_img-box ">
       <img src="{% static '/assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
@@ -153,36 +101,18 @@
     </p>
     <div class="teacher_container layout_padding2">
       <div class="card-deck">
+        {% for teacher in top_teacher %}
         <div class="card">
-          <img class="card-img-top" src="{% static '/assets/images/teacher-1.jpg' %}" alt="Card image cap">
+          {% if teacher.cover_img %}
+          <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
+          {% else %}
+          <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+          {% endif %}
           <div class="card-body">
-            <h5 class="card-title">Den Mark</h5>
+            <h5 class="card-title">{{ teacher.full_name }}</h5>
           </div>
         </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static '/assets/images/teacher-2.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Leena jorj</h5>
-          </div>
-
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="{% static '/assets/images/teacher-3.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Magi Den</h5>
-
-          </div>
-
-        </div>
-
-        <div class="card">
-          <img class="card-img-top" src="{% static '/assets/images/teacher-4.jpg' %}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">jonson mark</h5>
-
-          </div>
-
-        </div>
+        {% endfor %}
       </div>
     </div>
 
@@ -193,14 +123,86 @@
         <span>
           See More
         </span>
-        <img src="{% static 'images/right-arrow.png' %}" alt="">
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
       </a>
     </div>
   </div>
 </section>
 
-<!-- teacher section -->
+<!-- course section -->
+<section class="teacher_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading ">
+      Hot Course
+    </h2>
+    <p class="text-center">
+      This course has top number of student
+    </p>
+    <div class="teacher_confull_nametainer layout_padding2">
+      <div class="card-deck">
+        {% for course in top_course %}
+        <div class="card">
+          <a href="/course/detail/{{ course.id }}">
 
+            {% if course.cover_img %}
+            <img class="card-img-top" src="{{ course.cover_img.url }}" alt="Card image cap">
+            {% else %}
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ course.name_course }}</h5>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+      <a href="/course/" class="call_to-btn  ">
+
+        <span>
+          See More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="right-arrow">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Topic -->
+<section class="topic_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading ">
+      And more than 20 topics
+    </h2>
+    <p class="text-center">
+      for you explore
+    </p>
+    <div class="teacher_confull_nametainer layout_padding2">
+      <div class="card-deck">
+        {% for topic in top_topic %}
+        <div class="card-body">
+          <a href="/course/?topic={{topic}}"><h5 class="card-title">{{ topic }}</h5></a>
+        </div>
+        {% endfor %}
+      </div>      
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-center mt-3">
+    <a href="/course/" class="call_to-btn  ">
+
+      <span>
+        See More
+      </span>
+      <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+    </a>
+  </div>
+  </div>
+</section>
 
 <!-- client section -->
 <section class="client_section layout_padding">
@@ -277,14 +279,7 @@
 
 
 
-<!-- footer section -->
-<section class="container-fluid footer_section">
-  <p>
-    Copyright &copy; 2019 All Rights Reserved By
-    <a href="https://html.design/">Free Html Templates</a>
-  </p>
-</section>
-<!-- footer section -->
+
 
 <script type="text/javascript" src="{% static '/assets/js/jquery-3.4.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/assets/js/bootstrap.js' %}"></script>

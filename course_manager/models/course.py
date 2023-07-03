@@ -5,6 +5,7 @@ from common.models import CreatedUpdatedDateModel
 
 
 class Course(CreatedUpdatedDateModel):
+    LEVEL_CHOICES = (("basic", "Basic"), ("medium", "Medium"), ("advanced", "Advanced"))
     name_course = models.CharField(max_length=50, null=False, blank=False)
     description = models.TextField()
     topic = models.ForeignKey(
@@ -13,6 +14,8 @@ class Course(CreatedUpdatedDateModel):
     teacher = models.ForeignKey("authen.User", on_delete=models.CASCADE)
     register = models.IntegerField(default=0)
     time_to_learn_ets = models.IntegerField(default=0)
+    cover_img = models.ImageField(upload_to="course_img/", null=True, blank=True)
+    level = models.CharField(choices=LEVEL_CHOICES, blank=True, null=True)
 
     def __str__(self):
         return self.name_course
