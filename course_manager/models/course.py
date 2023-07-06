@@ -11,7 +11,9 @@ class Course(CreatedUpdatedDateModel):
     topic = models.ForeignKey(
         "course_manager.Topic", on_delete=models.SET_NULL, null=True, blank=True
     )
-    teacher = models.ForeignKey("authen.User", on_delete=models.CASCADE)
+    teacher = models.ForeignKey(
+        "authen.User", on_delete=models.CASCADE, null=True, blank=True
+    )
     register = models.IntegerField(default=0)
     time_to_learn_ets = models.IntegerField(default=0)
     cover_img = models.ImageField(upload_to="course_img/", null=True, blank=True)
