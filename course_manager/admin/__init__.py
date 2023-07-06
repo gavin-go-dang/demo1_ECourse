@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (
+from ..models import (
     Certificate,
     Lesson,
     Course,
@@ -10,12 +10,17 @@ from .models import (
     LessonLearned,
 )
 
-# Register your models here.
+from .courseAdmin import CourseAdmin
+from .lessonAdmin import LessonAdmin
+from .examAdmin import ExamAdmin
+
+
+admin.site.register(Course, CourseAdmin)
+admin.site.register(Lesson, LessonAdmin)
+admin.site.register(Exam, ExamAdmin)
+
 admin.site.register(Certificate)
-admin.site.register(Lesson)
-admin.site.register(Course)
 admin.site.register(Topic)
-admin.site.register(Exam)
 admin.site.register(Question)
 admin.site.register(ResultTest)
 admin.site.register(LessonLearned)
