@@ -9,10 +9,7 @@ class DetailCourse(View):
 
     def get(self, request, **kwargs):
         id_course = kwargs.get("id")
-
-        course = Course.objects.get(id=id_course)
-        lessons = Lesson.objects.filter(course=course)
-
-        context = {"course": course, "lessons": lessons}
-
+        lessons = Lesson.objects.select_related("course").filter(course__id=id_course)
+        context = {"lessons": lessons}
+        print(context)
         return render(request, self.template_name, context)
