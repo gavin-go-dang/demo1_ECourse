@@ -3,6 +3,7 @@ from django.shortcuts import render
 from course_manager.models import Course, Lesson, Topic
 from django.utils.decorators import method_decorator
 
+
 # Create your views here.
 
 

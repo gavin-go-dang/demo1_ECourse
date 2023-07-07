@@ -8,6 +8,7 @@ from .models import (
     Question,
     ResultTest,
     LessonLearned,
+    Register,
 )
 
 # Register your models here.
@@ -19,3 +20,4 @@ admin.site.register(Exam)
 admin.site.register(Question)
 admin.site.register(ResultTest)
 admin.site.register(LessonLearned)
+admin.site.register(Register)

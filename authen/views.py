@@ -8,18 +8,21 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
 from django.contrib.auth import get_user_model
 from .forms import SignUpForm
-from course_manager.models import Course, Topic
-
-# Create your views here.
+from course_manager.models import Course, Topic, Register
+from django.core.cache import cache
 
 
 class HomeView(View):
     template_name = "index.html"
 
     def get(self, request):
-        top_teacher = User.objects.filter(type="teacher")[:4]
-        top_course = Course.objects.all().order_by("register")[:4]
-        top_topic = Topic.objects.all()
+        top_topic = cache.get_or_set("top_topics", Topic.objects.all())
+        top_teacher = cache.get_or_set(
+            "top_teachers", User.objects.filter(type="teacher")[:4]
+        )
+        top_course = cache.get_or_set(
+            "top_courses", Course.objects.all().order_by("-register")[:4]
+        )
         context = {
             "top_teacher": top_teacher,
             "top_course": top_course,
@@ -61,7 +64,6 @@ class RegisterView(View):
 
     def post(self, request):
         form = SignUpForm(request.POST)
-        # error = " ".join([" ".join(x for x in l) for l in list(form.errors.values())])
         error = " ".join([x for l in form.errors.values() for x in l])
         if not form.is_valid():
             context = {"message": error}

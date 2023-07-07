@@ -11,5 +11,4 @@ class DetailCourse(View):
         id_course = kwargs.get("id")
         lessons = Lesson.objects.select_related("course").filter(course__id=id_course)
         context = {"lessons": lessons}
-        print(context)
         return render(request, self.template_name, context)
