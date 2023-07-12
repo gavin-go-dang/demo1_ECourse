@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{course.name_course}}
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{% static 'assets/css/detail_course.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+<section class="hero_section ">
+  <div class="hero-container container">
+    <div class="hero_detail-box">
+      <h3>
+        {{lessons.0.course}}
+
+      </h3>
+
+      <p>
+        {{ lessons.0.course.description }}
+      </p>
+
+      <div class="hero_btn-continer">
+        <a href="/register" class="call_to-btn btn_white-border">
+          <span>
+            Access this course
+          </span>
+          <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+        </a>
+      </div>
+    </div>
+    <div class="hero_img-container">
+      <div>
+        <img src="{% static '/assets/images/hero.png' %}" alt="" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- end header section -->
+
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading ">
+      Lessons you will learn in this course
+    </h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">no.</th>
+            <th class="text-center" scope="col">Lesson</th>
+            <th class="text-center" scope="col">Description</th>
+            <th class="text-center" scope="col">Video</th>
+            <th class="text-center" scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lesson in lessons %}
+          <tr class="inner-box">
+            <th scope="row">
+              <div class="topic">
+                <span>{{ forloop.counter }}</span>
+              </div>
+            </th>
+            <td>
+              <div class="r-no">
+                <span>{{ lesson.name_lesson }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="r-no">
+                <span>{{ lesson.description }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="r-no" style="text-align: center;">
+                {% if lesson.video %}
+                <input checked="true" type="checkbox" id="cbx" class="hidden-xs-up" onclick="return false;">
+                <label for="cbx" class="cbx"></label>
+                {% else %}
+                <input type="checkbox" id="cbx" class="hidden-xs-up" onclick="return false;">
+                <label for="cbx" class="cbx"></label>
+                {% endif %}
+              </div>
+            </td>
+            <td>
+              <div class="r-no">
+                <span>{{ lesson.view_time }} {% if lesson.view_time > 1 %}minutes{% else %}minutue{% endif %}</span>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          <!--  -->
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static '/assets/js/course.js' %}"></script>
+{% endblock content %}
