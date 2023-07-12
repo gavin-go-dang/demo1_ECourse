@@ -62,16 +62,17 @@ List course
                 {% for topic in topics %}
                 <label>
                   <li><input type="checkbox" class="radio" value="{{ topic }}" name="topic" /> {{topic}}
-                
-                  {% endfor %}
+
+                    {% endfor %}
               </ul>
               <h6>Time learning</h6>
               <ul>
                 <label>
-                  <li><input type="checkbox" class="radio" value="1" name="time_learning" /> 1 month
+                  <li><input type="checkbox" class="radio" value="30" name="time_learning" /> 1 month
+                  </li>
+                  <li><input type="checkbox" class="radio" value="60" name="time_learning" /> 2 months
                 </label></li>
-                <li><input type="checkbox" class="radio" value="2" name="time_learning" /> 2 months</label></li>
-                <li><input type="checkbox" class="radio" value="3" name="time_learning" /> >= 3 months</label></li>
+                <li><input type="checkbox" class="radio" value="90" name="time_learning" /> >= 3 months</label></li>
               </ul>
               <h6>Level</h6>
               <ul>
@@ -100,7 +101,7 @@ List course
                       </tr>
                     </thead>
                     <tbody>
-                      {% for course, number in courses %}
+                      {% for course in courses %}
                       <tr class="inner-box">
                         <th scope="row">
                           <div class="topic">
@@ -132,14 +133,25 @@ List course
                         </td>
                         <td>
                           <div class="r-no" style="text-align: center;">
-                            <span>{{ number }}</span>
+                            <span>{{ course.number_of_lesson }}</span>
                           </div>
                         </td>
                       </tr>
                       {% endfor %}
-                      <!--  -->
                     </tbody>
                   </table>
+                  <div class="pagination">
+                    <a href="">&laquo;</a>
+
+                    {% for i in page_range %}
+                    {% if i == current_page %}
+                      <a href="/course/{{ i }}/" style="font-weight: bolder;">{{i}}</a>
+                    {% else %}
+                    <a href="/course/{{ i }}/">{{i}}</a>
+                    {% endif %}
+                    {% endfor %}
+                    <a href="">&raquo;</a>
+                  </div>
                 </div>
               </div>
             </div>
