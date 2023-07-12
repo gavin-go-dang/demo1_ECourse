@@ -1,5 +1,19 @@
 from django.contrib import admin
-from ..models import Lesson
+from ..models import Lesson, Course
+from django import forms
+from .filter import CourseFilter
+
+
+class CourseChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return "{}".format(obj.name_course)
+
+
+class LessonFilterByCourse(CourseFilter):
+    def queryset(self, request, queryset):
+        if self.value():
+            return Lesson.objects.filter(course=self.value())
+        return queryset
 
 
 class LessonAdmin(admin.ModelAdmin):
@@ -20,6 +34,8 @@ class LessonAdmin(admin.ModelAdmin):
         ),
     ]
 
+    list_filter = (LessonFilterByCourse,)
+
     def get_queryset(self, request):
         queryset = Lesson.objects.all()
         if request.user.is_superuser:
@@ -27,3 +43,10 @@ class LessonAdmin(admin.ModelAdmin):
         else:
             teacher = request.user
             return queryset.filter(course__teacher=teacher)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "course":
+            return CourseChoiceField(
+                queryset=Course.objects.filter(teacher=request.user)
+            )
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)

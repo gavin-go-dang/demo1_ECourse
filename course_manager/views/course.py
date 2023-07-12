@@ -1,7 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render
 from course_manager.models import Course, Lesson, Topic
-from django.utils.decorators import method_decorator
 from django.db.models import Count
 import math
 
@@ -33,10 +32,11 @@ class ListCourse(View):
         if topic_filter and topic_filter != "All":
             course_filter["topic__name_topic"] = topic_filter
 
-        time_learn = int(request.GET.get("time_learning", ""))
+        time_learn = request.GET.get("time_learning", "")
+
         if time_learn:
-            course_filter["time_to_learn_ets__lte"] = time_learn
-            course_filter["time_to_learn_ets__gt"] = time_learn - 30
+            course_filter["time_to_learn_ets__lte"] = float(time_learn)
+            course_filter["time_to_learn_ets__gt"] = float(ime_learn - 30)
 
         level = request.GET.get("level", "")
         if level:
@@ -52,16 +52,16 @@ class ListCourse(View):
             * self.course_per_view : self.page_course
             * self.course_per_view
         ]
-        course_count = math.ceil(float(courses.count()) / self.course_per_view)
+        course_count = math.ceil(courses.count() / self.course_per_view)
         if self.page_course > 4:
-            min_course_page = self.page_course - 3
+            min_course_page = self.page_course - self.page_course / 2
 
-        if self.page_course < course_count - 3:
-            max_course_page = self.page_course + 4
-        else:
+        if self.page_course < course_count - self.page_course / 2:
             max_course_page = course_count + 1
-
+        else:
+            max_course_page = self.page_course + int(self.page_course / 2)
         page_range = range(min_course_page, max_course_page)
+
         context = {
             "courses": courses_display,
             "topics": topics,
