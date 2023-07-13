@@ -44,3 +44,8 @@
 .navbar-brand span{
     color: black;
 }
+
+
+#submit-btn{
+    width: 200px;
+}
