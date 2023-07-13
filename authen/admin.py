@@ -20,7 +20,7 @@ class TeacherAdmin(admin.ModelAdmin):
     ]
 
     def get_queryset(self, request):
-        queryset = User.objects.all()
+        queryset = super().get_queryset(request)
         if request.user.is_superuser:
             return queryset
         else:

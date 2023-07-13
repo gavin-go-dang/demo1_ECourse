@@ -26,7 +26,7 @@ class ExamAdmin(admin.ModelAdmin):
     list_filter = (ExamFilterByCourse,)
 
     def get_queryset(self, request):
-        queryset = Exam.objects.all()
+        queryset = super().get_queryset(request)
         if request.user.is_superuser:
             return queryset
         else:

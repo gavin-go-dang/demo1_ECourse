@@ -37,7 +37,7 @@ class LessonAdmin(admin.ModelAdmin):
     list_filter = (LessonFilterByCourse,)
 
     def get_queryset(self, request):
-        queryset = Lesson.objects.all()
+        queryset = super().get_queryset(request)
         if request.user.is_superuser:
             return queryset
         else:
