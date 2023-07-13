@@ -10,4 +10,4 @@ class Exam(CreatedUpdatedDateModel):
     course = models.ForeignKey("course_manager.Course", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name_exam
+        return "{}-{}".format(self.name_exam, self.course)
