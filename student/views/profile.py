@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from common.views import LoginRequired
 from course_manager.models import Register, Certificate
-from ..forms import UpdateUserInfoForm
+from ..forms import UpdateUserInfoForm, CoverImgForm
 from authen.models import User
 
 # Create your views here.
@@ -10,6 +10,7 @@ from authen.models import User
 
 class StudentProfile(LoginRequired, View):
     template_name = "student_info.html"
+    avt_form = CoverImgForm()
 
     def get(self, request):
         completed_course = Certificate.objects.filter(student=request.user)
@@ -21,14 +22,21 @@ class StudentProfile(LoginRequired, View):
             "registered_course": registered_course,
             "completed_course": completed_course,
         }
+
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = UpdateUserInfoForm(request.POST)
-        if form.is_valid():
-            user = request.user
-            user.full_name = form.cleaned_data["full_name"]
-            user.email = form.cleaned_data["email"]
-            user.save()
+        if "update" in request.POST:
+            form = UpdateUserInfoForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+            else:
+                error = " ".join([x for l in form.errors.values() for x in l])
+                context = {"message": error}
+                return render(request, self.template_name, context)
 
-        return redirect("/")
+        if "update_img" in request.POST:
+            form = CoverImgForm(request.POST, request.FILES, instance=request.user)
+            if form.is_valid():
+                form.save()
+        return redirect("./")

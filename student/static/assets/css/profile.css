@@ -1,5 +1,3 @@
-
-
 .form-control:focus {
     box-shadow: none;
     border-color: #BA68C8
@@ -41,11 +39,22 @@
     border: solid 1px #BA68C8
 }
 
-.navbar-brand span{
+.navbar-brand span {
     color: black;
 }
 
 
-#submit-btn{
+#submit-btn {
     width: 200px;
 }
+
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+

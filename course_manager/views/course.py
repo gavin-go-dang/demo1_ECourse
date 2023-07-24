@@ -1,18 +1,19 @@
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.shortcuts import render
 from course_manager.models import Course, Lesson, Topic
 from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import math
 
 
 # Create your views here.
 
 
-class ListCourse(View):
+class ListCourse(ListView):
     template_name = "course.html"
     time_to_learn = {"30": 30, "60": 60, "90": 90}
     page_course = 1
-    course_per_view = 7
+    paginate_by = 3
 
     def get(self, request, *args, **kwargs):
         query = request.GET.get("query", "")
@@ -20,6 +21,7 @@ class ListCourse(View):
         topics = Topic.objects.all()
         number_of_lesson = []
         course_filter = {}
+        courses = Course.objects.all()
         min_course_page = 1
         if kwargs:
             self.page_course = kwargs["page"]
@@ -36,36 +38,24 @@ class ListCourse(View):
 
         if time_learn:
             course_filter["time_to_learn_ets__lte"] = float(time_learn)
-            course_filter["time_to_learn_ets__gt"] = float(ime_learn - 30)
+            course_filter["time_to_learn_ets__gt"] = float(time_learn) - 30
 
         level = request.GET.get("level", "")
         if level:
             course_filter["level"] = level
 
-        courses = Course.objects.filter(**course_filter).annotate(
+        courses_list = courses.filter(**course_filter).annotate(
             number_of_lesson=Count("lesson")
         )
 
-        # divide course to display
-        courses_display = courses[
-            (self.page_course - 1)
-            * self.course_per_view : self.page_course
-            * self.course_per_view
-        ]
-        course_count = math.ceil(courses.count() / self.course_per_view)
-        if self.page_course > 4:
-            min_course_page = self.page_course - self.page_course / 2
+        paginator = Paginator(courses_list, self.paginate_by)
+        page_number = request.GET.get("page")
 
-        if self.page_course < course_count - self.page_course / 2:
-            max_course_page = course_count + 1
-        else:
-            max_course_page = self.page_course + int(self.page_course / 2)
-        page_range = range(min_course_page, max_course_page)
-
+        course_obj = paginator.get_page(page_number)
         context = {
-            "courses": courses_display,
+            "courses": course_obj,
             "topics": topics,
             "current_page": self.page_course,
-            "page_range": page_range,
         }
+
         return render(request, self.template_name, context)

@@ -29,6 +29,13 @@
                 <img class="rounded-circle mt-5 border border-primary" width="150px"
                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                 {% endif %}
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input class="form-control inputfile" type="file" name="cover_img" id="file" title=""
+                        required>
+                    <label for="file">Choose a file</label>
+                    <button name="update_img" type="submit" class="btn btn-primary" id="file-input">Change</button>
+                </form>
                 <span class="font-weight-bold">{{ user.username }}</span>
                 <span class="text-black-50"></span>{{ user.email }}
                 <span></span>
@@ -36,7 +43,7 @@
         </div>
 
         <div class="col-md-5">
-            <form action="" method="POST" name="update_info">
+            <form name="update_info" action="" method="POST" name="update_info" id="change-info-form">
                 {% csrf_token %}
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -45,8 +52,8 @@
                     <div class="row mt-2">
                         <div class="col-md-12">
                             <label class="labels">User name</label>
-                            <input type="text" class="form-control" placeholder="user_abc" value="{{user.username}}"
-                                disabled>
+                            <input name="username" type="text" class="form-control" placeholder="user_abc"
+                                value="{{user.username}}" disabled>
                         </div>
 
                         <div class="col-md-12">
@@ -62,16 +69,25 @@
                         </div>
                         <div class="col-md-12">
                             <label class="labels">Date of Birth</label>
-                            <input type="date" class="form-control" placeholder="enter address line 1" value="
-                            {% if user.date_of_birth %} {{ user.date_of_birth }} {% endif %}">
+                            <input name="date_of_birth" type="date" class="form-control"
+                                onchange="check_date_change(event);"
+                                value="{% if user.date_of_birth %}{{user.date_of_birth|date:'Y-m-d'|cut:' ' }}{% endif %}"
+                                id="date_input">
                         </div>
-
                     </div>
 
                     <div class="mt-5 text-center">
-                        <input id="submit-btn" type="submit" name="update" id="" value="Update" disabled>
+                        <input id="submit-btn" type="submit" name="update" id="" value="Update" class="btn btn-primary"
+                            disabled>
                     </div>
                 </div>
+                {% if message %}
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+                {% endif %}
             </form>
         </div>
 
@@ -105,7 +121,6 @@
                             <p>{{ certificate.course }}</p>
                         </a>
                     </div>
-
                 </div>
                 {% endfor %}
                 <br>
