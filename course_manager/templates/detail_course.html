@@ -32,12 +32,20 @@
       </p>
 
       <div class="hero_btn-continer">
-        <a href="/register" class="call_to-btn btn_white-border">
-          <span>
-            Access this course
-          </span>
+        
+          
+            {% if is_register %}
+            <form action='' method='GET' name="access" method="GET">
+              {% csrf_token %}
+              <input name="access" type="submit" value="access" class="btn btn-outline-secondary">
+            </form>
+            {% else %}
+            <form action='' method='GET' name="register">
+              {% csrf_token %}
+              <input name="register" type="submit" value="register" class="btn btn-outline-secondary">
+            </form>
+            {% endif %}          
           <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
-        </a>
       </div>
     </div>
     <div class="hero_img-container">
@@ -108,12 +116,14 @@
         </tbody>
       </table>
     </div>
-    
+
   </div>
 </section>
+{% include 'footer.html' %}
 
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static '/assets/js/course.js' %}"></script>
+
 {% endblock content %}

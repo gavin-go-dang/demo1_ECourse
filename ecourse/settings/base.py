@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "authen",
     "course_manager",
     "common",
+    "student",
 ]
 
 MIDDLEWARE = [
