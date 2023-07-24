@@ -1,35 +1,21 @@
-
-const fullNameInput = document.querySelector('input[name="full_name"]');
-
-const usernameInput = document.querySelector('input[name="username"]');
-
-const emailInput = document.querySelector('input[name="email"]');
-
-const dateInput = document.querySelector('input[name="date"]');
-
-const updateButton = document.querySelector('input[name="update"]');
-
-fullNameInput.addEventListener('input', function () {
-    updateButton.removeAttribute('disabled');
+$('input[name="full_name"]').on('input', function () {
+    $updateButton.removeAttr('disabled');
 });
 
-emailInput.addEventListener('input', function () {
-    updateButton.removeAttribute('disabled');
+$('input[name="username"]').on('input', function () {
+    $updateButton.removeAttr('disabled');
 });
 
-
-updateButton.addEventListener('click', function () {
-    usernameInput.removeAttribute('disabled');
+$('input[name="email"]').on('click', function () {
+    $usernameInput.removeAttr('disabled');
 });
-
 
 function changing_check() {
-    updateButton.removeAttribute('disabled');
+    $updateButton.removeAttr('disabled');
 }
 
-
 function check_date_change(e) {
-    updateButton.removeAttribute('disabled');
+    $updateButton.removeAttr('disabled');
 }
 
 $('#button').click(function () {
