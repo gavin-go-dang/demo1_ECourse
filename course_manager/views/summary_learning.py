@@ -17,8 +17,7 @@ class SummaryLearning(LoginRequired, TemplateView):
         courses = (
             Register.objects.filter(student=self.request.user)
             .select_related("course")
-            .prefetch_related("course")
-            .values("course", "course__name_course")
+            .prefetch_related("course_include")
         )
 
         total_lessons = (
@@ -54,6 +53,5 @@ class SummaryLearning(LoginRequired, TemplateView):
             )
             .values("name_course", "course_completion_rate")
         )
-        breakpoint()
         context["courses"] = course_completion_rate
         return context
