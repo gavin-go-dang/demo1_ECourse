@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import LessonLearned
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
+
+from .models import LessonLearned
 
 
 class LessonLearnedSerializer(serializers.ModelSerializer):

@@ -1,9 +1,9 @@
+from django.shortcuts import redirect, render
 from django.views.generic import View
-from django.shortcuts import render
 from django.views.generic.detail import DetailView, View
+
 from common.views import LoginRequired
 from course_manager.models import Course, Lesson, LessonLearned
-from django.shortcuts import render, redirect
 
 
 class LessonContent(DetailView):

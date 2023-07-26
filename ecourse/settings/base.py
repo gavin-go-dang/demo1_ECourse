@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -147,3 +147,5 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
+
+PAGAINATION_BY = 6

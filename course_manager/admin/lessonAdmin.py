@@ -1,6 +1,7 @@
-from django.contrib import admin
-from ..models import Lesson, Course
 from django import forms
+from django.contrib import admin
+
+from ..models import Course, Lesson
 from .filter import CourseFilter
 
 

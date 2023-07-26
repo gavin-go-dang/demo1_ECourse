@@ -1,8 +1,10 @@
 from django.db import models
-from .course import Course
+
 from authen.models import User
-from .exam import Exam
 from common.models import CreatedDateModel
+
+from .course import Course
+from .exam import Exam
 
 
 class ResultTest(CreatedDateModel):

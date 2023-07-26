@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views.generic import View
-from common.views import LoginRequired
-from course_manager.models import Register, Certificate
-from ..forms import UpdateUserInfoForm, CoverImgForm
+
 from authen.models import User
+from common.views import LoginRequired
+from course_manager.models import Certificate, Register
+
+from ..forms import CoverImgForm, UpdateUserInfoForm
 
 # Create your views here.
 

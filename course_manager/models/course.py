@@ -1,7 +1,9 @@
 from django.db import models
+
 from authen.models import User
-from .topic import Topic
 from common.models import CreatedUpdatedDateModel
+
+from .topic import Topic
 
 
 class Course(CreatedUpdatedDateModel):

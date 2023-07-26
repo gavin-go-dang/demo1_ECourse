@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from course_manager.models import LessonLearned
 from course_manager.serializers import LessonLearnedSerializer
-from rest_framework.views import APIView
-from rest_framework.renderers import JSONRenderer
-from rest_framework import status
 
 
 class LessonLearnedView(APIView):
@@ -13,7 +14,6 @@ class LessonLearnedView(APIView):
 
     def post(self, request, format=None):
         serializer = LessonLearnedSerializer(data=request.data)
-        breakpoint()
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

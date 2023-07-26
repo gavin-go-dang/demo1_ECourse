@@ -1,7 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import SummaryLearning, ListCourse, DetailCourse, LessonLearnedView
 
+from .views import DetailCourse, LessonLearnedView, ListCourse, SummaryLearning
 
 urlpatterns = [
     path("summary/", SummaryLearning.as_view(), name="summary"),
