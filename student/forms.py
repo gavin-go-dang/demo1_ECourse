@@ -1,6 +1,7 @@
 from django import forms
-from authen.models import User
 from django.db.models import Q
+
+from authen.models import User
 
 
 class UpdateUserInfoForm(forms.ModelForm):

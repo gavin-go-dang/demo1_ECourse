@@ -1,6 +1,7 @@
 from django.db import models
-from .course import Course
+
 from common.models import CreatedUpdatedDateModel
+
 from .course import Course
 
 

@@ -1,7 +1,9 @@
 from django.db import models
-from .lesson import Lesson
+
 from authen.models import User
 from common.models import CreatedUpdatedDateModel
+
+from .lesson import Lesson
 
 
 class LessonLearned(CreatedUpdatedDateModel):

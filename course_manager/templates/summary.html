@@ -59,30 +59,15 @@ Summary
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="progress-title">HTML</h3>
+
+          {% for course in courses %}
+          <h3 class="progress-title">{{ course.name_course }}</h3>
           <div class="progress">
-            <div class="progress-bar" style="width:65%; background:#97c513;">
-              <div class="progress-value">65%</div>
+            <div class="progress-bar" style="width:{{ course.course_completion_rate }}%; background:#97c513;">
+              <div class="progress-value">{{ course.course_completion_rate }}</div>
             </div>
           </div>
-          <h3 class="progress-title">CSS</h3>
-          <div class="progress">
-            <div class="progress-bar" style="width:100%; background:#f2545b;">
-              <div class="progress-value">100%</div>
-            </div>
-          </div>
-          <h3 class="progress-title">JAVASCRIPT</h3>
-          <div class="progress">
-            <div class="progress-bar" style="width:75%; background:#4286f4;">
-              <div class="progress-value">75%</div>
-            </div>
-          </div>
-          <h3 class="progress-title">BOOTSTRAP</h3>
-          <div class="progress">
-            <div class="progress-bar" style="width:30%; background:#21ff63;">
-              <div class="progress-value">30%</div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -90,22 +75,6 @@ Summary
 
 
   <!-- about section -->
-  <section class="landing_section layout_padding">
-    <div class="container">
-      <h2 class="main-heading">
-        Free Multipurpose Responsive
 
-      </h2>
-      <h2 class="main-heading number_heading">
-        Landing Page 2019
-
-      </h2>
-      <p class="landing_detail text-center">
-        There are many variations of passages of Lorem Ipsum available, but the majority There are many variations of
-        passages of Lorem Ipsum available, but the majority h
-
-      </p>
-    </div>
-  </section>
   {% include 'footer.html' %}
   {% endblock content %}

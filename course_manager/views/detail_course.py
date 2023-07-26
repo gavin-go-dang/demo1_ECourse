@@ -1,9 +1,8 @@
-from django.views.generic import View
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.shortcuts import redirect, render
+from django.views.generic import TemplateView, View
+
 from common.views import LoginRequired
-from course_manager.models import Course, Lesson, Topic, Register
-from django.shortcuts import render, redirect
+from course_manager.models import Course, Lesson, Register, Topic
 
 
 class DetailCourse(LoginRequired, View):

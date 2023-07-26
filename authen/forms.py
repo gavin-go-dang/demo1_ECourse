@@ -1,7 +1,9 @@
-from django import forms
 import copy
-from .models import User
+
+from django import forms
 from django.contrib.auth.models import Group
+
+from .models import User
 
 
 class SignUpForm(forms.Form):

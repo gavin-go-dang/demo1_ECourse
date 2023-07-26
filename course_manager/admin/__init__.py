@@ -1,21 +1,20 @@
 from django.contrib import admin
+
 from ..models import (
     Certificate,
-    Lesson,
     Course,
-    Topic,
     Exam,
-    Question,
-    ResultTest,
+    Lesson,
     LessonLearned,
+    Question,
     Register,
+    ResultTest,
+    Topic,
 )
-
 from .courseAdmin import CourseAdmin
-from .lessonAdmin import LessonAdmin
 from .examAdmin import ExamAdmin
+from .lessonAdmin import LessonAdmin
 from .questionAdmin import QuestionAdmin
-
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)

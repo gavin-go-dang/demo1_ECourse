@@ -1,6 +1,7 @@
-from django.contrib import admin
-from ..models import Lesson, Course, Question, Exam
 from django import forms
+from django.contrib import admin
+
+from ..models import Course, Exam, Lesson, Question
 
 
 class ExamChoiceField(forms.ModelChoiceField):

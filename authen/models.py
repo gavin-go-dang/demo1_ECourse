@@ -1,7 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
-from common.models import CreatedUpdatedDateModel
+from django.db import models
 
+from common.models import CreatedUpdatedDateModel
 
 # Create your models here.
 

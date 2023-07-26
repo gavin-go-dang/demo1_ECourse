@@ -492,7 +492,7 @@ p.fullname {
     background-color: #2354dd;
     padding: 15px 30px;
     color: white;
-    z-index: 99;
+    z-index: 3;
     margin-top: 50%;
 }
 

@@ -1,15 +1,16 @@
-from django.shortcuts import render
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.contrib.auth.models import User, auth
-from django.views.generic import View, TemplateView
-from django.contrib.auth.views import LoginView, LogoutView
-from .models import User
 from django.contrib.auth import get_user_model
-from .forms import SignUpForm
-from course_manager.models import Course, Topic, Register
+from django.contrib.auth.models import User, auth
+from django.contrib.auth.views import LoginView, LogoutView
 from django.core.cache import cache
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.views.generic import TemplateView, View
+
+from course_manager.models import Course, Register, Topic
+
+from .forms import SignUpForm
+from .models import User
 
 
 class HomeView(View):

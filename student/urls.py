@@ -1,6 +1,6 @@
-from django.urls import path, include
-from .views import StudentProfile
+from django.urls import include, path
 
+from .views import StudentProfile
 
 urlpatterns = [
     path("", StudentProfile.as_view(), name="student"),

@@ -1,19 +1,20 @@
-from django.views.generic import View, ListView
-from django.shortcuts import render
-from course_manager.models import Course, Lesson, Topic
-from django.db.models import Count
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import math
 
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Count
+from django.shortcuts import render
+from django.views.generic import ListView, View
+from django.conf import settings
+from course_manager.models import Course, Lesson, Topic
 
 # Create your views here.
 
 
-class ListCourse(ListView):
+class ListCourse(View):
     template_name = "course.html"
     time_to_learn = {"30": 30, "60": 60, "90": 90}
     page_course = 1
-    paginate_by = 3
+    paginate_by = settings.PAGAINATION_BY
 
     def get(self, request, *args, **kwargs):
         query = request.GET.get("query", "")
@@ -56,6 +57,7 @@ class ListCourse(ListView):
             "courses": course_obj,
             "topics": topics,
             "current_page": self.page_course,
+            "max_page": paginator.num_pages,
         }
 
         return render(request, self.template_name, context)
