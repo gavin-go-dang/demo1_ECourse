@@ -28,6 +28,7 @@ class LessonAdmin(admin.ModelAdmin):
                     ("course"),
                     ("video"),
                     ("description"),
+                    ("index"),
                     ("view_time"),
                 ]
             },

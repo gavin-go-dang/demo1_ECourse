@@ -165,7 +165,7 @@ a:focus {
 }
 
 .custom_nav-container {
-  z-index: 99999;
+  z-index: 3;
   padding: 15px 0;
 }
 

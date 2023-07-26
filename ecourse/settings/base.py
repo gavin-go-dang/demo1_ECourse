@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "course_manager",
     "common",
     "student",
+    "study",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

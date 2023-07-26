@@ -1,0 +1,65 @@
+.navbar-brand span {
+    color: black;
+}
+
+.content-body {
+    margin-top: 3%;
+    margin-bottom: 8%;
+}
+
+
+
+/* sidebar */
+
+button#open-menu {
+    position: fixed;
+}
+
+#body-overlay {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.lesson-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    z-index: 4;
+    width: 300px;
+    height: 100%;
+    padding: .5rem 1rem;
+    box-shadow: 0 6px 12px rgba(107, 82, 82, 0.3);
+    background-color: white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: ease 0.2s all;
+}
+
+
+body.menu-open #body-overlay {
+    display: block;
+}
+
+body.menu-open .lesson-menu {
+    left: 0;
+}
+
+.lesson-menu li {
+    list-style-type: none;
+}
+
+.lesson-item{
+    color: black;
+}
+
+
+.lesson-menu li:hover {
+    background-color: antiquewhite;
+}

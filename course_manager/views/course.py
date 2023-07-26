@@ -9,11 +9,11 @@ import math
 # Create your views here.
 
 
-class ListCourse(ListView):
+class ListCourse(View):
     template_name = "course.html"
     time_to_learn = {"30": 30, "60": 60, "90": 90}
     page_course = 1
-    paginate_by = 3
+    paginate_by = 2
 
     def get(self, request, *args, **kwargs):
         query = request.GET.get("query", "")
@@ -56,6 +56,7 @@ class ListCourse(ListView):
             "courses": course_obj,
             "topics": topics,
             "current_page": self.page_course,
+            "max_page": paginator.num_pages,
         }
 
         return render(request, self.template_name, context)

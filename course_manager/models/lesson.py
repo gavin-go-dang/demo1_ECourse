@@ -10,6 +10,7 @@ class Lesson(CreatedUpdatedDateModel):
     video = models.FileField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     view_time = models.IntegerField(null=True, blank=True)
+    index = models.IntegerField(null=True, blank=True, default=id)
 
     def __str__(self):
         return self.name_lesson
