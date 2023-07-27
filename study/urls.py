@@ -1,7 +1,8 @@
 from django.urls import include, path
 
-from .views import LessonContent
+from .views import LessonContent, ExamContent
 
 urlpatterns = [
     path("lesson/<pk>/", LessonContent.as_view(), name="lesson"),
+    path("exam/<pk>/", ExamContent.as_view(), name="exam"),
 ]

@@ -15,4 +15,4 @@ class ResultTest(CreatedDateModel):
     number_of_test = models.IntegerField(default=1)
 
     def __str__(self):
-        return "-".format(self.student, self.exam)
+        return "{}-{}".format(self.student, self.exam)
