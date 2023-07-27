@@ -3,7 +3,7 @@ from django.db.models.functions import Coalesce, Round
 from django.views.generic import TemplateView
 
 from common.views import LoginRequired
-from course_manager.models import Lesson, LessonLearned, Register, Course
+from course_manager.models import Course, Lesson, LessonLearned, Register
 
 # Create your views here.
 

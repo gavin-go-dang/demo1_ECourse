@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views import LessonContent, ExamContent, ResultExam
+from .views import ExamContent, LessonContent, ResultExam
 
 urlpatterns = [
     path("lesson/<pk>/", LessonContent.as_view(), name="lesson"),

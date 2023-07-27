@@ -44,11 +44,11 @@
     <div class="question_answer">
       <div class="row question">
         <div class="col-sm question">
-          {{ forloop.counter }}.{{ question.question_text }}
+          Question {{ forloop.counter }}: {{ question.question_text }}
         </div>
       </div>
       <div class="answer">
-        <div class="row exam">
+        <div class="row question">
           <div class="col-sm question">
             <div class="form-check">
               <input class="form-check-input" value="{{ question.choice_1 }}" type="radio" name={{question.id}}
@@ -59,7 +59,7 @@
             </div>
           </div>
         </div>
-        <div class="row exam">
+        <div class="row question">
           <div class="col-sm question">
             <div class="form-check">
               <input class="form-check-input" value="{{ question.choice_2 }}" type="radio" name={{question.id}}
@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        <div class="row exam">
+        <div class="row question">
           <div class="col-sm question">
             <div class="form-check">
               <input class="form-check-input" value="{{ question.choice_3 }}" type="radio" name={{question.id}}
@@ -81,7 +81,7 @@
             </div>
           </div>
         </div>
-        <div class="row exam">
+        <div class="row question">
           <div class="col-sm question">
 
             <div class="form-check">

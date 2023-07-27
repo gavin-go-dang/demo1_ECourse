@@ -43,6 +43,17 @@
         </a>
       </div>
       {% endfor %}
+      <h5 class="main-heading number_heading">Exam List</h5>
+
+      {% for exam in exams %}
+      <a style="color: black;" href="/study/exam/{{exam.id}}/">
+        <div class="lesson-item">
+
+          <li>{{exam}}</li>
+
+        </div>
+      </a>
+      {% endfor %}
     </ul>
   </nav>
   <button id="open-menu" class="btn btn-secondary"><i class="far fa-arrow-alt-circle-right"></i></button>

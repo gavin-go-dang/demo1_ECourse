@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render
 from django.views.generic import View
-from common.views import DetailLoginRequired
 
-from common.views import LoginRequired
-from course_manager.models import Course, Lesson, LessonLearned, ResultTest, Question
+from common.views import DetailLoginRequired, LoginRequired
+from course_manager.models import Course, Lesson, LessonLearned, Question, ResultTest
 
 
 class ResultExam(DetailLoginRequired):

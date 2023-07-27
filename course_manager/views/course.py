@@ -1,10 +1,11 @@
 import math
 
+from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import ListView, View
-from django.conf import settings
+
 from course_manager.models import Course, Lesson, Topic
 
 # Create your views here.

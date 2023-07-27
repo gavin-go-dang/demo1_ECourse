@@ -1,14 +1,14 @@
-from django.shortcuts import redirect, render
-from django.views.generic import View
-from common.views import DetailLoginRequired
 import copy
 
-from common.views import LoginRequired
+from django.shortcuts import redirect, render
+from django.views.generic import View
+
+from common.views import DetailLoginRequired, LoginRequired
 from course_manager.models import (
     Course,
+    Exam,
     Lesson,
     LessonLearned,
-    Exam,
     Question,
     ResultTest,
 )

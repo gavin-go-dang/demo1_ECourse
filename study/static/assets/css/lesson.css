@@ -30,7 +30,7 @@ button#open-menu {
     position: fixed;
     top: 0;
     left: -300px;
-    z-index: 4;
+    z-index: 6;
     width: 300px;
     height: 100%;
     padding: .5rem 1rem;

@@ -15,14 +15,16 @@ from .courseAdmin import CourseAdmin
 from .examAdmin import ExamAdmin
 from .lessonAdmin import LessonAdmin
 from .questionAdmin import QuestionAdmin
+from .testResultAdmin import ResultTestAdmin
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(ResultTest, ResultTestAdmin)
 
 admin.site.register(Certificate)
 admin.site.register(Topic)
-admin.site.register(ResultTest)
+
 admin.site.register(LessonLearned)
 admin.site.register(Register)

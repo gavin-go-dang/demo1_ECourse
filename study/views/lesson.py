@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.views.generic.detail import DetailView, View
 
 from common.views import LoginRequired
-from course_manager.models import Course, Lesson, LessonLearned, Exam
+from course_manager.models import Course, Exam, Lesson, LessonLearned
 
 
 class LessonContent(DetailView):
@@ -26,5 +26,6 @@ class LessonContent(DetailView):
             id__in=context["lesson_complete"].values("lesson")
         )
 
-        context["exam"] = Exam.objects.filter(course=course)
+        context["exams"] = Exam.objects.filter(course=course)
+        # breakpoint()
         return context
