@@ -33,7 +33,7 @@
                     {% csrf_token %}
                     <input class="form-control inputfile" type="file" name="cover_img" id="file" title=""
                         required>
-                    <label for="file">Choose a file</label>
+                    <label for="file" style="background-color: antiquewhite;">Choose a file</label><br>
                     <button name="update_img" type="submit" class="btn btn-primary" id="file-input">Change</button>
                 </form>
                 <span class="font-weight-bold">{{ user.username }}</span>

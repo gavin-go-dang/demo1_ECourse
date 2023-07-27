@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views.generic import View
-from django.views.generic.detail import DetailView, View
+from common.views import DetailLoginRequired
 import copy
 
 from common.views import LoginRequired
@@ -14,7 +14,7 @@ from course_manager.models import (
 )
 
 
-class ExamContent(LoginRequired, DetailView):
+class ExamContent(DetailLoginRequired):
     template_name = "exam.html"
     model = Exam
 
@@ -41,14 +41,11 @@ class ExamContent(LoginRequired, DetailView):
         mark = correct / total * 10
         exam = Exam.objects.get(id=exam_id)
 
-        number_of_test = (
-            ResultTest.objects.filter(exam=exam, student=student).last().number_of_test
-            + 1
-        )
-
-        if not number_of_test:
+        last_test = ResultTest.objects.filter(exam=exam, student=student)
+        if last_test:
+            number_of_test = last_test.last().number_of_test + 1
+        else:
             number_of_test = 1
-
         result = ResultTest(
             student=student,
             exam=exam,
@@ -57,6 +54,5 @@ class ExamContent(LoginRequired, DetailView):
             number_of_test=number_of_test,
         )
 
-        breakpoint()
         result.save()
-        return redirect("/study/exam/1")
+        return redirect("/study/result/{}".format(result.id))

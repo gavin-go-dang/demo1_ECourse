@@ -1,8 +1,9 @@
 from django.urls import include, path
 
-from .views import LessonContent, ExamContent
+from .views import LessonContent, ExamContent, ResultExam
 
 urlpatterns = [
     path("lesson/<pk>/", LessonContent.as_view(), name="lesson"),
     path("exam/<pk>/", ExamContent.as_view(), name="exam"),
+    path("result/<pk>/", ResultExam.as_view(), name="result"),
 ]

@@ -51,7 +51,7 @@
         <div class="row exam">
           <div class="col-sm question">
             <div class="form-check">
-              <input class="form-check-input" value="{{ question.choice_1 }}" type="radio" name="{{question.id}}"
+              <input class="form-check-input" value="{{ question.choice_1 }}" type="radio" name={{question.id}}
                 id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                 {{ question.choice_1 }}
@@ -62,8 +62,8 @@
         <div class="row exam">
           <div class="col-sm question">
             <div class="form-check">
-              <input class="form-check-input" value="{{ question.choice_2 }}" type="radio" name="{{question.id}}"
-                id="flexRadioDefault2" checked>
+              <input class="form-check-input" value="{{ question.choice_2 }}" type="radio" name={{question.id}}
+                id="flexRadioDefault2">
               <label class="form-check-label" for="flexRadioDefault2">
                 {{ question.choice_2 }}
               </label>
@@ -73,8 +73,8 @@
         <div class="row exam">
           <div class="col-sm question">
             <div class="form-check">
-              <input class="form-check-input" value="{{ question.choice_3 }}" type="radio" name="{{question.id}}"
-                id="flexRadioDefault2" checked>
+              <input class="form-check-input" value="{{ question.choice_3 }}" type="radio" name={{question.id}}
+                id="flexRadioDefault2">
               <label class="form-check-label" for="flexRadioDefault2">
                 {{ question.choice_3 }}
               </label>
@@ -85,8 +85,8 @@
           <div class="col-sm question">
 
             <div class="form-check">
-              <input class="form-check-input" value="{{ question.choice_4 }}" type="radio" name="{{question.id}}"
-                id="flexRadioDefault2" checked>
+              <input class="form-check-input" value="{{ question.choice_4 }}" type="radio" name={{question.id}}
+                id="flexRadioDefault2">
               <label class="form-check-label" for="flexRadioDefault2">
                 {{ question.choice_4 }}
               </label>
@@ -96,7 +96,7 @@
       </div>
     </div>
     {% endfor %}
-    <button id="button">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 {% include 'footer.html' %}
