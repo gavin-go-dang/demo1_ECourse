@@ -21,74 +21,88 @@
 
 {% block content %}
 {% include 'header.html' %}
+<div class="body">
+  <div id="body-overlay"></div>
+  <nav class="lesson-menu" role="navigation">
+    <ul>
+      <h5 class="main-heading number_heading">Lesson List</h5>
 
-<div id="body-overlay"></div>
-<nav class="lesson-menu" role="navigation">
-  <ul>
-    <h5 class="main-heading number_heading">Lesson List</h5>
-    {% for lesson in lesson_complete %}
-    <div class="lesson-item">
-      <a style="color: black;" href="/study/lesson/{{lesson.id}}/">
-        <li>{{lesson.lesson}} &#x2713;</li>
-      </a>
-    </div>
-    {% endfor %}
-    {% for lesson in lesson_incomplete %}
-    <div  class="lesson-item">
-      <a style="color: black;" href="/study/lesson/{{lesson.id}}/">
-        <li>{{lesson.name_lesson}}</li>
-      </a>
-    </div>
-    {% endfor %}
-  </ul>
-</nav>
-<button id="open-menu" class="btn btn-secondary"><i class="far fa-arrow-alt-circle-right"></i></button>
+      {% for lesson in lesson_complete %}
+      <a style="color: black;" href="/study/lesson/{{lesson.lesson.id}}/">
+        <div class="lesson-item">
 
-<div class="container content-body">
-  <div class="row title">
-    <div class="col-sm">
-      <h2 class="main-heading number_heading">
-        {{ object.name_lesson }}
-      </h2>
+          <li>{{lesson.lesson}} &#x2713;</li>
+
+        </div>
+      </a>
+      {% endfor %}
+      {% for lesson in lesson_incomplete %}
+      <div class="lesson-item">
+        <a style="color: black;" href="/study/lesson/{{lesson.lesson.id}}/">
+          <li>{{lesson.name_lesson}}</li>
+        </a>
+      </div>
+      {% endfor %}
+      <h5 class="main-heading number_heading">Exam List</h5>
+
+      {% for exam in exams %}
+      <a style="color: black;" href="/study/exam/{{exam.id}}/">
+        <div class="lesson-item">
+
+          <li>{{exam}}</li>
+
+        </div>
+      </a>
+      {% endfor %}
+    </ul>
+  </nav>
+  <button id="open-menu" class="btn btn-secondary"><i class="far fa-arrow-alt-circle-right"></i></button>
+
+  <div class="container content-body">
+    <div class="row title">
+      <div class="col-sm">
+        <h2 class="main-heading number_heading">
+          {{ object.name_lesson }}
+        </h2>
+      </div>
     </div>
-  </div>
-  <div class="row video">
-    <div class="col-sm d-flex justify-content-center">
-      <p>
-        {{ object.description }}
-      </p>
+    <div class="row video">
+      <div class="col-sm d-flex justify-content-center">
+        <p>
+          {{ object.description }}
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="row video">
-    <div class="col-sm d-flex justify-content-center">
-      {% if object.video %}
-      <video id="lesson-video" width="860" height="540" controls>
-        <source src="{{ object.video.url }}" type="video/mp4">
-      </video>
-      {% endif %}
+    <div class="row video">
+      <div class="col-sm d-flex justify-content-center">
+        {% if object.video %}
+        <video id="lesson-video" width="860" height="540" controls>
+          <source src="{{ object.video.url }}" type="video/mp4">
+        </video>
+        {% endif %}
+      </div>
     </div>
-  </div>
-  <div class="row arrow">
-    <div class="col d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination other-lesson">
-          {% if previous %}
-          <li class="page-item"><a class="page-link" href="/study/lesson/{{ previous }}/">Previous</a></li>
-          {% else %}
-          <li class="page-item"><a class="page-link">Previous</a></li>
-          {% endif %}
-          <li class="page-item"><a class="page-link" href="/study/lesson/{{ object.id }}/">{{object.index}}</a></li>
-          {% if next %}
-          <li class="page-item"><a class="page-link" href="/study/lesson/{{ next }}/">Next</a></li>
-          {% else %}
-          <li class="page-item"><a class="page-link">Next</a></li>
-          {% endif %}
-        </ul>
-      </nav>
+    <div class="row arrow">
+      <div class="col d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination other-lesson">
+            {% if previous %}
+            <li class="page-item"><a class="page-link" href="/study/lesson/{{ previous }}/">Previous</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="/study/lesson/{{ object.id }}/">{{object.index}}</a></li>
+            {% if next %}
+            <li class="page-item"><a class="page-link" href="/study/lesson/{{ next }}/">Next</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link">Next</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
 </div>
-
 {% include 'footer.html' %}
 {% endblock content %}
 

@@ -18,9 +18,9 @@ class ExamFilterByCourse(CourseFilter):
 
 
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ("name_exam", "course")
+    list_display = ("name_exam", "course", "description")
     fieldsets = [
-        (None, {"fields": [("name_exam"), ("course")]}),
+        (None, {"fields": [("name_exam"), ("course"), ("description")]}),
     ]
     search_fields = ("name_exam",)
 

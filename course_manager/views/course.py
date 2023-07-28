@@ -1,10 +1,11 @@
 import math
 
+from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import ListView, View
-from django.conf import settings
+
 from course_manager.models import Course, Lesson, Topic
 
 # Create your views here.
@@ -45,9 +46,7 @@ class ListCourse(View):
         if level:
             course_filter["level"] = level
 
-        courses_list = courses.filter(**course_filter).annotate(
-            number_of_lesson=Count("lesson")
-        )
+        courses_list = courses.filter(**course_filter)
 
         paginator = Paginator(courses_list, self.paginate_by)
         page_number = request.GET.get("page")
