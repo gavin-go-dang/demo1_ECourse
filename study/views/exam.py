@@ -2,6 +2,8 @@ import copy
 
 from django.shortcuts import redirect, render
 from django.views.generic import View
+from django.urls import reverse
+from django.shortcuts import redirect
 
 from common.views import DetailLoginRequired, LoginRequired
 from course_manager.models import (
@@ -55,4 +57,4 @@ class ExamContent(DetailLoginRequired):
         )
 
         result.save()
-        return redirect("/study/result/{}".format(result.id))
+        return redirect(reverse("result", args=[result.id]))

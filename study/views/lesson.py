@@ -25,7 +25,6 @@ class LessonContent(DetailView):
         context["lesson_incomplete"] = context["lessons"].exclude(
             id__in=context["lesson_complete"].values("lesson")
         )
-
         context["exams"] = Exam.objects.filter(course=course)
-        # breakpoint()
+
         return context

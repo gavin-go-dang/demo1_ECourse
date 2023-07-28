@@ -15,5 +15,4 @@ class ResultExam(DetailLoginRequired):
         context["results"] = zip(
             Question.objects.filter(exam=context["object"].exam.id), answers
         )
-        # breakpoint()
         return context
