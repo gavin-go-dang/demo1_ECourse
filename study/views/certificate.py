@@ -12,21 +12,26 @@ class CertificateContent(View):
     def get(self, request, **kwargs):
         id_course = kwargs.get("course")
         id_student = kwargs.get("student")
-        student = User.objects.get(id=id_student)
-        course = Course.objects.get(id=id_course)
+
         result = (
-            ResultTest.objects.filter(exam__course=course, student__id=id_student)
+            ResultTest.objects.prefetch_related("exam__course__id", "student__id")
+            .filter(exam__course__id=id_course, student__id=id_student)
             .values("student", "exam")
             .annotate(max_score=Max("mark"))
             .order_by("student", "exam")
         )
-        max_score = result.aggregate(Avg("max_score"))["max_score__avg"]
+        # create certificate
+        student = User.objects.get(id=id_student)
+        course = Course.objects.get(id=id_course)
+        max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
+        cert = Certificate(student=student, course=course, score=max_avg_score)
+        cert.save()
         context = {
             "name": student.full_name,
             "result": result,
-            "score": max_score,
+            "score": max_avg_score,
             "course": course,
-            "date": None,
+            "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
         if context["score"] == None:
             return render(request, "incomplete.html")

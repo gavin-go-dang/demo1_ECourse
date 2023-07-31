@@ -33,6 +33,7 @@ class ExamContent(DetailLoginRequired):
         student = self.request.user
         questions = Question.objects.filter(exam__id=exam_id)
         data = request.POST.dict()
+        min_score_to_pass = 7.5
         del data["csrfmiddlewaretoken"]
 
         list_question = data.keys()
@@ -49,7 +50,7 @@ class ExamContent(DetailLoginRequired):
         else:
             number_of_test = 1
 
-        if mark > 7.5:
+        if mark > min_score_to_pass:
             pass_exam = True
         else:
             pass_exam = False
