@@ -13,6 +13,7 @@ class ResultTest(CreatedDateModel):
     mark = models.IntegerField()
     student_answer = models.JSONField()
     number_of_test = models.IntegerField(default=1)
+    pass_exam = models.BooleanField(default=False)
 
     def __str__(self):
         return "{}-{}".format(self.student, self.exam)

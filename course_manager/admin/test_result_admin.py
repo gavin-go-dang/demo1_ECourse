@@ -9,6 +9,7 @@ class ResultTestAdmin(admin.ModelAdmin):
         "student",
         "exam",
         "number_of_test",
+        "pass_exam",
     )
 
     fieldsets = [
@@ -21,6 +22,7 @@ class ResultTestAdmin(admin.ModelAdmin):
                     ("mark"),
                     ("student_answer"),
                     ("number_of_test"),
+                    ("pass_exam"),
                 ]
             },
         ),

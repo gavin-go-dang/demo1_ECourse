@@ -3,7 +3,7 @@ from django.db.models.functions import Coalesce, Round
 from django.views.generic import TemplateView
 
 from common.views import LoginRequired
-from course_manager.models import Course, Lesson, LessonLearned, Register
+from course_manager.models import Course, Lesson, LessonLearned, Register, ResultTest
 
 # Create your views here.
 
@@ -54,4 +54,7 @@ class SummaryLearning(LoginRequired, TemplateView):
             .values("name_course", "course_completion_rate")
         )
         context["courses"] = course_completion_rate
+        context["object_list"] = ResultTest.objects.filter(
+            student=self.request.user
+        ).order_by("mark")[:5]
         return context

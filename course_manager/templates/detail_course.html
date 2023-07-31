@@ -11,7 +11,8 @@
 <!-- responsive style -->
 <link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="{% static 'assets/css/detail_course.css' %}">
@@ -32,20 +33,19 @@
       </p>
 
       <div class="hero_btn-continer">
-        
-          
-            {% if is_register %}
-            <form action='' method='GET' name="access" method="GET">
-              {% csrf_token %}
-              <a href="/study/lesson/{{lessons.0.id}}/"><button type="button" class="btn btn-primary">Access</button></a>
-            </form>
-            {% else %}
-            <form action='' method='GET' name="register">
-              {% csrf_token %}
-              <input name="register" type="submit" value="register" class="btn btn-outline-secondary">
-            </form>
-            {% endif %}          
-          <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+
+        <form action="" method="GET"">
+          {% csrf_token %}
+        {% if is_register %}
+        <a href=" /study/lesson/{{lessons.0.id}}/"><button type="button" class="btn btn-primary">Access</button></a>
+          <a href="/study/cert/{{ user.id }}/{{lessons.0.course.id}}/"><button type="button"
+              class="btn btn-primary">Certificate</button></a>
+          {% else %}
+          <input name="register" type="submit" value="register" class="btn btn-outline-secondary">
+          {% endif %}
+        </form>
+
+        <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
       </div>
     </div>
     <div class="hero_img-container">

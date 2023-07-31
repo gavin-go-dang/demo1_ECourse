@@ -1,9 +1,8 @@
 import copy
 
 from django.shortcuts import redirect, render
-from django.views.generic import View
 from django.urls import reverse
-from django.shortcuts import redirect
+from django.views.generic import View
 
 from common.views import DetailLoginRequired, LoginRequired
 from course_manager.models import (
@@ -29,10 +28,12 @@ class ExamContent(DetailLoginRequired):
         correct = 0
         total = 0
         mark = 0
+        ass_exam = False
         exam_id = self.kwargs["pk"]
         student = self.request.user
         questions = Question.objects.filter(exam__id=exam_id)
         data = request.POST.dict()
+        min_score_to_pass = 7.5
         del data["csrfmiddlewaretoken"]
 
         list_question = data.keys()
@@ -48,12 +49,18 @@ class ExamContent(DetailLoginRequired):
             number_of_test = last_test.last().number_of_test + 1
         else:
             number_of_test = 1
+
+        if mark > min_score_to_pass:
+            pass_exam = True
+        else:
+            pass_exam = False
         result = ResultTest(
             student=student,
             exam=exam,
             student_answer=data,
             mark=mark,
             number_of_test=number_of_test,
+            pass_exam=pass_exam,
         )
 
         result.save()

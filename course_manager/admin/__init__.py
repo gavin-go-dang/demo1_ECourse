@@ -11,11 +11,11 @@ from ..models import (
     ResultTest,
     Topic,
 )
-from .courseAdmin import CourseAdmin
-from .examAdmin import ExamAdmin
-from .lessonAdmin import LessonAdmin
-from .questionAdmin import QuestionAdmin
-from .testResultAdmin import ResultTestAdmin
+from .course_admin import CourseAdmin
+from .exam_admin import ExamAdmin
+from .lesson_admin import LessonAdmin
+from .question_admin import QuestionAdmin
+from .test_result_admin import ResultTestAdmin
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
