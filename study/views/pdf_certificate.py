@@ -9,6 +9,8 @@ from xhtml2pdf import pisa
 from django.views import View
 from django.conf import settings
 from weasyprint import HTML
+import zlib
+import pickle
 
 
 class GenerateCertificatePdf(View):
@@ -19,7 +21,8 @@ class GenerateCertificatePdf(View):
         course = Course.objects.get(id=id_course)
 
         data = Certificate.objects.get(course=course, student=id_student)
-        context = {"data": data}
+        id = zlib.adler32(pickle.dumps(data))
+        context = {"data": data, "id": id}
 
         html_string = render_to_string("pdf_certificate.html", context=context)
         html = HTML(string=html_string, base_url=request.build_absolute_uri())
