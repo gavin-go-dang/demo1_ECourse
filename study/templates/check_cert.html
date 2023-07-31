@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{object.name_lesson}}
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link rel="stylesheet" href="{% static 'assets/css/certificate.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<div class="container certificate">
+    <div class="row justify-content-center">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="id" id="id_cert" value="{{id}}" placeholder="Input Certificate ID">
+            <button class="btn btn-primary" type="submit" >Check</button>
+        </form>
+    </div>
+    {% if exist %}
+    <div class="row justify-content-center" style="align-items: center;">
+
+        <div class="col">
+            <div class="outer-border" style="background-color: white;">
+                <div class="inner-dotted-border">
+                    <span class="certification" style="margin-bottom: 50%;">Certificate of Completion</span>
+                    <br>
+                    <span class="certify"><i>This is to certify that</i></span>
+                    <br><br>
+                    <span class="name"><b>{{ data.student.full_name }}</b></span><br /><br />
+                    <span class="certify"><i>has successfully completed the certification</i></span><br /><br />
+                    <span class="fs-30">{{ data.course }}</span> <br><br>
+                    <span class="fs-20">by <b>{{ data.course.teacher.full_name }}</b></span><br><br>
+                    <span class="fs-20">Score: <b>{{data.score}}/10.0</b></span> <br><br /><br /><br /><br />
+                   
+                    <span class="fs-20">dated: {{ data.updated_at|date:'Y-m-d'}}</span> <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row justify-content-center" style="align-items: center;">
+        <div class="col">
+            <div class="outer-border" style="background-color: white;">
+               This certificate is not exist
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div id="pdf-btn" class="row justify-content-center">
+        <a href="/study/cert_pdf/{{data.student.id}}/{{data.course.id}}">
+            <button type="button" class="btn btn-primary" {% if not exist %}Disabled{% endif %}>View pdf</button>
+        </a>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock content %}

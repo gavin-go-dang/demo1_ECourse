@@ -8,6 +8,5 @@ django-redis-cache==3.0.1
 djangorestframework==3.14.0
 markdown ==3.3.6
 django-filter==23.2
-isort
 django-crispy-forms==2.0
 xhtml2pdf==0.2.11
