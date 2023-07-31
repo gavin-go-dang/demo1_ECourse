@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF</title>
+    <style>
+        @page {
+            size: a4 landscape;
+            text-align: center;
+        }
+
+        .outer-border {
+            margin-left: 3%;
+            width: 800px;
+            height: 650px;
+            padding: 20px;
+            text-align: center;
+            border: 10px solid #673AB7;
+        }
+
+        .inner-dotted-border {
+            width: 750px;
+            height: 600px;
+            padding: 20px;
+            text-align: center;
+            border: 5px solid #673AB7;
+            border-style: dotted;
+        }
+
+        .certification {
+            font-size: 50px;
+            font-weight: bold;
+            color: #663ab7;
+        }
+
+        .certify {
+            font-size: 25px;
+        }
+
+        .name {
+            font-size: 30px;
+            color: green;
+        }
+
+        .fs-30 {
+            font-size: 30px;
+        }
+
+        .fs-20 {
+            font-size: 20px;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="outer-border" style="background-color: white;">
+        <div class="inner-dotted-border">
+            <span class="certification">Certificate of Completion</span><br /><br /><br /><br />
+            <span class="certify"><i>This is to certify that</i></span>
+            <br /><br />
+            <span class="name"><b>{{data.student}}</b></span><br /><br />
+            <span class="certify"><i>has successfully completed the certification</i></span> <br /><br />
+            <span class="fs-30">{{data.course}}</span> <br /><br />
+            <span>by {{data.course.teacher}}</span><br /><br />
+            <span class="fs-20">with score <b>{{data.score}}/10.0</b></span> <br /><br /><br /><br /><br /><br />
+            <span>dated: {{data.updated_at|date:'Y-m-d'}}</span><br /><br />
+            <span>id: {{data.id}}</span>
+        </div>
+    </div>
+</body>
+
+</html>

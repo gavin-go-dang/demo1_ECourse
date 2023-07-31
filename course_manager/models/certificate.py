@@ -2,6 +2,7 @@ from django.db import models
 
 from authen.models import User
 from common.models import CreatedUpdatedDateModel
+
 from .course import Course
 
 

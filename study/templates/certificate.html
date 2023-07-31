@@ -25,24 +25,29 @@
 {% include 'header.html' %}
 
 <div class="container certificate">
-  <div class="row">
+  <div class="row justify-content-center" style="align-items: center;">
     <div class="col">
       <div class="outer-border" style="background-color: white;">
         <div class="inner-dotted-border">
-          <span class="certification">Certificate of Completion</span>
-          <br><br>
+          <span class="certification" style="margin-bottom: 50%;">Certificate of Completion</span>
+          <br>
           <span class="certify"><i>This is to certify that</i></span>
           <br><br>
-          <span class="name"><b>{{ name }}</b></span><br /><br />
-          <span class="certify"><i>has successfully completed the certification</i></span> <br /><br />
-          <span class="fs-30">{{ course }}</span> <br /><br />
-          <span class="fs-20">with score <b>{{score}}/10</b></span> <br /><br /><br /><br />
-          <span class="certify"><i>dated</i></span><br>
-          <span class="fs-30">{{ date }}</span>
+          <span class="name"><b>{{ name.full_name }}</b></span><br /><br />
+          <span class="certify"><i>has successfully completed the certification</i></span> <br><br>
+          <span class="fs-30">{{ course }}</span> <br><br>
+          <span class="fs-20">by <b>{{ course.teacher }}</b></span><br><br>
+          <span class="fs-20">Score: <b>{{score}}/10.0</b></span> <br>
+          <span class="certify"><i></i></span><br>
+          <span class="fs-20">dated: {{ date }}</span> <br>
         </div>
       </div>
     </div>
-    
+  </div>
+  <div  id="pdf-btn" class="row justify-content-center">
+    <a  href="/study/cert_pdf/{{name.id}}/{{course.id}}">
+      <button type="button" class="btn btn-primary">Get pdf</button>
+    </a>
   </div>
 </div>
 
