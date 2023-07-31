@@ -61,7 +61,6 @@ class ExamContent(DetailLoginRequired):
             number_of_test=number_of_test,
             pass_exam=pass_exam,
         )
-        breakpoint()
 
         result.save()
         return redirect(reverse("result", args=[result.id]))

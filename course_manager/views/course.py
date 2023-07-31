@@ -46,7 +46,7 @@ class ListCourse(View):
         if level:
             course_filter["level"] = level
 
-        courses_list = courses.filter(**course_filter)
+        courses_list = courses.filter(**course_filter).order_by("-register")
 
         paginator = Paginator(courses_list, self.paginate_by)
         page_number = request.GET.get("page")

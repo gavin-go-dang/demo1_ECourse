@@ -118,8 +118,8 @@ List course
       <div class="box-course">
         <div class="row">
           <div class="col-2 avt-img">
-            {% if course.teacher.cover_img %}
-            <img src="{{ course.teacher.cover_img.url }}" alt="cover image" class="cover_img" />
+            {% if course.cover_img %}
+            <img src="{{ course.cover_img.url }}" alt="cover image" class="cover_img" />
             {% else %}
             <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
             {% endif %}
@@ -142,7 +142,11 @@ List course
           <div class="col-2 teacher_progress">
             <div class="row teacher">
               <div class="col-5 avt-img">
-                <img src="{{ course.cover_img.url }}" alt="cover image" class="cover_img_teacher">
+                {% if course.teacher.cover_img %}
+                <img src="{{ course.teacher.cover_img.url }}" alt="cover image" class="cover_img_teacher">
+                {% else %}
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+                {% endif %}
               </div>
               <div class="col-7 teacher-name center ">
                 <p class="username">{{ course.teacher }}</p>

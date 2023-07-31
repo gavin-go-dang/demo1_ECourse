@@ -1,12 +1,11 @@
 from django.shortcuts import redirect, render
 from django.views.generic import View
-from django.views.generic.detail import DetailView, View
 
-from common.views import LoginRequired
+from common.views import DetailLoginRequired
 from course_manager.models import Course, Exam, Lesson, LessonLearned
 
 
-class LessonContent(DetailView):
+class LessonContent(DetailLoginRequired):
     template_name = "lesson.html"
     model = Lesson
 
