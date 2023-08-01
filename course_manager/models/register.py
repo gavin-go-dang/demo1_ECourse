@@ -29,7 +29,11 @@ def save_register(sender, instance, **kwargs):
     cache.set("top_courses", Course.objects.all().order_by("-register")[:4])
 
     # push notification
-    payload = {"head": "Congrats!", "body": "Your register is success"}
+    payload = {
+        "head": "Congrats!",
+        "body": "Your register is success",
+        "url": "/course/detail/{}/".format(instance.id),
+    }
     send_user_notification(user=instance.student, payload=payload, ttl=1000)
 
 
