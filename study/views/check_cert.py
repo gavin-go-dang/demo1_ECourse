@@ -24,7 +24,6 @@ class CheckCertificate(TemplateView):
             list_hash = [get_hash(certificate) for certificate in cert]
             if id_certificate in list_hash:
                 cert_valid = cert[list_hash.index(id_certificate)]
-            breakpoint()
             context = {"exist": True, "data": cert_valid, "id": id_certificate}
 
             return render(request, self.template_name, context)
