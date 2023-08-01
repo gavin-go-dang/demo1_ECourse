@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "study",
     "rest_framework",
     "crispy_forms",
+    "wkhtmltopdf",
 ]
 
 MIDDLEWARE = [

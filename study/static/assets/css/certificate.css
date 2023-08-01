@@ -1,32 +1,45 @@
-.outer-border{
-    width:800px; height:650px; padding:20px; text-align:center; border: 10px solid #673AB7;    margin-left: 21%;
+.outer-border {
+    width: 800px;
+    height: 650px;
+    padding: 20px;
+    text-align: center;
+    border: 10px solid #673AB7;
+    margin-left: 15%;
 }
 
-.inner-dotted-border{
-    width:750px; height:600px; padding:20px; text-align:center; border: 5px solid #673AB7;border-style: dotted;
+.inner-dotted-border {
+    width: 750px;
+    height: 600px;
+    padding: 20px;
+    text-align: center;
+    border: 5px solid #673AB7;
+    border-style: dotted;
 }
 
-.certification{
-    font-size:50px; font-weight:bold;    color: #663ab7;
+.certification {
+    font-size: 50px;
+    font-weight: bold;
+    color: #663ab7;
 }
 
-.certify{
-    font-size:25px;
+.certify {
+    font-size: 25px;
 }
 
-.name{
-    font-size:30px;    color: green;
+.name {
+    font-size: 30px;
+    color: green;
 }
 
-.fs-30{
-    font-size:30px;
+.fs-30 {
+    font-size: 30px;
 }
 
-.fs-20{
-    font-size:20px;
+.fs-20 {
+    font-size: 20px;
 }
 
-.certificate{
+.certificate {
     margin-top: 5%;
     margin-bottom: 5%;
 }

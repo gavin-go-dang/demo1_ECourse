@@ -1,9 +1,12 @@
-from django.views.generic.detail import View
+from django.db.models import Avg, Max
 from django.shortcuts import render
-from django.db.models import Max, Avg
+from django.views.generic.detail import View
+from django.core.exceptions import ObjectDoesNotExist
 
-from course_manager.models import Certificate, Course, Exam, ResultTest
+import logging
+
 from authen.models import User
+from course_manager.models import Certificate, Course, Exam, ResultTest
 
 
 class CertificateContent(View):
@@ -12,7 +15,8 @@ class CertificateContent(View):
     def get(self, request, **kwargs):
         id_course = kwargs.get("course")
         id_student = kwargs.get("student")
-
+        student = User.objects.get(id=id_student)
+        course = Course.objects.get(id=id_course)
         result = (
             ResultTest.objects.prefetch_related("exam__course__id", "student__id")
             .filter(exam__course__id=id_course, student__id=id_student)
@@ -20,14 +24,19 @@ class CertificateContent(View):
             .annotate(max_score=Max("mark"))
             .order_by("student", "exam")
         )
-        # create certificate
-        student = User.objects.get(id=id_student)
-        course = Course.objects.get(id=id_course)
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
-        cert = Certificate(student=student, course=course, score=max_avg_score)
-        cert.save()
+        try:  # 1 record
+            cert = Certificate.objects.get(student=student, course=course)
+            if cert.score < max_avg_score:
+                cert.score = max_avg_score
+                cert.save()
+        except ObjectDoesNotExist as e:  # Not exist
+            cert = Certificate(student=student, course=course, score=max_avg_score)
+            cert.save()
+        except IndexError as e:  # Multire
+            logging.error(filename="log_filename.log", format="%(asctime)s - %(e)s")
         context = {
-            "name": student.full_name,
+            "name": student,
             "result": result,
             "score": max_avg_score,
             "course": course,
