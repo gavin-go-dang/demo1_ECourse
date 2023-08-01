@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, View
 
 from course_manager.models import Course, Lesson, Topic
+from webpush import send_user_notification
+import json
 
 # Create your views here.
 

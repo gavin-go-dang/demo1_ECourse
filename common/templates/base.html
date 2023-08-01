@@ -1,8 +1,10 @@
 {% load static %}
+{% load webpush_notifications %}
 <!DOCTYPE html>
 <html>
 
 <head>
+  {% webpush_header %}
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,7 +38,6 @@
   {% block content %}
 
   {% endblock %}
-
   {% block js %}
 
   {% endblock %}
