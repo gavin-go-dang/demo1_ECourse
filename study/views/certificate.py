@@ -1,7 +1,9 @@
 from django.db.models import Avg, Max
 from django.shortcuts import render
 from django.views.generic.detail import View
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from sentry_sdk import capture_exception
+
 
 import logging
 
@@ -33,8 +35,8 @@ class CertificateContent(View):
         except ObjectDoesNotExist as e:  # Not exist
             cert = Certificate(student=student, course=course, score=max_avg_score)
             cert.save()
-        except IndexError as e:  # Multire
-            logging.error(filename="log_filename.log", format="%(asctime)s - %(e)s")
+        except Exception as e:  # Multire
+            capture_exception(e)
         context = {
             "name": student,
             "result": result,

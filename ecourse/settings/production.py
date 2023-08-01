@@ -3,7 +3,7 @@ from .base import *
 DEBUG = False
 
 sentry_sdk.init(
-    dsn=os.getenv("SENTRY_KEY_STAGGING"),
+    dsn=os.getenv("SENTRY_KEY_PRODUCTION"),
     integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
