@@ -1,6 +1,9 @@
 from django.db.models import Avg, Max
 from django.shortcuts import render
 from django.views.generic.detail import View
+from django.core.exceptions import ObjectDoesNotExist
+
+import logging
 
 from authen.models import User
 from course_manager.models import Certificate, Course, Exam, ResultTest
@@ -22,15 +25,16 @@ class CertificateContent(View):
             .order_by("student", "exam")
         )
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
-        try:
+        try:  # 1 record
             cert = Certificate.objects.get(student=student, course=course)
             if cert.score < max_avg_score:
                 cert.score = max_avg_score
                 cert.save()
-        except:
+        except ObjectDoesNotExist as e:  # Not exist
             cert = Certificate(student=student, course=course, score=max_avg_score)
             cert.save()
-
+        except IndexError as e:  # Multire
+            logging.error(filename="log_filename.log", format="%(asctime)s - %(e)s")
         context = {
             "name": student,
             "result": result,
