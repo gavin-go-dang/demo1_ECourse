@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from dotenv import load_dotenv
 
@@ -151,3 +153,16 @@ CACHES = {
 }
 
 PAGAINATION_BY = 6
+
+
+sentry_sdk.init(
+    dsn="https://0bd972d4a0005734d6c80f9c6ff7bacd@o4505627973320704.ingest.sentry.io/4505627974500352",
+    integrations=[DjangoIntegration()],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)
