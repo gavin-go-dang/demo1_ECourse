@@ -1,11 +1,10 @@
+import logging
+
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.db.models import Avg, Max
 from django.shortcuts import render
 from django.views.generic.detail import View
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from sentry_sdk import capture_exception
-
-
-import logging
 
 from authen.models import User
 from course_manager.models import Certificate, Course, Exam, ResultTest

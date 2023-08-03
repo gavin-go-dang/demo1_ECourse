@@ -1,9 +1,11 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render
-from course_manager.models import Certificate
-from django.db.models import Count, F, Value
 import pickle
 import zlib
+
+from django.db.models import Count, F, Value
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
+from course_manager.models import Certificate
 
 
 def get_hash(obj):

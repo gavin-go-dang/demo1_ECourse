@@ -2,12 +2,12 @@ from django.urls import include, path
 
 from .views import (
     CertificateContent,
+    CheckCertificate,
     ExamContent,
     GenerateCertificatePdf,
     LessonContent,
     ListResultExam,
     ResultExam,
-    CheckCertificate,
 )
 
 urlpatterns = [

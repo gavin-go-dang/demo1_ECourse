@@ -24,6 +24,7 @@ urlpatterns = [
     path("course/", include("course_manager.urls"), name="course"),
     path("student/", include("student.urls"), name="student"),
     path("study/", include("study.urls"), name="study"),
+    path(r"^webpush/", include("webpush.urls")),
     path("", include("authen.urls")),
 ]
 

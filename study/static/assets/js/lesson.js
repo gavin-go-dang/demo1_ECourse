@@ -36,15 +36,3 @@ document.addEventListener('readystatechange', function () {
   }
 });
 
-//lesson learned
-// $(document).ready(function() {
-//   const video = $('video#lesson-video')[0];
-//   let printed = false;
-//   $(video).on('timeupdate', function() {
-//     const watchedPercent = (this.currentTime / this.duration) * 100;
-//     if (watchedPercent >= 90 && !printed) {
-//       console.log(this.currentTime);
-//       printed = true;
-//     }
-//   });
-// });
