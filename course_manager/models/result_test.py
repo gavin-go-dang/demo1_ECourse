@@ -1,11 +1,12 @@
 from django.db import models
+from django.db.models.signals import post_save
+from webpush import send_user_notification
 
 from authen.models import User
 from common.models import CreatedDateModel
-from django.db.models.signals import post_save
+
 from .course import Course
 from .exam import Exam
-from webpush import send_user_notification
 
 
 class ResultTest(CreatedDateModel):
@@ -27,16 +28,16 @@ def save_register(sender, instance, **kwargs):
         payload = {
             "head": "Congrats!",
             "body": "Congratulations! You have passed the exam",
+            "icon": "https://i.ibb.co/MDVY8w2/success-image.png",
             "url": "/study/result/",
         }
-        send_user_notification(user=instance.student, payload=payload, ttl=1000)
-
     else:
         payload = {
             "head": "Please re-do this exam",
+            "icon": "https://i.ibb.co/LJKxKRN/pngwing-com.png",
             "url": "/study/result/",
         }
-        send_user_notification(user=instance.student, payload=payload, ttl=1000)
+    send_user_notification(user=instance.student, payload=payload, ttl=1000)
 
 
 post_save.connect(save_register, sender=ResultTest)

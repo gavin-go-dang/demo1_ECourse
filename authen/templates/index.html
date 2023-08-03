@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load webpush_notifications %} 
 
 {% block css %}
 <!-- Custom styles for this template -->
@@ -7,8 +8,9 @@
 <!-- responsive style -->
 <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
 <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
+<!-- webpush -->
+{% webpush_header %}
 {% endblock %}
-
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -19,12 +21,8 @@
     <div class="hero-container container">
       <div class="hero_detail-box">
         <h3>
-
           Welcome to <br>
           Best educations
-
-
-
         </h3>
         <h1>
           school
@@ -267,47 +265,16 @@
     <p class="landing_detail text-center">
       There are many variations of passages of Lorem Ipsum available, but the majority There are many variations of
       passages of Lorem Ipsum available, but the majority h
-
     </p>
+    <div class="row d-flex justify-content-center">
+      {% webpush_button with_class="btn btn-outline-info" %}
+    </div>
   </div>
 </section>
-
-<!-- end landing section -->
-
-
-
 
 
 
 <script type="text/javascript" src="{% static '/assets/js/jquery-3.4.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/assets/js/bootstrap.js' %}"></script>
-
-<script>
-  // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-  // Australia.
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
-      center: {
-        lat: 40.645037,
-        lng: -73.880224
-      },
-    });
-
-    var image = 'images/maps-and-flags.png';
-    var beachMarker = new google.maps.Marker({
-      position: {
-        lat: 40.645037,
-        lng: -73.880224
-      },
-      map: map,
-      icon: image
-    });
-  }
-</script>
-<!-- google map js -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
-</script>
-<!-- end google map js -->
 {% include 'footer.html' %}
 {% endblock content %}

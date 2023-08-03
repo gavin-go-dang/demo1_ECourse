@@ -1,5 +1,7 @@
+from django.db.models.signals import post_save
 from django.shortcuts import redirect, render
 from django.views.generic import View
+from webpush import send_user_notification
 
 from authen.models import User
 from common.views import LoginRequired
@@ -32,6 +34,11 @@ class StudentProfile(LoginRequired, View):
             form = UpdateUserInfoForm(request.POST, instance=request.user)
             if form.is_valid():
                 form.save()
+                payload = {
+                    "head": "Changing information success!",
+                    "icon": "https://i.ibb.co/MDVY8w2/success-image.png",
+                }
+                send_user_notification(user=request.user, payload=payload, ttl=1000)
             else:
                 error = " ".join([x for l in form.errors.values() for x in l])
                 context = {"message": error}

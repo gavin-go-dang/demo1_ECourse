@@ -1,16 +1,17 @@
+import pickle
+import zlib
+
+from django.conf import settings
 from django.http import HttpResponse
-from course_manager.models import Certificate, Course
-from authen.models import User
-from .process import html_to_pdf
 from django.template.loader import render_to_string
+from django.views import View
+from weasyprint import HTML
 from xhtml2pdf import pisa
 
+from authen.models import User
+from course_manager.models import Certificate, Course
 
-from django.views import View
-from django.conf import settings
-from weasyprint import HTML
-import zlib
-import pickle
+from .process import html_to_pdf
 
 
 class GenerateCertificatePdf(View):

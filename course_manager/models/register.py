@@ -1,10 +1,10 @@
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
+from webpush import send_user_notification
 
 from authen.models import User
 from common.models import CreatedDateModel
-from webpush import send_user_notification
 
 from .course import Course
 

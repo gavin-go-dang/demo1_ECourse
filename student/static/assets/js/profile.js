@@ -1,21 +1,22 @@
 $('input[name="full_name"]').on('input', function () {
-    $updateButton.removeAttr('disabled');
+    $("#submit-btn").removeAttr('disabled');
 });
 
+
 $('input[name="username"]').on('input', function () {
-    $updateButton.removeAttr('disabled');
+    $("#submit-btn").removeAttr('disabled');
 });
 
 $('input[name="email"]').on('click', function () {
-    $usernameInput.removeAttr('disabled');
+    $("#submit-btn").removeAttr('disabled');
 });
 
 function changing_check() {
-    $updateButton.removeAttr('disabled');
+    $("#submit-btn").removeAttr('disabled');
 }
 
 function check_date_change(e) {
-    $updateButton.removeAttr('disabled');
+    $("#submit-btn").removeAttr('disabled');
 }
 
 $('#button').click(function () {
