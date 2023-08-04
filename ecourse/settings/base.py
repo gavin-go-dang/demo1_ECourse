@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "*"]
 
 
 # Application definition
@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "study",
     "rest_framework",
     "crispy_forms",
-    "wkhtmltopdf",
     "webpush",
 ]
 
@@ -149,7 +148,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": "redis://redis:6379",
     }
 }
 

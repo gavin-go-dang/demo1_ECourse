@@ -2,6 +2,8 @@ from .base import *
 
 INSTALLED_APPS.append("debug_toolbar")
 MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
+ALLOWED_HOSTS = ["0.0.0.0", "*"]
+
 DEBUG = True
 INTERNAL_IPS = [
     # ...

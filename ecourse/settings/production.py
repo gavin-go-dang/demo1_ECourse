@@ -1,6 +1,7 @@
 from .base import *
 
 DEBUG = False
+ALLOWED_HOSTS = ["0.0.0.0", "*"]
 
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_KEY_PRODUCTION"),
