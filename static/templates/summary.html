@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Summary
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="top_container">
+  <!-- header section strats -->
+  {% include 'header.html' %}
+  <section class="hero_section ">
+    <div class="hero-container container">
+      <div class="hero_detail-box">
+        <h3>
+          Welcome Back
+
+        </h3>
+
+        <p>
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
+          some form, by injected humour, or randomised
+        </p>
+        <div class="hero_btn-continer">
+          <a href="/course/" class="call_to-btn btn_white-border">
+            <span>
+              Find your course
+            </span>
+            <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="hero_img-container">
+        <div>
+          <img src="{% static '/assets/images/hero.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end header section -->
+
+
+<!-- about progress -->
+
+<section class="landing_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading">
+      Your Progress
+    </h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          {% for course in courses %}
+          <h3 class="progress-title">{{ course.name_course }}</h3>
+          <div class="progress">
+            <div class="progress-bar" style="width:{{ course.course_completion_rate }}%; background:#97c513;">
+              <div class="progress-value">{{ course.course_completion_rate }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container body-exam">
+  <div class="row">
+      <div class="col-sm">
+          <h1 class="main-heading number_heading">Result test</h1>
+      </div>
+  </div>
+  <div>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Student</th>
+                  <th scope="col">Course name</th>
+                  <th scope="col">Exam</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Pass</th>
+              </tr>
+          </thead>
+          {% for result in object_list %}
+          <tbody>
+              <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ result.student }}</td>
+                  <td>{{ result.exam.course }}</td>
+                  <td>{{ result.exam }}</td>
+                  <td>{{ result.mark }}</td>
+                  {% if result.pass_exam %}
+                  <td>&#10004;</td>
+                  {% else %}
+                  <td>&#10008;</td>
+                  {% endif %}
+              </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+  </div>
+  <a href="/study/result/"><button type="button" class="btn btn-primary">See more</button></a>
+</div>
+  <!-- about section -->
+
+  {% include 'footer.html' %}
+  {% endblock content %}

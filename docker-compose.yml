@@ -8,10 +8,9 @@ services:
       dockerfile: Dockerfile
     container_name: web
     command: 
-      bash -c "python3 manage.py migrate &&
-      python3 manage.py runserver 0.0.0.0:8000"
+      bash -c "python manage.py migrate && gunicorn ecourse.wsgi:application -b 0.0.0.0:8000"
     volumes:
-      - ./ecourse/:/usr/src/app/
+      - ./:/usr/src/app/
     ports:
       - 8000:8000
     # expose:
@@ -40,12 +39,16 @@ services:
     hostname: redis
 
 
-  # nginx:
-  #   build: ./nginx
-  #   ports:
-  #     - 1337:80
-  #   depends_on:
-  #     - web
+  nginx:
+    image: nginx
+    hostname: nginx
+    ports:
+      - '5555:8000'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./:/code/
+    depends_on:
+      - web
 
 volumes:
   postgres_data:

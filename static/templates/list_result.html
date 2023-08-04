@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+Result test
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'assets/css/result.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+<div class="container body-exam">
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="main-heading number_heading">Result test</h1>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">Course name</th>
+                    <th scope="col">Exam</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Pass</th>
+                </tr>
+            </thead>
+            {% for result in object_list %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ result.student }}</td>
+                    <td>{{ result.exam.course }}</td>
+                    <td>{{ result.exam }}</td>
+                    <td>{{ result.mark }}</td>
+                    {% if result.pass_exam %}
+                    <td>&#10004;</td>
+                    {% else %}
+                    <td>&#10008;</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock content %}
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static '/assets/js/lesson.js' %}"></script>
+{% endblock %}
