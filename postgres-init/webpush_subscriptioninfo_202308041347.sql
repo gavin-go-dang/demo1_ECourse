@@ -1,0 +1,2 @@
+INSERT INTO public.webpush_subscriptioninfo (browser,endpoint,auth,p256dh,user_agent) VALUES
+	 ('chrome','https://fcm.googleapis.com/fcm/send/dcri42zqNKc:APA91bHv7qOju_9t2_-fVN0nV0Z5F70I_M9xMvIt0bw-OPP2MBRK1iYfqd9XeRSHdioz_1VhlOoyYc6q959wvJjQjXD7eFphhfmbRb45cjoHf6umaq8bDAzRXzMOxHB7Gz_d4lHPEv1N','COjNHsJXXONR2jg3vAfCbA','BMJogv9NMviDmb90lBiftQTeEJZsyvWn18wAn4Tg7BEdEXPjylbC5z5jLvCa2PZ3FFrEofjd0CyVl4tHUt4vQsM','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36');
