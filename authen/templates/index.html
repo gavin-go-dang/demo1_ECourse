@@ -5,7 +5,7 @@
 {% block css %}
 <!-- Custom styles for this template -->
 <!-- responsive style -->
-<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
+<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
 <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
 <!-- webpush -->
 {% webpush_header %}
@@ -36,7 +36,7 @@
             <span>
               Sign up
             </span>
-            <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
           </a>
         </div>
         {% else %}
@@ -45,14 +45,14 @@
             <span>
               Follow your learning
             </span>
-            <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
           </a>
         </div>
         {% endif %}
       </div>
       <div class="hero_img-container">
         <div>
-          <img src="{% static '/assets/images/hero.png' %}" alt="" class="img-fluid">
+          <img src="{% static 'assets/images/hero.png' %}" alt="" class="img-fluid">
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
       We provide the online course. My service help you learn every time, every where, more convenient and free
     </p>
     <div class="about_img-box ">
-      <img src="{% static '/assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
+      <img src="{% static 'assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
     </div>
     <div class="d-flex justify-content-center mt-5">
       <a href="" class="call_to-btn  ">
@@ -78,7 +78,7 @@
         <span>
           Read More
         </span>
-        <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
       </a>
     </div>
   </div>
@@ -215,7 +215,7 @@
       <div class="client_container d-flex flex-column">
         <div class="client_detail d-flex align-items-center">
           <div class="client_img-box ">
-            <img src="{% static '/assets/images/student.png' %}" alt="">
+            <img src="{% static 'assets/images/student.png' %}" alt="">
           </div>
           <div class="client_detail-box">
             <h4>
@@ -273,7 +273,7 @@
 
 
 
-<script type="text/javascript" src="{% static '/assets/js/jquery-3.4.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static '/assets/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.js' %}"></script>
 {% include 'footer.html' %}
 {% endblock content %}

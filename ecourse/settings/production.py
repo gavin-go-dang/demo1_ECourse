@@ -3,6 +3,19 @@ from .base import *
 DEBUG = False
 ALLOWED_HOSTS = ["0.0.0.0", "*"]
 
+INSTALLED_APPS.append("storages")
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+    }
+}
+
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_KEY_PRODUCTION"),
     integrations=[DjangoIntegration()],
@@ -14,6 +27,8 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True,
 )
+
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": True,
@@ -45,3 +60,11 @@ LOGGING = {
         },
     },
 }
+
+
+STATIC_URL = "/static/"
+STATIC_ROOT = "/var/www/html/static"
+
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "/var/www/html/media")

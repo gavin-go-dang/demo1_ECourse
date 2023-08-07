@@ -7,7 +7,7 @@
 
 {% block css %}
 <!-- Custom styles for this template -->
-<link href="{% static '/assets/css/style.css' %}" rel="stylesheet" />
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
 <!-- responsive style -->
 <link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -45,12 +45,12 @@
           {% endif %}
         </form>
 
-        <img src="{% static '/assets/images/right-arrow.png' %}" alt="">
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
       </div>
     </div>
     <div class="hero_img-container">
       <div>
-        <img src="{% static '/assets/images/hero.png' %}" alt="" class="img-fluid">
+        <img src="{% static 'assets/images/hero.png' %}" alt="" class="img-fluid">
       </div>
     </div>
   </div>
@@ -123,6 +123,6 @@
 
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{% static '/assets/js/course.js' %}"></script>
+<script src="{% static 'assets/js/course.js' %}"></script>
 
 {% endblock content %}
