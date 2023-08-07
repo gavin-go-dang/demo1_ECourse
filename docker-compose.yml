@@ -7,10 +7,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: web
-    command: 
-      bash -c "python manage.py migrate && gunicorn ecourse.wsgi:application -b 0.0.0.0:8000"
+    command:
+      bash -c "python3 manage.py migrate && python manage.py collectstatic --noinput &&
+      python3 manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./:/usr/src/app/
+      - ./ecourse/:/usr/src/app/
+      - /var/www/html/static:/var/www/html/static
     ports:
       - 8000:8000
     # expose:
@@ -24,9 +26,8 @@ services:
   db:
     container_name: db
     image: postgres:13.4-alpine
-    restart: always
     volumes:
-      - ./postgres-init/:/docker-entrypoint-initdb.d/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -41,17 +42,15 @@ services:
 
 
   nginx:
-      build:
-          context: ./nginx
-          dockerfile: Dockerfile
-      container_name: ngx
-      ports:
-        - "80:80"
-      volumes:
-        - ./nginx:/etc/nginx/conf.d
-      depends_on:
-        - web
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - web
+    volumes:
+      - /var/www/html/static:/var/www/html/static
+
 
 volumes:
   postgres_data:
-  postgres-init:
