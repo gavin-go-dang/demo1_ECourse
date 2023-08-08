@@ -28,6 +28,7 @@ services:
     image: postgres:13.4-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      - ./postgres-init:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -41,16 +42,17 @@ services:
     hostname: redis
 
 
-  nginx:
-    build: ./nginx
-    ports:
-      - 80:80
-      - 443:443
-    depends_on:
-      - web
-    volumes:
-      - /var/www/html/static:/var/www/html/static
+  # nginx:
+  #   build: ./nginx
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   depends_on:
+  #     - web
+  #   volumes:
+  #     - /var/www/html/static:/var/www/html/static
 
 
 volumes:
   postgres_data:
+  postgres-init:

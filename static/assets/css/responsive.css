@@ -39,8 +39,7 @@
     }
 
     .top_container::before {
-        width: 200%;
-
+        width: 100%;
     }
 
     .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
