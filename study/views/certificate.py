@@ -27,7 +27,7 @@ class CertificateContent(View):
         )
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
         try:  # 1 record
-            cert = Certificate.objects.get(student=student, course=course)
+            cert = Certificate.objects.filter(student=student, course=course)
             if cert.score < max_avg_score:
                 cert.score = max_avg_score
                 cert.save()
