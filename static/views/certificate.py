@@ -26,6 +26,7 @@ class CertificateContent(View):
             .order_by("student", "exam")
         )
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
+
         try:  # 1 record
             cert = Certificate.objects.get(student=student, course=course)
             if cert.score < max_avg_score:
@@ -37,6 +38,9 @@ class CertificateContent(View):
         except Exception as e:  # Multire
             # capture_exception(e)
             pass
+
+        if not context["score"]:
+            return render(request, "incomplete.html")
         context = {
             "name": student,
             "result": result,
@@ -44,6 +48,4 @@ class CertificateContent(View):
             "course": course,
             "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
-        if context["score"] == None:
-            return render(request, "incomplete.html")
         return render(request, self.template_name, context)

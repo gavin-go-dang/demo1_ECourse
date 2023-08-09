@@ -32,8 +32,11 @@ class CertificateContent(View):
                 cert.score = max_avg_score
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
-            cert = Certificate(student=student, course=course, score=max_avg_score)
-            cert.save()
+            try:
+                cert = Certificate(student=student, course=course, score=max_avg_score)
+                cert.save()
+            except:
+                return render(request, "incomplete.html")
         except Exception as e:  # Multire
             # capture_exception(e)
             pass
