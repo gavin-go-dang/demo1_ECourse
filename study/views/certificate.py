@@ -40,6 +40,8 @@ class CertificateContent(View):
         except Exception as e:  # Multire
             # capture_exception(e)
             pass
+        if context["score"] == None:
+            return render(request, "incomplete.html")
         context = {
             "name": student,
             "result": result,
@@ -47,6 +49,5 @@ class CertificateContent(View):
             "course": course,
             "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
-        if context["score"] == None:
-            return render(request, "incomplete.html")
+
         return render(request, self.template_name, context)
