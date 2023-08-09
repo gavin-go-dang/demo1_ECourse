@@ -33,7 +33,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 ALLOWED_HOSTS = ["0.0.0.0", "*"]
-
+CSRF_TRUSTED_ORIGINS = ["https://*.ecourse.id.vn", "https://*.127.0.0.1"]
 
 # Application definition
 
@@ -143,13 +143,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://redis:6379",
-    }
-}
-
 PAGAINATION_BY = 6
 
 WEBPUSH_SETTINGS = {
@@ -157,3 +150,11 @@ WEBPUSH_SETTINGS = {
     "VAPID_PRIVATE_KEY": os.getenv("VAPID_PRIVATE_KEY"),
     "VAPID_ADMIN_EMAIL": os.getenv("VAPID_ADMIN_EMAIL"),
 }
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+)
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

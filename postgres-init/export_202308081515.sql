@@ -121,29 +121,75 @@ INSERT INTO public.authen_user_groups (user_id,group_id) VALUES
 INSERT INTO public.course_manager_certificate (pdf_url,course_id,student_id,score,created_at,updated_at) VALUES
 	 (NULL,1,2,10.0,'2023-08-01 12:23:48.406423+07','2023-08-01 12:23:48.406443+07'),
 	 (NULL,3,2,7.5,'2023-08-02 10:20:38.54447+07','2023-08-02 10:20:38.544506+07');
-INSERT INTO public.course_manager_course (created_at,updated_at,name_course,description,register,time_to_learn_ets,cover_img,"level",teacher_id,topic_id) VALUES
-	 ('2023-07-28 14:43:24.208489+07','2023-07-28 14:43:24.208508+07','Adobe Lightroom','Adobe Lightroom is a piece of image organization and image processing software developed by Adobe Inc. as part of the Creative Cloud subscription family. It is supported on Windows, macOS, iOS, Android, and tvOS.',0,26,'course_img/An_oil_pastel_drawing_of_an_annoyed_cat_in_a_spaceship.webp','basic',7,3),
-	 ('2023-07-28 14:44:03.082056+07','2023-07-28 14:44:03.082088+07','Adobe Premiere','Adobe Premiere Pro is a timeline-based and non-linear video editing software application developed by Adobe Inc. and published as part of the Adobe Creative Cloud licensing program. First launched in 2003, Adobe Premiere Pro is a successor of Adobe Premiere.',0,65,'','advanced',7,3),
-	 ('2023-07-28 14:28:04.725355+07','2023-07-28 15:14:07.006332+07','Machine Learning','Machine learning is a branch of artificial intelligence that focuses on developing algorithms and statistical models that enable machines to learn and improve their performance on a specific task over time.',2,60,'course_img/DALLE_2023-07-28_14.27.37_-_a_cunputer_is_running_van_gogh_style.png','basic',6,4),
-	 ('2023-07-28 14:31:25.622665+07','2023-07-30 20:37:22.477002+07','English Grammar','English grammar is the set of structural rules of the English language.',4,25,'course_img/DALLE_2023-07-28_14.31.10_-_3_people_are_talking_each_other_3D_.png','basic',6,9),
-	 ('2023-07-28 14:28:59.255901+07','2023-08-02 09:16:57.520972+07','Web Front-end','the front end is a combination of two different elements: the graphic design (the look) and the user interface (the feel).',7,40,'course_img/A_computer_from_the_90s_in_the_style_of_vaporwave.webp','basic',6,1),
-	 ('2023-07-28 15:11:46.579066+07','2023-08-02 17:31:47.554352+07','Physics in reality','Sub-disciplines include applied physics, astrophysics, biophysics, condensed matter physics, high-energy physics, nuclear physics, optics, and particle physics. Resources for physics are primarily available via the Web and some of the key web resources can be found in this guide',2,5,'course_img/llightning.png','advanced',8,5),
-	 ('2023-07-28 14:42:34.270741+07','2023-08-01 16:03:32.222677+07','Photoshop CS5','Adobe Photoshop is a raster graphics editor developed and published by Adobe Inc. for Windows and macOS. It was originally created in 1987 by Thomas and John Knoll.',5,50,'course_img/ptspts.png','basic',7,3);
-INSERT INTO public.course_manager_exam (created_at,updated_at,name_exam,description,course_id) VALUES
-	 ('2023-07-28 14:44:47.99574+07','2023-07-28 14:44:47.99576+07','Final Test','Gradution Exam',1),
-	 ('2023-07-28 14:49:46.957708+07','2023-07-28 14:49:46.957748+07','Middle Test','Middle test',3),
-	 ('2023-07-30 16:36:45.269091+07','2023-07-30 16:36:45.269134+07','Final test','Final test',3);
-INSERT INTO public.course_manager_lesson (created_at,updated_at,name_lesson,video,description,view_time,"index",course_id) VALUES
-	 ('2023-07-28 14:32:38.350501+07','2023-07-28 14:32:38.35052+07','Statistics and Probability','video1.mp4','Probability deals with predicting the likelihood of future events, while statistics involves the analysis of the frequency of past events. Probability is primarily a theoretical branch of mathematics, which studies the consequences of mathematical definitions.',20,1,1),
-	 ('2023-07-28 14:35:05.969911+07','2023-07-28 14:35:05.96993+07','Python basic','earth.mp4','Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation',10,2,1),
-	 ('2023-07-28 14:37:32.528318+07','2023-07-28 14:37:32.528351+07','Introduce HTML','','HTML stands for Hyper Text Markup Language. HTML is the standard markup language for creating Web pages.',15,1,2),
-	 ('2023-07-28 14:38:44.89119+07','2023-07-28 14:38:44.89124+07','CSS','css.mp4','Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language such as HTML or XML.',15,2,2),
-	 ('2023-07-28 14:39:54.110008+07','2023-07-28 14:39:54.110027+07','Java Script','jsj.mp4','JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.',30,3,2),
-	 ('2023-07-28 14:35:52.757019+07','2023-07-28 15:24:35.790857+07','NLP','LPLPN.mp4','Natural language processing (NLP) is a branch of artificial intelligence (AI) that enables computers to comprehend, generate, and manipulate human language. Natural language processing has the ability to interrogate the data with natural language text or voice.',15,2,1),
-	 ('2023-07-30 16:41:12.955905+07','2023-08-02 17:26:16.020311+07','Noun','earth_jLcDkYz.mp4','What is Noun in English?',20,1,3),
-	 ('2023-08-02 17:28:59.685268+07','2023-08-02 17:28:59.68534+07','Draw with Brush tool','earth_WFMkcuV.mp4','D',15,1,4),
-	 ('2023-08-02 17:29:31.46676+07','2023-08-02 17:29:31.466785+07','Constrast','earth_Ugap4GA.mp4','D',15,1,5),
-	 ('2023-08-02 17:29:56.363735+07','2023-08-02 17:29:56.363755+07','Role-A Role-B','earth_i5RlOdT.mp4','D',15,1,6);
+
+
+--Course
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(5, '2023-07-28 14:43:24.208', '2023-07-28 14:43:24.208', 'Adobe Lightroom', 'Adobe Lightroom is a piece of image organization and image processing software developed by Adobe Inc. as part of the Creative Cloud subscription family. It is supported on Windows, macOS, iOS, Android, and tvOS.', 0, 26, 'course_img/An_oil_pastel_drawing_of_an_annoyed_cat_in_a_spaceship.webp', 'basic', 7, 3);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(6, '2023-07-28 14:44:03.082', '2023-07-28 14:44:03.082', 'Adobe Premiere', 'Adobe Premiere Pro is a timeline-based and non-linear video editing software application developed by Adobe Inc. and published as part of the Adobe Creative Cloud licensing program. First launched in 2003, Adobe Premiere Pro is a successor of Adobe Premiere.', 0, 65, '', 'advanced', 7, 3);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(1, '2023-07-28 14:28:04.725', '2023-07-28 15:14:07.006', 'Machine Learning', 'Machine learning is a branch of artificial intelligence that focuses on developing algorithms and statistical models that enable machines to learn and improve their performance on a specific task over time.', 2, 60, 'course_img/DALLE_2023-07-28_14.27.37_-_a_cunputer_is_running_van_gogh_style.png', 'basic', 6, 4);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(3, '2023-07-28 14:31:25.622', '2023-07-30 20:37:22.477', 'English Grammar', 'English grammar is the set of structural rules of the English language.', 4, 25, 'course_img/DALLE_2023-07-28_14.31.10_-_3_people_are_talking_each_other_3D_.png', 'basic', 6, 9);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(2, '2023-07-28 14:28:59.255', '2023-08-02 09:16:57.520', 'Web Front-end', 'the front end is a combination of two different elements: the graphic design (the look) and the user interface (the feel).', 7, 40, 'course_img/A_computer_from_the_90s_in_the_style_of_vaporwave.webp', 'basic', 6, 1);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(7, '2023-07-28 15:11:46.579', '2023-08-02 17:31:47.554', 'Physics in reality', 'Sub-disciplines include applied physics, astrophysics, biophysics, condensed matter physics, high-energy physics, nuclear physics, optics, and particle physics. Resources for physics are primarily available via the Web and some of the key web resources can be found in this guide', 2, 5, 'course_img/llightning.png', 'advanced', 8, 5);
+INSERT INTO public.course_manager_course
+(id, created_at, updated_at, name_course, description, register, time_to_learn_ets, cover_img, "level", teacher_id, topic_id)
+VALUES(4, '2023-07-28 14:42:34.270', '2023-08-01 16:03:32.222', 'Photoshop CS5', 'Adobe Photoshop is a raster graphics editor developed and published by Adobe Inc. for Windows and macOS. It was originally created in 1987 by Thomas and John Knoll.', 5, 50, 'course_img/ptspts.png', 'basic', 7, 3);
+
+
+--Exam
+INSERT INTO public.course_manager_exam
+(id, created_at, updated_at, name_exam, description, course_id)
+VALUES(1, '2023-07-28 14:44:47.995', '2023-07-28 14:44:47.995', 'Final Test', 'Gradution Exam', 1);
+
+
+
+--Lesson
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(1, '2023-07-28 14:32:38.350', '2023-07-28 14:32:38.350', 'Statistics and Probability', 'video1.mp4', 'Probability deals with predicting the likelihood of future events, while statistics involves the analysis of the frequency of past events. Probability is primarily a theoretical branch of mathematics, which studies the consequences of mathematical definitions.', 20, 1, 1);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(2, '2023-07-28 14:35:05.969', '2023-07-28 14:35:05.969', 'Python basic', 'earth.mp4', 'Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation', 10, 2, 1);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(4, '2023-07-28 14:37:32.528', '2023-07-28 14:37:32.528', 'Introduce HTML', '', 'HTML stands for Hyper Text Markup Language. HTML is the standard markup language for creating Web pages.', 15, 1, 2);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(5, '2023-07-28 14:38:44.891', '2023-07-28 14:38:44.891', 'CSS', 'css.mp4', 'Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language such as HTML or XML.', 15, 2, 2);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(6, '2023-07-28 14:39:54.110', '2023-07-28 14:39:54.110', 'Java Script', 'jsj.mp4', 'JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.', 30, 3, 2);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(3, '2023-07-28 14:35:52.757', '2023-07-28 15:24:35.790', 'NLP', 'LPLPN.mp4', 'Natural language processing (NLP) is a branch of artificial intelligence (AI) that enables computers to comprehend, generate, and manipulate human language. Natural language processing has the ability to interrogate the data with natural language text or voice.', 15, 2, 1);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(7, '2023-07-30 16:41:12.955', '2023-08-02 17:26:16.020', 'Noun', 'earth_jLcDkYz.mp4', 'What is Noun in English?', 20, 1, 3);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(8, '2023-08-02 17:28:59.685', '2023-08-02 17:28:59.685', 'Draw with Brush tool', 'earth_WFMkcuV.mp4', 'D', 15, 1, 4);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(9, '2023-08-02 17:29:31.466', '2023-08-02 17:29:31.466', 'Constrast', 'earth_Ugap4GA.mp4', 'D', 15, 1, 5);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(10, '2023-08-02 17:29:56.363', '2023-08-02 17:29:56.363', 'Role-A Role-B', 'earth_i5RlOdT.mp4', 'D', 15, 1, 6);
+INSERT INTO public.course_manager_lesson
+(id, created_at, updated_at, name_lesson, video, description, view_time, "index", course_id)
+VALUES(11, '2023-08-02 17:30:41.134', '2023-08-02 17:30:41.134', 'lighning', 'earth_At1kc0H.mp4', 'D', 45, 1, 7);
+
+
 INSERT INTO public.course_manager_lesson (created_at,updated_at,name_lesson,video,description,view_time,"index",course_id) VALUES
 	 ('2023-08-02 17:30:41.134792+07','2023-08-02 17:30:41.134829+07','lighning','earth_At1kc0H.mp4','D',45,1,7);
 INSERT INTO public.course_manager_lessonlearned (created_at,updated_at,lesson_id,student_id) VALUES
