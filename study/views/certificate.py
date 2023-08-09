@@ -18,6 +18,7 @@ class CertificateContent(View):
         id_student = kwargs.get("student")
         student = User.objects.get(id=id_student)
         course = Course.objects.get(id=id_course)
+        passing_score = 7.5
         result = (
             ResultTest.objects.prefetch_related("exam__course__id", "student__id")
             .filter(exam__course__id=id_course, student__id=id_student)
@@ -34,8 +35,11 @@ class CertificateContent(View):
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
             try:
-                cert = Certificate(student=student, course=course, score=max_avg_score)
-                cert.save()
+                if max_avg_score > passing_score:
+                    cert = Certificate(
+                        student=student, course=course, score=max_avg_score
+                    )
+                    cert.save()
             except:
                 return render(request, "incomplete.html")
         except Exception as e:  # Multire
