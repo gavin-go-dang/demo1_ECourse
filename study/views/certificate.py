@@ -49,7 +49,6 @@ class CertificateContent(View):
             "course": course,
             "date": cert.created_at.strftime("%Y-%m-%d"),
         }
-        breakpoint()
         if context["score"] == None:
             return render(request, "incomplete.html")
         return render(request, self.template_name, context)
