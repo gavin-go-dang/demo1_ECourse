@@ -35,25 +35,21 @@ class CertificateContent(View):
                 cert.score = max_avg_score
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
-            try:
-                if max_avg_score > passing_score:
-                    cert = Certificate(
-                        student=student, course=course, score=max_avg_score
-                    )
-                    cert.save()
-            except:
-                return render(request, "incomplete.html")
+            if max_avg_score > passing_score:
+                cert = Certificate(student=student, course=course, score=max_avg_score)
+                cert.save()
         except Exception as e:  # Multire
             # capture_exception(e)
             pass
-
+        breakpoint()
         context = {
             "name": student,
             "result": result,
             "score": max_avg_score,
             "course": course,
-            "date": cert.updated_at.strftime("%Y-%m-%d"),
+            "date": cert.create_at.strftime("%Y-%m-%d"),
         }
+
         if context["score"] == None:
             return render(request, "incomplete.html")
         return render(request, self.template_name, context)
