@@ -18,8 +18,6 @@ class CertificateContent(View):
         id_student = kwargs.get("student")
         student = User.objects.get(id=id_student)
         course = Course.objects.get(id=id_course)
-        passing_score = 7.5
-        cert = None
         result = (
             ResultTest.objects.prefetch_related("exam__course__id", "student__id")
             .filter(exam__course__id=id_course, student__id=id_student)
@@ -28,28 +26,25 @@ class CertificateContent(View):
             .order_by("student", "exam")
         )
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
-
         try:  # 1 record
             cert = Certificate.objects.get(student=student, course=course)
             if cert.score < max_avg_score:
                 cert.score = max_avg_score
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
-            if max_avg_score > passing_score:
-                cert = Certificate(student=student, course=course, score=max_avg_score)
-                cert.save()
+            cert = Certificate(student=student, course=course, score=max_avg_score)
+            cert.save()
         except Exception as e:  # Multire
-            # capture_exception(e)
-            pass
-        breakpoint()
+            capture_exception(e)
+
+        if context["score"] == None:
+            return render(request, "incomplete.html")
         context = {
             "name": student,
             "result": result,
             "score": max_avg_score,
             "course": course,
-            "date": cert.create_at.strftime("%Y-%m-%d"),
+            "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
 
-        if context["score"] == None:
-            return render(request, "incomplete.html")
         return render(request, self.template_name, context)
