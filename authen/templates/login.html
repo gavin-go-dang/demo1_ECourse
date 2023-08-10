@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load socialaccount %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
@@ -35,8 +35,13 @@
 
 
             <button id="button">Submit</button>
-            <a class="forgotLink" href="../admin">Are you the teacher?</a>
+            <a class="forgotLink" href="/admin">Are you the teacher?</a>
+            <p class='forgotLink' style="color: black; margin-bottom: 0px;">Or login with</p>
+            <a class='forgotLink' href="{% provider_login_url 'google' %}" style="padding: 0px;">
+                <img src="{% static 'assets/img/google.svg' %}" width="25px" alt="">
+            </a>
         </form>
+        
         {% if message %}
 		<div class="form-group">
 			<div class="alert alert-danger" role="alert">
