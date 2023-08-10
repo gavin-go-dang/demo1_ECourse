@@ -37,5 +37,12 @@
             <button id="button">Submit</button>
             <a class="forgotLink" href="../admin">Are you the teacher?</a>
         </form>
+        {% if message %}
+		<div class="form-group">
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		</div>
+		{% endif %}
     </div>
     {% endblock %}

@@ -35,12 +35,12 @@
 					required>
 			</div>
 			<div class="form-group">
-				<label for="type">Is teacher?</label>
+				<label id="label-role" for="type">Is teacher?</label>
 				<br>
 				<select class="form-select form-select-lg mb-2" aria-label="Default select example" name="type"
 					id="type">
-					<option value="student">Student</option>
-					<option value="teacher">Teacher</option>
+					<option class="option-role" value="student">Student</option>
+					<option class="option-role" value="teacher">Teacher</option>
 				</select>
 			</div>
 
@@ -58,6 +58,5 @@
 	</div>
 	<script src="{% static 'assets/js/script.js' %}"></script>
 </body>
-
 </html>
 {%endblock%}
