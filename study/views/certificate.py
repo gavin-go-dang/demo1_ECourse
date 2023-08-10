@@ -51,7 +51,7 @@ class CertificateContent(View):
             "result": result,
             "score": max_avg_score,
             "course": course,
-            "date": cert.created_at.strftime("%Y-%m-%d"),
+            "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
         if context["score"] == None:
             return render(request, "incomplete.html")
