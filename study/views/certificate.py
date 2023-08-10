@@ -19,6 +19,7 @@ class CertificateContent(View):
         student = User.objects.get(id=id_student)
         course = Course.objects.get(id=id_course)
         passing_score = 7.5
+        cert = None
         result = (
             ResultTest.objects.prefetch_related("exam__course__id", "student__id")
             .filter(exam__course__id=id_course, student__id=id_student)
