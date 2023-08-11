@@ -36,7 +36,7 @@ class CertificateContent(View):
             cert = Certificate(student=student, course=course, score=max_avg_score)
             cert.save()
         except Exception as e:  # Multire
-            # capture_exception(e)
+            capture_exception(e)
             pass
 
         if not context["score"]:
