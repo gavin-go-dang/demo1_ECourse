@@ -92,7 +92,7 @@ html {
     background-color: white;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-width: 1px 1px 1px 0px;
+    border-width: 1px;
 }
 
 .submit-form-search.search-bar:hover {
@@ -390,6 +390,7 @@ p.fullname {
     font-size: 15px;
     cursor: pointer;
     transition: background-color .3s ease-in-out;
+    height: 100%;
 }
 
 .input:focus,

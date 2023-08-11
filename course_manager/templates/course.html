@@ -30,8 +30,8 @@ List course
       Find your course
     </h2>
 
-    <div class="row search">
-      <div class="col-2 search-topic">
+    <div class="row search d-flex justify-content-center">
+      <div class="col-sm-2 search-topic">
         <select name="topic" id="select-topic">
           <option selected disabled>Select topic</option>
           <option value="{{ topic.name_topic }}">All</option>
@@ -40,10 +40,10 @@ List course
           {% endfor %}
         </select>
       </div>
-      <div class="col-8 search-query">
+      <div class="col-sm-8 search-query">
         <input type="text" id="query" name="query">
       </div>
-      <div class="col-1 search-button">
+      <div class="col-sm-1 search-button">
         <button class="submit-form-search search-bar" type="submit">
           <i class="fa fa-search lookup-icon">
           </i>
