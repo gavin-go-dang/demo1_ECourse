@@ -1,64 +1,78 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load socialaccount %}
 {% block title %}Register{% endblock %}
 
 {% block content %}
+<title>Register</title>
 
-<form method="POST" class="form-horizontal">
-	{% csrf_token %}
-	<div class="mx-auto" style="width: 400px;">
 
-		<div class="col-xs-8 col-xs-offset-4">
-			<h2 style="text-align:center;">SIGN UP</h2>
-		</div>
-		<hr />
-		<div class="form-group">
-			<label for="username">Username</label>
-			<input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" Required>
-		</div>
-		<div class="form-group">
-			<label for="fanme">Full Name</label>
-			<input type="text" class="form-control" name="full_name" id="full_name" placeholder="Enter Full Name"
-				Required>
-		</div>
-		<div class="form-group">
-			<label for="email">Email address</label>
-			<input type="email" class="form-control" name="email" id="email" placeholder="Enter email" Required>
-		</div>
-		<div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" id="password" class="form-control" name="password" id="password"
-				placeholder="Enter Password" onChange="onChange()" Required>
-		</div>
-		<div class=" form-group">
-			<label for="confirm_password">Confirm Password</label>
-			<input type="password" id="confirm_password" class="form-control" name="confirm_password"
-				id="confirm_password" onChange="onChange()""
-				placeholder="Confirm Your Password" Required>
-			<span id='message'></span>
-		</div>
-		<div class="form-group">
-			<label for="type">Is teacher?</label>
-			<br>
-			<select class="form-select" name="type" id="type">
-				<option value="student">Student</option>
-				<option value="teacher">Teacher</option>
-			</select>
-		</div>
-		<button type="submit" id="btnSubmit" class="btn btn-primary" disabled>SIGNUP</button>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="{% static 'assets/css/register.css' %}">
+</head>
 
+<body>
+	<div class="wrapper">
+		<h2>Registration</h2>
+		<form action="#" method="POST" id="registrationForm" class="justify-content-center">
+			{% csrf_token %}
+			<div class="input-box">
+				<input type="text" placeholder="Enter your username" name="username" id="username" required>
+			</div>
+			<div class="input-box">
+				<input type="text" placeholder="Enter your fullname" name="full_name" id="full_name" required>
+			</div>
+			<div class="input-box">
+				<input type="text" placeholder="Enter your email" name="email" id="email" required>
+			</div>
+			<div class="input-box">
+				<input type="password" placeholder="Create password" id="password" name="password" required>
+			</div>
+			<div class="input-box">
+				<input type="password" placeholder="Confirm password" name="confirm_password" id="confirm_password"
+					required>
+			</div>
+			<div class="form-group">
+				<label id="label-role" for="type">Is teacher?</label>
+				<br>
+				<select class="form-select form-select-lg mb-2" aria-label="Default select example" name="type"
+					id="type">
+					<option class="option-role" value="student">Student</option>
+					<option class="option-role" value="teacher">Teacher</option>
+				</select>
+			</div>
+
+			<div class="input-box button" id="btnSubmit">
+				<input type="Submit" id="input-submit" Register Now">
+			</div>
+
+			<div class="container justify-content-center">
+				<div class="row ">
+					<div class="col-sm d-flex justify-content-center">
+						<p class='forgotLink' style="color: black; margin-bottom: 0px;">Or login with</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm d-flex justify-content-center">
+						<a class='forgotLink' href="{% provider_login_url 'google' %}" style="padding: 0px;">
+							<img src="{% static 'assets/img/google.svg' %}" width="25px" alt="">
+						</a>
+					</div>
+				  </div>
+			</div>
+		</form>
+		{% if message %}
+		<div class="form-group">
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		</div>
+		{% endif %}
 	</div>
-</form>
-{% if message %}
-<div class="form-group">
-	<div class="alert alert-danger" role="alert">
-		{{ message }}
-	</div>
-</div>
-{% endif %}
-{% endblock %}
+	<script src="{% static 'assets/js/script.js' %}"></script>
+</body>
 
-{% block js %}
-<script src="{% static '/assets/js/script.js' %}"></script>
-{% endblock %}
+</html>
+{%endblock%}

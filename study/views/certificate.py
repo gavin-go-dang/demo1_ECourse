@@ -36,6 +36,7 @@ class CertificateContent(View):
             cert.save()
         except Exception as e:  # Multire
             capture_exception(e)
+
         context = {
             "name": student,
             "result": result,
