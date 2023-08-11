@@ -82,7 +82,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="row arrow">
+    <div class="row arrow pagination-bar">
       <div class="col d-flex justify-content-center">
         <nav aria-label="Page navigation example">
           <ul class="pagination other-lesson">
@@ -119,7 +119,7 @@
         form.append("lesson", "{{ object.id }}");
         form.append("csrfmiddlewaretoken", "{{ csrf_token }}");
         const settings = {
-          "url": "https://www.ecourse.id.vn//course/lesson_learn",
+          "url": "{{ domain }}/course/lesson_learn",
           "method": "POST",
           "timeout": 0,
           "processData": false,

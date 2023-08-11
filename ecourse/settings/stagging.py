@@ -25,6 +25,7 @@ CACHES = {
     }
 }
 
+
 USE_S3 = True
 
 if USE_S3:
@@ -94,3 +95,5 @@ LOGGING = {
         },
     },
 }
+
+DOMAIN = "https://www.ecourse.id.vn"

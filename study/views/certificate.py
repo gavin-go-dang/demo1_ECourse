@@ -26,12 +26,16 @@ class CertificateContent(View):
             .order_by("student", "exam")
         )
         max_avg_score = result.aggregate(Avg("max_score"))["max_score__avg"]
+        if max_avg_score == None:
+            return render(request, "incomplete.html")
+
         try:  # 1 record
             cert = Certificate.objects.get(student=student, course=course)
             if cert.score < max_avg_score:
                 cert.score = max_avg_score
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
+            breakpoint()
             cert = Certificate(student=student, course=course, score=max_avg_score)
             cert.save()
         except Exception as e:  # Multire
@@ -44,6 +48,5 @@ class CertificateContent(View):
             "course": course,
             "date": cert.updated_at.strftime("%Y-%m-%d"),
         }
-        if context["score"] == None:
-            return render(request, "incomplete.html")
+
         return render(request, self.template_name, context)
