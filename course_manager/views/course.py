@@ -27,6 +27,9 @@ class ListCourse(View):
         course_filter = {}
         courses = Course.objects.all()
         min_course_page = 1
+        topic_checked = None
+        time_checked = None
+        level_checked = None
         if kwargs:
             self.page_course = kwargs["page"]
 
@@ -37,17 +40,17 @@ class ListCourse(View):
         topic_filter = request.GET.get("topic", "")
         if topic_filter and topic_filter != "All":
             course_filter["topic__name_topic"] = topic_filter
-
+            topic_checked = topic_filter
         time_learn = request.GET.get("time_learning", "")
 
         if time_learn:
             course_filter["time_to_learn_ets__lte"] = float(time_learn)
             course_filter["time_to_learn_ets__gt"] = float(time_learn) - 30
-
+            time_checked = time_learn
         level = request.GET.get("level", "")
         if level:
             course_filter["level"] = level
-
+            level_checked = level
         courses_list = courses.filter(**course_filter).order_by("-register")
 
         paginator = Paginator(courses_list, self.paginate_by)
@@ -59,6 +62,9 @@ class ListCourse(View):
             "topics": topics,
             "current_page": self.page_course,
             "max_page": paginator.num_pages,
+            "level_checked": level_checked,
+            "time_checked": time_checked,
+            "topic_checked": topic_checked,
         }
 
         return render(request, self.template_name, context)

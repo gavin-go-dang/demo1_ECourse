@@ -113,8 +113,19 @@
                     <span>Passed</span>
                 </div>
                 <br>
-                {% for certificate in completed_course %}
-                <div class="col-md-12"><label class="labels">{{ certificate.course.topic }}</label>
+                {% if completed_course %}
+                    {% for certificate in completed_course %}
+                    <div class="col-md-12"><label class="labels">{{ certificate.course.topic }}</label>
+
+                        <div>
+                            <a href="">
+                                <p>{{ certificate.course }}</p>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="col-md-12"><label class="labels">No record</label>
 
                     <div>
                         <a href="">
@@ -122,7 +133,7 @@
                         </a>
                     </div>
                 </div>
-                {% endfor %}
+                {% endif %}
                 <br>
             </div>
         </div>

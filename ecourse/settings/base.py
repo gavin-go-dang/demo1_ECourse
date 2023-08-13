@@ -60,8 +60,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
 ]
 SITE_ID = 1
-SITE_ID = 1
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True

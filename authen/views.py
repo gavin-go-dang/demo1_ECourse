@@ -15,17 +15,24 @@ from .models import User
 
 class HomeView(View):
     template_name = "index.html"
+    chunk_size = 3
 
     def get(self, request):
+        chunk_size = 3
         top_topic = cache.get_or_set("top_topics", Topic.objects.all())
         top_teacher = cache.get_or_set(
-            "top_teachers", User.objects.filter(type="teacher")[:4]
+            "top_teachers", User.objects.filter(type="teacher")[:6]
         )
         top_course = cache.get_or_set(
-            "top_courses", Course.objects.all().order_by("-register")[:4]
+            "top_courses", Course.objects.all().order_by("-register")
         )
+        top_course = top_course[:4]
+        teacher_queryset_lists = [
+            top_teacher[i : i + chunk_size]
+            for i in range(0, len(top_teacher), chunk_size)
+        ]
         context = {
-            "top_teacher": top_teacher,
+            "top_teacher": teacher_queryset_lists,
             "top_course": top_course,
             "top_topic": top_topic,
         }

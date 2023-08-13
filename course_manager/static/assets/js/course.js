@@ -1,13 +1,13 @@
 $(function () {
 
-  // Initate masonry grid
+  // Initiate masonry grid
   var $grid = $('.gallery-wrapper').masonry({
-    temSelector: '.grid-item',
+    itemSelector: '.grid-item',
     columnWidth: '.grid-sizer',
     percentPosition: true,
   });
 
-  // Initate imagesLoaded
+  // Initiate imagesLoaded
   $grid.imagesLoaded().progress(function () {
     $grid.masonry('layout');
   });

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load webpush_notifications %} 
+{% load webpush_notifications %}
 
 {% block css %}
 <!-- Custom styles for this template -->
@@ -27,7 +27,7 @@
           school
         </h1>
         <p>
-          Online schooling is a revolutionary approach to education, seamlessly blending technology and learning. 
+          Online schooling is a revolutionary approach to education, seamlessly blending technology and learning.
           It offers students the flexibility to study from anywhere, at any time.
         </p>
         {% if not user.is_authenticated %}
@@ -88,7 +88,7 @@
 <!-- about section -->
 
 <!-- teacher section -->
-<section class="teacher_section layout_padding-bottom">
+<!-- <section class="teacher_section layout_padding-bottom">
   <div class="container">
     <h2 class="main-heading ">
       Our Teachers
@@ -125,6 +125,76 @@
     </div>
   </div>
 </section>
+
+
+  </div>
+  <div class="teacher_container layout_padding2">
+    <div class="d-flex justify-content-center mt-3">
+      <a href="" class="call_to-btn  ">
+
+        <span>
+          See More
+        </span>
+      </a>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner">
+      {% for teacher_set in top_teacher %}
+      <div class="carousel-item {% if forloop.first %}active{%endif%}">
+        <div class="container">
+          <div class="row justify-content-center">
+            {% for teacher in teacher_set %}
+            <div class="col-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    {{teacher.full_name}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <ol class="carousel-indicators">
+      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <div class="d-flex justify-content-center mt-3">
+      <span style="height: 50px;"></span>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-3">
+    <a href="/course/" class="call_to-btn  ">
+      <span>
+        See More
+      </span>
+      <img src="{% static 'assets/images/right-arrow.png' %}" alt="right-arrow">
+    </a>
+  </div>
+</section>
+
 
 <!-- course section -->
 <section class="teacher_section layout_padding-top">
@@ -181,10 +251,12 @@
       <div class="card-deck">
         {% for topic in top_topic %}
         <div class="card-body">
-          <a href="/course/?topic={{topic}}"><h5 class="card-title">{{ topic }}</h5></a>
+          <a href="/course/?topic={{topic}}">
+            <h5 class="card-title">{{ topic }}</h5>
+          </a>
         </div>
         {% endfor %}
-      </div>      
+      </div>
     </div>
   </div>
 
@@ -208,7 +280,8 @@
       Our Students Feedback
     </h2>
     <p class="text-center">
-      Providing constructive feedback to the school administration helps foster continuous improvement and enhances the overall educational experience for students, ensuring that their needs are met and their voices are heard.
+      Providing constructive feedback to the school administration helps foster continuous improvement and enhances the
+      overall educational experience for students, ensuring that their needs are met and their voices are heard.
     </p>
     <div class="layout_padding2">
       <div class="client_container d-flex flex-column">
@@ -227,9 +300,13 @@
         </div>
         <div class="client_text mt-4">
           <p>
-            "I recently completed an online course on digital marketing and I must say, I had a great experience. The course content was clear and concise, and the instructor was very supportive and responsive to my needs. The quizzes and feedback 
-            were extremely helpful in assessing my progress and improving my skills. The additional resources such as video tutorials, 
-            lectures, and textbooks were all very relevant and helpful. The online learning format was very convenient and flexible, allowing me 
+            "I recently completed an online course on digital marketing and I must say, I had a great experience. The
+            course content was clear and concise, and the instructor was very supportive and responsive to my needs. The
+            quizzes and feedback
+            were extremely helpful in assessing my progress and improving my skills. The additional resources such as
+            video tutorials,
+            lectures, and textbooks were all very relevant and helpful. The online learning format was very convenient
+            and flexible, allowing me
             to study at my own pace and in my own time."
 
 
@@ -257,11 +334,16 @@
 
     </h2>
     <h2 class="main-heading number_heading">
-      
-        for everyone
+
+      for everyone
     </h2>
     <p class="landing_detail text-center">
-      As an educator, my promise is to provide a high-quality learning experience to my students. I am committed to creating a supportive and inclusive classroom environment where each student feels valued and empowered to reach their full potential. I will design engaging and innovative lesson plans that cater to different learning styles, and I will continuously seek professional development opportunities to enhance my teaching skills. With a focus on individual growth and academic excellence, I will strive to inspire a love for learning and equip my students with the knowledge and skills they need to succeed in their educational journey and beyond.
+      As an educator, my promise is to provide a high-quality learning experience to my students. I am committed to
+      creating a supportive and inclusive classroom environment where each student feels valued and empowered to reach
+      their full potential. I will design engaging and innovative lesson plans that cater to different learning styles,
+      and I will continuously seek professional development opportunities to enhance my teaching skills. With a focus on
+      individual growth and academic excellence, I will strive to inspire a love for learning and equip my students with
+      the knowledge and skills they need to succeed in their educational journey and beyond.
     </p>
     <div class="row d-flex justify-content-center">
       {% webpush_button with_class="btn btn-outline-info" %}
