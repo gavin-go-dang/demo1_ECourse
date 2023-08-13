@@ -165,11 +165,11 @@ List course
             </div>
             <div class="row progress-bar-box">
               <div class="col-5">
-                <strong>50%</strong>
+                <strong>{{ course.progress }}%</strong>
               </div>
               <div class="col-7 progress-bar-box">
                 <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                  <div class="progress-bar" role="progressbar" style="width: {{ course.progress }}%" aria-valuenow="{{ course.progress }}" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 </div>
               </div>

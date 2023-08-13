@@ -35,7 +35,6 @@ class CertificateContent(View):
                 cert.score = max_avg_score
                 cert.save()
         except ObjectDoesNotExist as e:  # Not exist
-            breakpoint()
             cert = Certificate(student=student, course=course, score=max_avg_score)
             cert.save()
         except Exception as e:  # Multire
