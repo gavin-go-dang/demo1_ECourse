@@ -1,9 +1,10 @@
 from django.db import models
+from django.db.models.signals import post_save
+from webpush import send_user_notification
 
 from authen.models import User
 from common.models import CreatedUpdatedDateModel
-from django.db.models.signals import post_save
-from webpush import send_user_notification
+
 from .lesson import Lesson
 
 

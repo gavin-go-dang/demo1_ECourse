@@ -1,9 +1,9 @@
+from django.conf import settings
 from django.shortcuts import redirect, render
 from django.views.generic import View
 
 from common.views import DetailLoginRequired
 from course_manager.models import Course, Exam, Lesson, LessonLearned
-from django.conf import settings
 
 
 class LessonContent(DetailLoginRequired):
