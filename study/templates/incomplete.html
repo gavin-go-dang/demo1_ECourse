@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{object.name_lesson}}
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link rel="stylesheet" href="{% static 'assets/css/certificate.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<div class="container certificate">
+  <div class="row">
+    <div class="col">
+      <div class="outer-border">
+        <div class="inner-dotted-border">
+          <span class="certification">Incomplete</span>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock content %}

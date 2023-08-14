@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+{% load static %}
+{% load webpush_notifications %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<!-- responsive style -->
+<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
+<!-- webpush -->
+{% webpush_header %}
+{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="top_container">
+  <!-- header section strats -->
+  {% include 'header.html' %}
+  <section class="hero_section ">
+    <div class="hero-container container">
+      <div class="hero_detail-box">
+        <h3>
+          Welcome to <br>
+          Best educations
+        </h3>
+        <h1>
+          school
+        </h1>
+        <p>
+          Online schooling is a revolutionary approach to education, seamlessly blending technology and learning.
+          It offers students the flexibility to study from anywhere, at any time.
+        </p>
+        {% if not user.is_authenticated %}
+        <div class="hero_btn-continer">
+          <a href="/register" class="call_to-btn btn_white-border">
+            <span>
+              Sign up
+            </span>
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+        {% else %}
+        <div class="hero_btn-continer">
+          <a href="/course/summary" class="call_to-btn btn_white-border">
+            <span>
+              Follow your learning
+            </span>
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="hero_img-container">
+        <div>
+          <img src="{% static 'assets/images/hero.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end header section -->
+
+<!-- about section -->
+<section class="about_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading ">
+      About My Online School
+    </h2>
+    <p class="text-center">
+      We provide the online course. My service help you learn every time, every where, more convenient and free
+    </p>
+    <div class="about_img-box ">
+      <img src="{% static 'assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <a href="" class="call_to-btn  ">
+
+        <span>
+          Read More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  <div class="container">
+    <h2 class="main-heading ">
+      Teacher
+    </h2>
+    <p class="text-center">
+      The teachers at Ecourse have experience in teaching with more than 5 years.
+    </p>
+  </div>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner">
+      {% for teacher_set in top_teacher %}
+      <div class="carousel-item {% if forloop.first %}active{%endif%}">
+        <div class="container">
+          <div class="row justify-content-center">
+            {% for teacher in teacher_set %}
+            <div class="col-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    {% if teacher.cover_img %}
+                    <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
+                    {% else %}
+                    <img class="card-img-top" src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                      alt="Card image cap">
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    {{teacher.full_name}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <ol class="carousel-indicators">
+      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+      </li>
+      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <div class="d-flex justify-content-center mt-3">
+      <span style="height: 50px;"></span>
+    </div>
+  </div>
+</section>
+
+
+<!-- course section -->
+<section class="teacher_section layout_padding-top">
+  <div class="container">
+    <h2 class="main-heading ">
+      Hot Course
+    </h2>
+    <p class="text-center">
+      These course have top number of student
+    </p>
+    <div class="teacher_confull_nametainer layout_padding2">
+      <div class="card-deck">
+        {% for course in top_course %}
+        <div class="card">
+          <a href="/course/detail/{{ course.id }}">
+
+            {% if course.cover_img %}
+            <img class="card-img-top" src="{{ course.cover_img.url }}" alt="Card image cap">
+            {% else %}
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ course.name_course }}</h5>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+      <a href="/course/" class="call_to-btn  ">
+
+        <span>
+          See More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="right-arrow">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Topic -->
+<section class="topic_section layout_padding2">
+  <div class="container">
+    <h2 class="main-heading ">
+      And more than 20 topics
+    </h2>
+    <p class="text-center">
+      for you explore
+    </p>
+    <div class="teacher_confull_nametainer ">
+      <div class="card-deck">
+        {% for topic in top_topic %}
+        <div class="card-body">
+          <a href="/course/?topic={{topic}}">
+            <h5 class="card-title">{{ topic }}</h5>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-center mt-3">
+    <a href="/course/" class="call_to-btn  ">
+
+      <span>
+        See More
+      </span>
+      <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+    </a>
+  </div>
+  </div>
+</section>
+
+<!-- client section -->
+<section class="client_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading ">
+      Our Students Feedback
+    </h2>
+    <p class="text-center">
+      Providing constructive feedback to the school administration helps foster continuous improvement and enhances the
+      overall educational experience for students, ensuring that their needs are met and their voices are heard.
+    </p>
+    <div class="layout_padding2">
+      <div class="client_container d-flex flex-column">
+        <div class="client_detail d-flex align-items-center">
+          <div class="client_img-box ">
+            <img src="{% static 'assets/images/student.png' %}" alt="">
+          </div>
+          <div class="client_detail-box">
+            <h4>
+              Veniam Quis
+            </h4>
+            <span>
+              (exercitation)
+            </span>
+          </div>
+        </div>
+        <div class="client_text mt-4">
+          <p>
+            "I recently completed an online course on digital marketing and I must say, I had a great experience. The
+            course content was clear and concise, and the instructor was very supportive and responsive to my needs. The
+            quizzes and feedback
+            were extremely helpful in assessing my progress and improving my skills. The additional resources such as
+            video tutorials,
+            lectures, and textbooks were all very relevant and helpful. The online learning format was very convenient
+            and flexible, allowing me
+            to study at my own pace and in my own time."
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- client section -->
+
+
+
+
+
+<!-- landing section -->
+<section class="landing_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading">
+      Free education program
+
+    </h2>
+    <h2 class="main-heading number_heading">
+
+      for everyone
+    </h2>
+    <p class="landing_detail text-center">
+      As an educator, my promise is to provide a high-quality learning experience to my students. I am committed to
+      creating a supportive and inclusive classroom environment where each student feels valued and empowered to reach
+      their full potential. I will design engaging and innovative lesson plans that cater to different learning styles,
+      and I will continuously seek professional development opportunities to enhance my teaching skills. With a focus on
+      individual growth and academic excellence, I will strive to inspire a love for learning and equip my students with
+      the knowledge and skills they need to succeed in their educational journey and beyond.
+    </p>
+    <div class="row d-flex justify-content-center">
+      {% webpush_button with_class="btn btn-outline-info" %}
+    </div>
+  </div>
+</section>
+
+
+
+<script type="text/javascript" src="{% static 'assets/js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.js' %}"></script>
+{% include 'footer.html' %}
+{% endblock content %}

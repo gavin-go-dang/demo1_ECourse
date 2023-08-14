@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+List course
+{% endblock %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+<!-- responsive style -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/course.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/course_responsive.css' %}">
+
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+<!-- end header section -->
+{% include 'side-bar-filter.html' %}
+<!--  -->
+<div class="container">
+  <form name="search_form" class="search-form" action="" method="GET">
+    <h2 class="main-heading number_heading">
+      Find your course
+    </h2>
+
+    <div class="row search d-flex justify-content-center">
+      <div class="col-sm-2 search-topic">
+        <select name="topic" id="select-topic">
+          <option selected disabled>Select topic</option>
+          <option value="{{ topic.name_topic }}">All</option>
+          {% for topic in topics %}
+          <option value="{{ topic.name_topic }}">{{ topic.name_topic }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-sm-8 search-query">
+        <input type="text" id="query" name="query">
+      </div>
+      <div class="col-sm-1 search-button">
+        <button class="submit-form-search search-bar" type="submit">
+          <i class="fa fa-search lookup-icon">
+          </i>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="row body-search">
+    <div class="col-2 filter_checkbox">
+      <form name="filter_form" action="{% url 'course' %}">
+        <h6>Topic</h6>
+        <ul>
+          {% for topic in topics %}
+          <li>
+            <input name="topic" class="form-check-input" type="checkbox" value="{{ topic }}" id="flexCheckDefault" 
+            {% if topic.name_topic  == topic_checked %}
+            checked
+            {% endif %}>
+            <label class="form-check-label" for="flexCheckDefault">
+              {{topic}}
+            </label>
+          </li>
+
+          {% endfor %}
+        </ul>
+        <h6>Time learning</h6>
+        <ul>
+
+          <li>
+
+            <input name="time_learning" class="form-check-input" type="checkbox" value="30" id="flexCheckDefault" {% if time_checked == "30" %} checked {% endif %}>
+            <label class="form-check-label" for="flexCheckDefault">
+              1 month
+            </label>
+          </li>
+          <li>
+            <input name="time_learning" class="form-check-input" type="checkbox" value="60" id="flexCheckDefault" {% if time_checked == "60" %} checked {% endif %}>
+            <label class="form-check-label" for="flexCheckDefault">
+              2 months
+            </label>
+          </li>
+          <li>
+            <input name="time_learning" class="form-check-input" type="checkbox" value="90" id="flexCheckDefault" {% if time_checked == "90" %} checked {% endif %}>
+            <label class="form-check-label" for="flexCheckDefault">
+              &ge; 3 months
+            </label>
+          </li>
+        </ul>
+        <h6>Level</h6>
+        <ul>
+          <li>
+            <input type="checkbox" class="form-check-input" value="basic" name="level" {% if level_checked == "basic" %} checked {% endif %}>
+            <label>
+              Basic
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" class="form-check-input" value="medium" name="level" {% if level_checked == "medium" %} checked {% endif %}>
+            <label>
+              Medium
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" class="form-check-input" value="advanced" name="level"  {% if level_checked == "advanced" %}checked {% endif %}>
+            <label>
+              Advanced
+            </label>
+          </li>
+        </ul>
+        <button class="submit-form-search filter-col" type="submit">Apply</button>
+      </form>
+    </div>
+    <div class="col-10 search_result">
+      {%for course in courses %}
+      <div class="box-course">
+        <div class="row">
+          <div class="col-2 avt-img">
+            {% if course.cover_img %}
+            <img src="{{ course.cover_img.url }}" alt="cover image" class="cover_img" />
+            {% else %}
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+            {% endif %}
+          </div>
+          <div class="col-6 infor-course">
+            <div class="row course-name name-course-title">
+              <a href="/course/detail/{{ course.id }}">{{ course.name_course }}</a>
+            </div>
+            <div class="row course-detail">
+              <div class="col-4 detail-title time_to_learn">Time to learn:
+                <b>{{course.time_to_learn_ets}}d</b>
+              </div>
+              <div class="col-3 detail-title level">Level: <b>{{ course.level }}</b></div>
+              <div class="col-3 detail-title register">Register: <b>{{ course.register }}</b></div>
+            </div>
+            <div class="row course-detail description truncate">
+              {{ course.description }}
+            </div>
+          </div>
+          <div class="col-2 teacher_progress">
+            <div class="row teacher">
+              <div class="col-5 avt-img">
+                {% if course.teacher.cover_img %}
+                <img src="{{ course.teacher.cover_img.url }}" alt="cover image" class="cover_img_teacher">
+                {% else %}
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+                {% endif %}
+              </div>
+              <div class="col-7 teacher-name center ">
+                <p class="username">{{ course.teacher }}</p>
+                <p class="fullname">{{ course.teacher.full_name }}</p>
+              </div>
+            </div>
+            <div class="row progress-row">
+              <div class="col-1 title-progress-col">
+                <span class="title-progress">
+                  Progress
+                </span>
+              </div>
+            </div>
+            <div class="row progress-bar-box">
+              <div class="col-5">
+                <strong>{{ course.progress }}%</strong>
+              </div>
+              <div class="col-7 progress-bar-box">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: {{ course.progress }}%" aria-valuenow="{{ course.progress }}" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+      <div class="row paginator">
+        <div class="col-6 paginator">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+              {% if courses.has_previous %}
+              <li class="page-item">
+                <a href="/course/?page={{ courses.previous_page_number }}">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              <li class="page-item"><a class="page-link" href="/course/?page={{ courses.previous_page_number }}">
+                  {{ courses.previous_page_number }}</a></li>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span></a>
+              </li>
+              {% endif %}
+              <li class="page-item"><a class="page-link" href="/course/?page={{ courses.number }}"><strong>
+                    {{ courses.number }}</strong></a></li>
+              {% if courses.has_next %}
+
+              <li class="page-item"><a class="page-link" href="/course/?page={{ courses.next_page_number }}">
+                  {{ courses.next_page_number }}</a></li>
+              {% if courses.next_page_number != max_page and courses.number != max_page %}
+              <li class="page-item" disabled><a class="page-link" href="/course/?page={{ max_page }}"><strong>...</strong></a></li>
+              <li class="page-item"><a class="page-link" href="/course/?page={{ max_page }}"><strong>{{ max_page }}</strong></a></li>
+              {% endif %}
+              <li class="page-item">
+                <a href="/course/?page={{ courses.next_page_number }}">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span></a>
+              </li>
+
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/js/course.js' %}"></script>
+{% include 'footer.html' %}
+{% endblock content %}

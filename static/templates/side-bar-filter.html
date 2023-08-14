@@ -1,0 +1,66 @@
+<nav class="side-bar-filter">
+    <input type="checkbox" name="open" id="open">
+    <label for="open" class="open">
+      <i>Filter</i>
+    </label>
+    <div class="menu">
+      <form name="filter_form" action="">
+        <h6>Topic</h6>
+        <ul>
+          {% for topic in topics %}
+          <li>
+            <input name="topic" class="form-check-input" type="checkbox" value="{{ topic }}" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              {{topic}}
+            </label>
+          </li>
+  
+          {% endfor %}
+        </ul>
+        <h6>Time learning</h6>
+        <ul>
+          <li>
+            <input name="time_learning" class="form-check-input" type="checkbox" value="30" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              1 month
+            </label>
+          </li>
+          <li>
+            <input name="time_learning" class="form-check-input" type="checkbox" value="60" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              2 months
+            </label>
+          </li>
+          <li>
+            <input name="time_learning" class="form-check-input" type="checkbox" value="90" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              &ge; 3 months
+            </label>
+          </li>
+        </ul>
+        <h6>Level</h6>
+        <ul>
+          <li>
+            <input type="checkbox" class="form-check-input" value="basic" name="level" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Basic
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" class="form-check-input" value="medium" name="level" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Medium
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" class="form-check-input" value="advanced" name="level" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Advanced
+            </label>
+          </li>
+        </ul>
+        <button class="submit-form-search filter-col" type="submit">Apply</button>
+  
+      </form>
+    </div>
+  </nav>

@@ -1,0 +1,45 @@
+{% load static %}
+{% load webpush_notifications %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/images/logo.png' %}">
+  <!-- bootstrap core css -->
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" />  
+  <link rel="stylesheet" href="{% static 'assets/css/footer.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/search_bar.css' %}">
+ 
+  {% block css %}
+
+  {% endblock %}
+
+</head>
+
+
+<body>
+  {% block content %}
+  {% endblock %}
+  
+
+  {% block js %}
+  {% endblock %}
+</body>
+</html>

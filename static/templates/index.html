@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+{% load static %}
+{% load webpush_notifications %} 
+
+{% block css %}
+<!-- Custom styles for this template -->
+<!-- responsive style -->
+<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
+<!-- webpush -->
+{% webpush_header %}
+{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="top_container">
+  <!-- header section strats -->
+  {% include 'header.html' %}
+  <section class="hero_section ">
+    <div class="hero-container container">
+      <div class="hero_detail-box">
+        <h3>
+          Welcome to <br>
+          Best educations
+        </h3>
+        <h1>
+          school
+        </h1>
+        <p>
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
+          some form, by injected humour, or randomised
+        </p>
+        {% if not user.is_authenticated %}
+        <div class="hero_btn-continer">
+          <a href="/register" class="call_to-btn btn_white-border">
+            <span>
+              Sign up
+            </span>
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+        {% else %}
+        <div class="hero_btn-continer">
+          <a href="/course/summary" class="call_to-btn btn_white-border">
+            <span>
+              Follow your learning
+            </span>
+            <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="hero_img-container">
+        <div>
+          <img src="{% static 'assets/images/hero.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end header section -->
+
+<!-- about section -->
+<section class="about_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading ">
+      About My Online School
+    </h2>
+    <p class="text-center">
+      We provide the online course. My service help you learn every time, every where, more convenient and free
+    </p>
+    <div class="about_img-box ">
+      <img src="{% static 'assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <a href="" class="call_to-btn  ">
+
+        <span>
+          Read More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- about section -->
+
+<!-- teacher section -->
+<section class="teacher_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading ">
+      Our Teachers
+    </h2>
+    <p class="text-center">
+      Ipsum available, but the majority h
+    </p>
+    <div class="teacher_container layout_padding2">
+      <div class="card-deck">
+        {% for teacher in top_teacher %}
+        <div class="card">
+          {% if teacher.cover_img %}
+          <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
+          {% else %}
+          <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ teacher.full_name }}</h5>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+      <a href="" class="call_to-btn  ">
+
+        <span>
+          See More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- course section -->
+<section class="teacher_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading ">
+      Hot Course
+    </h2>
+    <p class="text-center">
+      This course has top number of student
+    </p>
+    <div class="teacher_confull_nametainer layout_padding2">
+      <div class="card-deck">
+        {% for course in top_course %}
+        <div class="card">
+          <a href="/course/detail/{{ course.id }}">
+
+            {% if course.cover_img %}
+            <img class="card-img-top" src="{{ course.cover_img.url }}" alt="Card image cap">
+            {% else %}
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ course.name_course }}</h5>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+      <a href="/course/" class="call_to-btn  ">
+
+        <span>
+          See More
+        </span>
+        <img src="{% static 'assets/images/right-arrow.png' %}" alt="right-arrow">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Topic -->
+<section class="topic_section layout_padding-bottom">
+  <div class="container">
+    <h2 class="main-heading ">
+      And more than 20 topics
+    </h2>
+    <p class="text-center">
+      for you explore
+    </p>
+    <div class="teacher_confull_nametainer layout_padding2">
+      <div class="card-deck">
+        {% for topic in top_topic %}
+        <div class="card-body">
+          <a href="/course/?topic={{topic}}"><h5 class="card-title">{{ topic }}</h5></a>
+        </div>
+        {% endfor %}
+      </div>      
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-center mt-3">
+    <a href="/course/" class="call_to-btn  ">
+
+      <span>
+        See More
+      </span>
+      <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
+    </a>
+  </div>
+  </div>
+</section>
+
+<!-- client section -->
+<section class="client_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading ">
+      Our Students Feedback
+    </h2>
+    <p class="text-center">
+      There are many variations of passages of Lorem Ipsum available, but the majority hThere are many variations of
+      passages of Lorem Ipsum available, but the majority h
+    </p>
+    <div class="layout_padding2">
+      <div class="client_container d-flex flex-column">
+        <div class="client_detail d-flex align-items-center">
+          <div class="client_img-box ">
+            <img src="{% static 'assets/images/student.png' %}" alt="">
+          </div>
+          <div class="client_detail-box">
+            <h4>
+              Veniam Quis
+            </h4>
+            <span>
+              (exercitation)
+            </span>
+          </div>
+        </div>
+        <div class="client_text mt-4">
+          <p>
+            "I recently completed an online course on digital marketing and I must say, I had a great experience. The course content was clear and concise, and the instructor was very supportive and responsive to my needs. The quizzes and feedback 
+            were extremely helpful in assessing my progress and improving my skills. The additional resources such as video tutorials, 
+            lectures, and textbooks were all very relevant and helpful. The online learning format was very convenient and flexible, allowing me 
+            to study at my own pace and in my own time."
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- client section -->
+
+
+
+
+
+<!-- landing section -->
+<section class="landing_section layout_padding">
+  <div class="container">
+    <h2 class="main-heading">
+      Free Multipurpose Responsive
+
+    </h2>
+    <h2 class="main-heading number_heading">
+      Landing Page 2019
+
+    </h2>
+    <p class="landing_detail text-center">
+      There are many variations of passages of Lorem Ipsum available, but the majority There are many variations of
+      passages of Lorem Ipsum available, but the majority h
+    </p>
+    <div class="row d-flex justify-content-center">
+      {% webpush_button with_class="btn btn-outline-info" %}
+    </div>
+  </div>
+</section>
+
+
+
+<script type="text/javascript" src="{% static 'assets/js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.js' %}"></script>
+{% include 'footer.html' %}
+{% endblock content %}
