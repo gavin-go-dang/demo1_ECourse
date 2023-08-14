@@ -85,62 +85,17 @@
 </section>
 
 
-<!-- about section -->
 
-<!-- teacher section -->
-<!-- <section class="teacher_section layout_padding-bottom">
-  <div class="container">
-    <h2 class="main-heading ">
-      Our Teachers
-    </h2>
-    <p class="text-center">
-      Teachers are the guiding lights in schools, inspiring and educating students while fostering a nurturing and engaging learning environment.
-    </p>
-    <div class="teacher_container layout_padding2">
-      <div class="card-deck">
-        {% for teacher in top_teacher %}
-        <div class="card">
-          {% if teacher.cover_img %}
-          <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
-          {% else %}
-          <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avt-unknow" class="cover_img">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ teacher.full_name }}</h5>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-
-
-    <div class="d-flex justify-content-center mt-3">
-      <a href="" class="call_to-btn  ">
-
-        <span>
-          See More
-        </span>
-        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
-      </a>
-    </div>
-  </div>
-</section>
-
-
-  </div>
-  <div class="teacher_container layout_padding2">
-    <div class="d-flex justify-content-center mt-3">
-      <a href="" class="call_to-btn  ">
-
-        <span>
-          See More
-        </span>
-      </a>
-    </div>
-  </div>
-</section> -->
 
 <section>
+  <div class="container">
+    <h2 class="main-heading ">
+      Teacher
+    </h2>
+    <p class="text-center">
+      The teachers at Ecourse have experience in teaching with more than 5 years on school.
+    </p>
+  </div>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
     <div class="carousel-inner">
@@ -153,7 +108,12 @@
               <div class="container">
                 <div class="row">
                   <div class="col d-flex justify-content-center">
+                    {% if teacher.cover_img %}
                     <img class="card-img-top" src="{{ teacher.cover_img.url }}" alt="Card image cap">
+                    {% else %}
+                    <img class="card-img-top" src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                      alt="Card image cap">
+                    {% endif %}
                   </div>
                 </div>
                 <div class="row">
@@ -170,7 +130,8 @@
       {% endfor %}
     </div>
     <ol class="carousel-indicators">
-      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+      </li>
       <li style="background-color: black;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     </ol>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
