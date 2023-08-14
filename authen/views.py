@@ -27,6 +27,7 @@ class HomeView(View):
             "top_courses", Course.objects.all().order_by("-register")
         )
         top_course = top_course[:4]
+
         teacher_queryset_lists = [
             top_teacher[i : i + chunk_size]
             for i in range(0, len(top_teacher), chunk_size)
