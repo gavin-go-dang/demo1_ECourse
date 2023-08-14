@@ -97,7 +97,7 @@ class ExamContent(DetailLoginRequired):
             message=s,
             subject="Exam result",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=["anhkhoalongha@gmail.com"],
+            recipient_list=[student.email],
             html_message=html,
         )
 
