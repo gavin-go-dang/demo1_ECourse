@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    "anymail",
 ]
 SITE_ID = 1
 LOGIN_REDIRECT_URL = "/"
@@ -195,3 +196,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # TEST_RUNNER = 'pytest_django.runner.DjangoPytestRunner'
+# mail gun
+EMAIL_BACKEND = "django_mailgun_mime.backends.MailgunMIMEBackend"
+MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
+MAILGUN_DOMAIN_NAME = os.getenv("MAILGUN_DOMAIN_NAME")

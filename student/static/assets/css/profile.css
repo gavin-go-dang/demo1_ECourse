@@ -58,3 +58,7 @@
 	z-index: -1;
 }
 
+.rounded-circle{
+    width: 200px;
+    height: 200px;
+}
