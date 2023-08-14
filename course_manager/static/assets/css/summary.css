@@ -1,4 +1,8 @@
-.title-section-progress{
+.body-exam{
+    margin-bottom: 5%;
+    text-align: center;
+}
+.title-section-progress {
     text-align: center;
     margin-right: 50%;
 }
@@ -54,6 +58,8 @@ h1 {
     text-align: center
 }
 
-.center-conter{
+.center-conter {
     text-align: center;
 }
+
+

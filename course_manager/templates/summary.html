@@ -101,16 +101,16 @@ Summary
                   <td class="center-conter">{{ result.exam }}</td>
                   <td class="center-conter">{{ result.mark }}</td>
                   {% if result.pass_exam %}
-                  <td>&#10004;</td>
+                  <td class="center-conter">&#10004;</td>
                   {% else %}
-                  <td>&#10008;</td>
+                  <td class="center-conter">&#10008;</td>
                   {% endif %}
               </tr>
           </tbody>
           {% endfor %}
       </table>
   </div>
-  <a href="/study/result/"><button type="button" class="btn btn-primary">See more</button></a>
+  <a href="/study/result/"><button type="button" class="btn btn-primary more-result">See more</button></a>
 </div>
   <!-- about section -->
 
