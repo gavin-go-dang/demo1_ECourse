@@ -30,8 +30,8 @@ List course
       Find your course
     </h2>
 
-    <div class="row search">
-      <div class="col-2 search-topic">
+    <div class="row search d-flex justify-content-center">
+      <div class="col-sm-2 search-topic">
         <select name="topic" id="select-topic">
           <option selected disabled>Select topic</option>
           <option value="{{ topic.name_topic }}">All</option>
@@ -40,10 +40,10 @@ List course
           {% endfor %}
         </select>
       </div>
-      <div class="col-8 search-query">
+      <div class="col-sm-8 search-query">
         <input type="text" id="query" name="query">
       </div>
-      <div class="col-1 search-button">
+      <div class="col-sm-1 search-button">
         <button class="submit-form-search search-bar" type="submit">
           <i class="fa fa-search lookup-icon">
           </i>
@@ -58,7 +58,10 @@ List course
         <ul>
           {% for topic in topics %}
           <li>
-            <input name="topic" class="form-check-input" type="checkbox" value="{{ topic }}" id="flexCheckDefault">
+            <input name="topic" class="form-check-input" type="checkbox" value="{{ topic }}" id="flexCheckDefault" 
+            {% if topic.name_topic  == topic_checked %}
+            checked
+            {% endif %}>
             <label class="form-check-label" for="flexCheckDefault">
               {{topic}}
             </label>
@@ -71,19 +74,19 @@ List course
 
           <li>
 
-            <input name="time_learning" class="form-check-input" type="checkbox" value="30" id="flexCheckDefault">
+            <input name="time_learning" class="form-check-input" type="checkbox" value="30" id="flexCheckDefault" {% if time_checked == "30" %} checked {% endif %}>
             <label class="form-check-label" for="flexCheckDefault">
               1 month
             </label>
           </li>
           <li>
-            <input name="time_learning" class="form-check-input" type="checkbox" value="60" id="flexCheckDefault">
+            <input name="time_learning" class="form-check-input" type="checkbox" value="60" id="flexCheckDefault" {% if time_checked == "60" %} checked {% endif %}>
             <label class="form-check-label" for="flexCheckDefault">
               2 months
             </label>
           </li>
           <li>
-            <input name="time_learning" class="form-check-input" type="checkbox" value="90" id="flexCheckDefault">
+            <input name="time_learning" class="form-check-input" type="checkbox" value="90" id="flexCheckDefault" {% if time_checked == "90" %} checked {% endif %}>
             <label class="form-check-label" for="flexCheckDefault">
               &ge; 3 months
             </label>
@@ -92,19 +95,19 @@ List course
         <h6>Level</h6>
         <ul>
           <li>
-            <input type="checkbox" class="form-check-input" value="basic" name="level" />
+            <input type="checkbox" class="form-check-input" value="basic" name="level" {% if level_checked == "basic" %} checked {% endif %}>
             <label>
               Basic
             </label>
           </li>
           <li>
-            <input type="checkbox" class="form-check-input" value="medium" name="level" />
+            <input type="checkbox" class="form-check-input" value="medium" name="level" {% if level_checked == "medium" %} checked {% endif %}>
             <label>
               Medium
             </label>
           </li>
           <li>
-            <input type="checkbox" class="form-check-input" value="advanced" name="level" />
+            <input type="checkbox" class="form-check-input" value="advanced" name="level"  {% if level_checked == "advanced" %}checked {% endif %}>
             <label>
               Advanced
             </label>
@@ -162,11 +165,11 @@ List course
             </div>
             <div class="row progress-bar-box">
               <div class="col-5">
-                <strong>50%</strong>
+                <strong>{{ course.progress }}%</strong>
               </div>
               <div class="col-7 progress-bar-box">
                 <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                  <div class="progress-bar" role="progressbar" style="width: {{ course.progress }}%" aria-valuenow="{{ course.progress }}" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 </div>
               </div>

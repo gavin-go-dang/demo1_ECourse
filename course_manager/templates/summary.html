@@ -84,22 +84,22 @@ Summary
       <table class="table">
           <thead>
               <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Student</th>
-                  <th scope="col">Course name</th>
-                  <th scope="col">Exam</th>
-                  <th scope="col">Score</th>
-                  <th scope="col">Pass</th>
+                  <th scope="col" class="center-conter">#</th>
+                  <th scope="col" class="center-conter">Student</th>
+                  <th scope="col" class="center-conter">Course name</th>
+                  <th scope="col" class="center-conter">Exam</th>
+                  <th scope="col" class="center-conter">Score</th>
+                  <th scope="col" class="center-conter">Pass</th>
               </tr>
           </thead>
           {% for result in object_list %}
           <tbody>
               <tr>
                   <th scope="row">{{ forloop.counter }}</th>
-                  <td>{{ result.student }}</td>
-                  <td>{{ result.exam.course }}</td>
-                  <td>{{ result.exam }}</td>
-                  <td>{{ result.mark }}</td>
+                  <td class="center-conter">{{ result.student }}</td>
+                  <td class="center-conter">{{ result.exam.course }}</td>
+                  <td class="center-conter">{{ result.exam }}</td>
+                  <td class="center-conter">{{ result.mark }}</td>
                   {% if result.pass_exam %}
                   <td>&#10004;</td>
                   {% else %}

@@ -40,14 +40,16 @@
             <a class='forgotLink' href="{% provider_login_url 'google' %}" style="padding: 0px;">
                 <img src="{% static 'assets/img/google.svg' %}" width="25px" alt="">
             </a>
+            {% if message %}
+            <div class="form-group" style="z-index: 5;">
+                <div class="alert alert-danger" role="alert">
+                    {{ message }} 
+                </div>
+            </div>
+            {% endif %}
+		    
         </form>
         
-        {% if message %}
-		<div class="form-group">
-			<div class="alert alert-danger" role="alert">
-				{{ message }}
-			</div>
-		</div>
-		{% endif %}
+        
     </div>
     {% endblock %}

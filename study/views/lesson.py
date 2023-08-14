@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import redirect, render
 from django.views.generic import View
 
@@ -25,5 +26,5 @@ class LessonContent(DetailLoginRequired):
             id__in=context["lesson_complete"].values("lesson")
         )
         context["exams"] = Exam.objects.filter(course=course)
-
+        context["domain"] = settings.DOMAIN
         return context

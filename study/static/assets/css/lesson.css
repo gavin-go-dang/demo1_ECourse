@@ -63,3 +63,7 @@ body.menu-open .lesson-menu {
 .lesson-menu li:hover {
     background-color: antiquewhite;
 }
+
+.pagination-bar{
+    margin-top: 1%;
+}
