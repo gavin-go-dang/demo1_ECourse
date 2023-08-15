@@ -99,7 +99,10 @@ ROOT_URLCONF = "ecourse.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [
+            BASE_DIR / "templates",
+            os.path.join(BASE_DIR, "templates", "account"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
