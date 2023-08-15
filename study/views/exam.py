@@ -5,6 +5,12 @@ from django.urls import reverse
 from django.views.generic import View
 
 from common.views import DetailLoginRequired, LoginRequired
+
+from django.template.loader import render_to_string
+from django.conf import settings
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import get_connection
+
 from course_manager.models import (
     Course,
     Exam,
@@ -28,7 +34,7 @@ class ExamContent(DetailLoginRequired):
         correct = 0
         total = 0
         mark = 0
-        ass_exam = False
+        pass_exam = False
         exam_id = self.kwargs["pk"]
         student = self.request.user
         questions = Question.objects.filter(exam__id=exam_id)
@@ -64,4 +70,35 @@ class ExamContent(DetailLoginRequired):
         )
 
         result.save()
+
+        path_to_html = "exam_result.html"
+
+        s = "The result of {} exam".format(exam)
+        if pass_exam:
+            m = "Congratulations! You have passed the exam!"
+        else:
+            m = "Sorry! You must do the exam again!"
+
+        time = result.created_at
+        context = {
+            "title": s,
+            "message": m,
+            "student": student,
+            "course": exam.course,
+            "exam": exam,
+            "mark": mark,
+            "pass_exam": pass_exam,
+            "time": time,
+            "id": result.id,
+        }
+
+        html = render_to_string(path_to_html, context)
+        send_mail(
+            message=s,
+            subject="Exam result",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[student.email],
+            html_message=html,
+        )
+
         return redirect(reverse("result", args=[result.id]))

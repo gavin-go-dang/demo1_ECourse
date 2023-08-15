@@ -18,3 +18,10 @@ gunicorn==21.2.0
 boto3==1.26.59
 django-storages==1.13.2
 django-allauth==0.54.0
+pytest==7.4.0
+pytest-django==4.5.2    
+factory-boy==3.3.0
+coverage==7.3.0
+django-webtest==1.9.10
+django-anymail
+django_mailgun_mime
