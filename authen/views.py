@@ -73,7 +73,9 @@ class RegisterView(View):
         current_url = resolve(request.path_info).url_name
         if current_url == "account_signup":
             context = {"message": "Please choose anothers email"}
-            request.session["message"] = "Please choose anothers email"
+            request.session[
+                "message"
+            ] = "Email already exists. Please use another email or register a new account"
             return redirect("register")
         context = {"message": ""}
         return render(request, self.template_name, context)
