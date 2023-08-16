@@ -70,6 +70,13 @@
 			</div>
 		</div>
 		{% endif %}
+		{% if message %}
+		<div class="form-group message">
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+		</div>
+		{% endif %}
 	</div>
 	<script src="{% static 'assets/js/script.js' %}"></script>
 </body>
