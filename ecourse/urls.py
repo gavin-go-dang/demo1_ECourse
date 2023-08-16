@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from authen.views import RegisterView
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
@@ -25,6 +26,7 @@ urlpatterns = [
     path("student/", include("student.urls"), name="student"),
     path("study/", include("study.urls"), name="study"),
     path(r"^webpush/", include("webpush.urls")),
+    path("accounts/social/signup/", RegisterView.as_view(), name="account_signup"),
     path("accounts/", include("allauth.urls")),
     path("", include("authen.urls")),
 ]

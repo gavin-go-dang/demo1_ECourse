@@ -6,6 +6,7 @@ from django.core.cache import cache
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, View
+from django.urls import resolve
 
 from course_manager.models import Course, Register, Topic
 
@@ -68,6 +69,12 @@ class RegisterView(View):
     def get(self, request):
         if request.user.is_authenticated:
             return redirect("home")
+
+        current_url = resolve(request.path_info).url_name
+        if current_url == "account_signup":
+            context = {"message": "Please choose anothers email"}
+            request.session["message"] = "Please choose anothers email"
+            return redirect("register")
         context = {"message": ""}
         return render(request, self.template_name, context)
 

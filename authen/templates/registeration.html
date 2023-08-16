@@ -63,10 +63,10 @@
 				  </div>
 			</div>
 		</form>
-		{% if message %}
-		<div class="form-group">
+		{% if request.session.message %}
+		<div class="form-group message">
 			<div class="alert alert-danger" role="alert">
-				{{ message }}
+				{{ request.session.message }}
 			</div>
 		</div>
 		{% endif %}
