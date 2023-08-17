@@ -1,0 +1,7 @@
+from .cert_view_test import CertificateViewTest
+from .exam_view_test import ExamViewTest
+from .pdf_certificate_view_test import GenerateCertificatePdfTest
+from .pdf_process_view_test import HtmlToPdfTest
+from .check_cert_view_test import CheckCertViewTest
+from .list_result_view_test import ListResultExamTest
+from .lesson_test_view import LessonContentTest

@@ -40,7 +40,10 @@ class ExamContent(DetailLoginRequired):
         questions = Question.objects.filter(exam__id=exam_id)
         data = request.POST.dict()
         min_score_to_pass = 7.5
-        del data["csrfmiddlewaretoken"]
+        try:
+            del data["csrfmiddlewaretoken"]
+        except:
+            pass
 
         list_question = data.keys()
         for index, value in data.items():

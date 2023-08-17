@@ -17,7 +17,7 @@ urlpatterns = [
     path("result/", ListResultExam.as_view(), name="list_result"),
     path("result/<pk>/", ResultExam.as_view(), name="result"),
     path("cert/<int:student>/<int:course>/", CertificateContent.as_view(), name="cert"),
-    path("check/", CheckCertificate.as_view(), name="cert"),
+    path("check/", CheckCertificate.as_view(), name="check_cert"),
     path(
         "cert_pdf/<int:student>/<int:course>/",
         GenerateCertificatePdf.as_view(),

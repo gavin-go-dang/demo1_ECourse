@@ -168,11 +168,11 @@ AUTH_USER_MODEL = "authen.User"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "../authen/"),
-    os.path.join(BASE_DIR, "../course_manager/"),
-    os.path.join(BASE_DIR, "../common/"),
-    os.path.join(BASE_DIR, "../student/"),
-    os.path.join(BASE_DIR, "../study/"),
+    os.path.join(BASE_DIR, "authen/static"),
+    os.path.join(BASE_DIR, "course_manager/static"),
+    os.path.join(BASE_DIR, "common/static"),
+    os.path.join(BASE_DIR, "student/static"),
+    os.path.join(BASE_DIR, "study/static"),
 ]
 
 

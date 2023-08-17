@@ -13,7 +13,7 @@ class UpdateUserInfoForm(forms.ModelForm):
         cleaned_data = super().clean()
         email = cleaned_data.get("email")
         user_check_count = User.objects.filter(email=email).count()
-        if user_check_count > 1:
+        if user_check_count > 0:
             raise forms.ValidationError("Email has exist in system")
 
 
