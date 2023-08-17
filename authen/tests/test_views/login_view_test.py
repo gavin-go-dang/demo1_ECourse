@@ -22,6 +22,15 @@ class LoginViewTest(TestCase):
         response = self.client.post(
             self.login_url, {"username": self.username, "password": "wrongpassword"}
         )
-        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "login.html")
         self.assertContains(response, "Invalid username or password")
+
+    def test_login_success(self):
+        response = self.client.post(
+            self.login_url, {"username": self.username, "password": self.password}
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_logout(self):
+        response = self.client.get(reverse("logout"))
+        self.assertEqual(response.status_code, 302)

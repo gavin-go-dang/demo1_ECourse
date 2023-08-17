@@ -1,2 +1,3 @@
-from .home_test_view import HomeViewTest
-from .login_test_view import LoginViewTest
+from .home_view_test import HomeViewTest
+from .login_view_test import LoginViewTest
+from .register_view_test import RegisterViewTest
