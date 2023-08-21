@@ -58,6 +58,11 @@ class LoginView(LoginView):
         messages.error(self.request, "Invalid username or password")
         return super().form_invalid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["messages"] = messages.get_messages(self.request)
+        return context
+
     def form_valid(self, form):
         response = super().form_valid(form)
         return redirect("home")
@@ -67,14 +72,15 @@ class RegisterView(View):
     template_name = "registeration.html"
 
     def get(self, request):
-        if request.user.is_authenticated:
-            return redirect("home")
-
         current_url = resolve(request.path_info).url_name
         if current_url == "account_signup":
-            context = {"message": "Please choose anothers email"}
-            request.session["message"] = "Please choose anothers email"
-            return redirect("register")
+            context = {
+                "message": "Email already exists. Please use another email or register a new account"
+            }
+            return render(request, "registeration.html", context)
+
+        if request.user.is_authenticated:
+            return redirect("home")
         context = {"message": ""}
         return render(request, self.template_name, context)
 

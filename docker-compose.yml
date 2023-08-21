@@ -8,9 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: web
     command:
-      bash -c "python3 manage.py migrate && 
+      bash -c "python3 manage.py migrate &&
       python manage.py collectstatic --noinput &&
-      python3 manage.py loaddata data_sample.json &&
       python3 manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./ecourse/:/usr/src/app/

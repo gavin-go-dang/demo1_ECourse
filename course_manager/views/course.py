@@ -72,12 +72,6 @@ class ListCourse(LoginRequired, View):
             level_checked = level
         courses_list = courses.filter(**course_filter).order_by("-register")
 
-        # paginator = Paginator(courses_list, self.paginate_by)
-        # page_number = request.GET.get("page")
-
-        # course_obj = paginator.get_page(page_number)
-
-        # progress
         progress_courses = (
             Register.objects.filter(student=self.request.user)
             .select_related("course")

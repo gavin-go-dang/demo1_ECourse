@@ -142,3 +142,7 @@ form {
         overflow: hidden
     }
 }
+
+.invalid-text{
+    font-size: small;
+}

@@ -5,3 +5,4 @@ from .lesson import LessonContent
 from .list_result import ListResultExam
 from .pdf_certificate import GenerateCertificatePdf
 from .reuslt import ResultExam
+from .process import html_to_pdf
