@@ -96,7 +96,7 @@
         <div class="container">
           <div class="row justify-content-center">
             {% for teacher in teacher_set %}
-            <div class="col-3">
+            <div class="col-3 carousel-teacher">
               <div class="container">
                 <div class="row">
                   <div class="col d-flex justify-content-center">
@@ -153,7 +153,7 @@
     <div class="teacher_confull_nametainer layout_padding2">
       <div class="card-deck">
         {% for course in top_course %}
-        <div class="card">
+        <div class="card top-course-div">
           <a href="/course/detail/{{ course.id }}">
 
             {% if course.cover_img %}
@@ -193,7 +193,7 @@
       for you explore
     </p>
     <div class="teacher_confull_nametainer ">
-      <div class="card-deck">
+      <div class="card-deck top-course-div">
         {% for topic in top_topic %}
         <div class="card-body">
           <a href="/course/?topic={{topic}}">
