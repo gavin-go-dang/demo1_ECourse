@@ -21,14 +21,12 @@ class ResultTestAdminTest(TestCase):
         self.admin = ResultTestAdmin(ResultTest, self.site)
 
     def test_result_test_admin_get_queryset_teacher(self):
-        # Đảm bảo rằng `get_queryset` chỉ trả về các kết quả bài kiểm tra liên quan đến người dùng hiện tại (giáo viên)
         request = self._create_request(self.user)
         queryset = self.admin.get_queryset(request)
         self.assertIn(self.result_test, queryset)
         self.assertEqual(queryset.count(), 1)
 
     def test_result_test_admin_get_queryset_superuser(self):
-        # Đảm bảo rằng `get_queryset` trả về tất cả các kết quả bài kiểm tra khi được sử dụng bởi một superuser
         request = self._create_request(self.superuser)
         queryset = self.admin.get_queryset(request)
         self.assertIn(self.result_test, queryset)

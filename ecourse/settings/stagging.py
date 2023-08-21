@@ -19,10 +19,10 @@ INSTALLED_APPS.append("storages")
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "anhkhoa123",
-        "HOST": "demo1-ecourse.csseatpsrgys.ap-southeast-2.rds.amazonaws.com",
+        "NAME": os.getenv("DB_NAME_STAGGING"),
+        "USER": os.getenv("DB_USER_STAGGING"),
+        "PASSWORD": os.getenv("DB_PASSWORD_STAGGING"),
+        "HOST": os.getenv("DB_HOST_STAGGING"),
         "PORT": os.getenv("DB_PORT"),
     }
 }

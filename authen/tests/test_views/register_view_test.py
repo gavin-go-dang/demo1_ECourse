@@ -33,10 +33,10 @@ class RegisterViewTest(TestCase):
 
     def test_register_success(self):
         user_data = UserFactory.build(
-            username="teststudent",
-            full_name="abc xyz",
+            username=fake.name(),
+            full_name=fake.full_name(),
             password="testpassword",
-            email="abcdfg@gmail.com",
+            email=fake.email(),
             type="student",
         )
 

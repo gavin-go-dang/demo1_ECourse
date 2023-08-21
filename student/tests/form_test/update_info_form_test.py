@@ -1,20 +1,21 @@
 from authen.models import User
 from django.test import TestCase
 from student.forms import UpdateUserInfoForm
+from fake import Faker
+
+fake = Faker()
 
 
 class UpdateUserInfoFormTest(TestCase):
     def test_clean_email_duplicate(self):
-        # Tạo một người dùng mẫu với email đã tồn tại
         User.objects.create_user(
             username="testuser1", email="test@example.com", password="testpass"
         )
 
-        # Tạo dữ liệu cho form
         form_data = {
-            "full_name": "Test User",
-            "email": "test@example.com",
-            "date_of_birth": "1990-01-01",
+            "full_name": fake.full_name(),
+            "email": fake.email(),
+            "date_of_birth": fake.date(),
         }
 
         form = UpdateUserInfoForm(data=form_data)
@@ -23,7 +24,6 @@ class UpdateUserInfoFormTest(TestCase):
         self.assertEqual(form.errors["__all__"][0], "Email has exist in system")
 
     def test_clean_email_unique(self):
-        # Tạo dữ liệu cho form
         form_data = {
             "full_name": "Test User",
             "email": "test@example.com",
@@ -32,5 +32,4 @@ class UpdateUserInfoFormTest(TestCase):
 
         form = UpdateUserInfoForm(data=form_data)
 
-        # Kiểm tra rằng form hợp lệ
         self.assertTrue(form.is_valid())

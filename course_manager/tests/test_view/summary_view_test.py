@@ -35,13 +35,8 @@ class SummaryLearningTest(TestCase):
         self.client.login(username="teststudent", password="password")
         response = self.client.get(self.url)
 
-        # Kiểm tra rằng response context có đúng các key và giá trị mà bạn mong đợi.
-        self.assertEqual(
-            response.context["courses"].count(), 1
-        )  # Chú ý kiểm tra dựa trên dữ liệu bạn đã tạo ở trên
-        self.assertEqual(
-            response.context["object_list"].count(), 1
-        )  # Chú ý kiểm tra dựa trên dữ liệu bạn đã tạo ở trên
+        self.assertEqual(response.context["courses"].count(), 1)
+        self.assertEqual(response.context["object_list"].count(), 1)
 
     def tearDown(self):
         self.course.delete()

@@ -46,10 +46,8 @@ class LoginViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_authenticated_user_redirect(self):
-        # Tạo request với người dùng đã đăng nhập và gọi view
         request = self.factory.get("login")
         request.user = self.user
         response = LoginView.as_view()(request)
 
-        # Kiểm tra kết quả trả về
         self.assertEqual(response.status_code, 302)
