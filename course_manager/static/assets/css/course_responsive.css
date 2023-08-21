@@ -79,7 +79,11 @@
     }
 
     .avt-img {
-        visibility: hidden;
+        visibility: hidden;        
+    }
+
+    .avt-teacher-img{
+        display: none;
     }
 
     label.open i {
