@@ -6,16 +6,27 @@ ALLOWED_HOSTS = ["0.0.0.0", "*"]
 
 INSTALLED_APPS.append("storages")
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST_STAGGING"),
+#         "PORT": os.getenv("DB_PORT"),
+#     }
+# }
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST_STAGGING "),
+        "NAME": os.getenv("DB_NAME_STAGGING"),
+        "USER": os.getenv("DB_USER_STAGGING"),
+        "PASSWORD": os.getenv("DB_PASSWORD_STAGGING"),
+        "HOST": os.getenv("DB_HOST_STAGGING"),
         "PORT": os.getenv("DB_PORT"),
     }
 }
+
 
 CACHES = {
     "default": {
@@ -51,7 +62,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 
 sentry_sdk.init(
-    dsn=os.getenv("SENTRY_KEY_PRODUCTION"),
+    dsn=str(os.getenv("SENTRY_KEY_STAGGING")),
     integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
@@ -62,34 +73,24 @@ sentry_sdk.init(
     send_default_pii=True,
 )
 
+
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": True,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
-        },
-    },
+    "disable_existing_loggers": False,
     "handlers": {
-        "console": {
+        "file": {
             "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        }
-    },
-    "root": {"level": "INFO", "handlers": ["console"]},
-    "loggers": {
-        "django.db.backends": {
-            "level": "ERROR",
-            "handlers": ["console"],
-            "propagate": False,
+            "class": "logging.FileHandler",
+            "filename": "/path/to/django/debug.log",
         },
-        # Errors logged by the SDK itself
-        "sentry_sdk": {"level": "ERROR", "handlers": ["console"], "propagate": False},
-        "django.security.DisallowedHost": {
-            "level": "ERROR",
-            "handlers": ["console"],
-            "propagate": False,
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": True,
         },
     },
 }
+
+DOMAIN = "https://www.ecourse.id.vn"
