@@ -44,7 +44,9 @@
             <div class="form-group" style="z-index: 5;">
                 {% for message in messages %}
                 <div class="alert alert-danger invalid-text" role="alert">
+                    {% if message == 'Invalid username or password' %}
                     {{ message }}
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
