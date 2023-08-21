@@ -21,8 +21,9 @@
 
 
 ## Technologies Used
+- Python - version 3.10.12
 - Django - version 4.2.2
-- Postgres- version 13.4
+- Postgres- version 13.4 
 - Redis - version 3.0.1
 - Django REST Framework - version 3.14.0
 - django-material-admin- verision 1.8.6
@@ -41,11 +42,11 @@ List the ready features here:
 
 ## Screenshots
 - Database
-![Example screenshot](./img/db.png)
+![database](./img/db.png)
 - Home page
-![Example screenshot](./img/homepage.png)
+![homepage](./img/homepage.png)
 - Course page
-![Example screenshot](./img/course_page.png)
+![course page](./img/course_page.png)
 - Course detail
 ![Example screenshot](./img/course_detail.png)
 - Login
@@ -66,6 +67,9 @@ List the ready features here:
 ![Example screenshot](./img/exam_result.png)
 -Test result summary
 ![Example screenshot](./img/test_result.png)
+-Notification:
+
+![Example screenshot](./img/notification.png)
 
 ## Setup
 ### Runing Docker-Compose
@@ -73,34 +77,52 @@ List the ready features here:
 ```
 git clone https://github.com/gavin-go-dang/demo1_ECourse.git
 ```
-2. Set up .env file at root project folder
+2. Set up .env file at root project folder base on **example.env** file
 ```
-SECRET_KEY=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
-DB_HOST_DEV=
-DB_HOST_STAGGING=
-DB_PORT=
-EMAIL_BACKEND=
-MAILGUN_ACCESS_KEY=
-MAILGUN_SERVER_NAME=
-EMAIL_PORT=
-SENTRY_KEY_PRODUCTION=
-SENTRY_KEY_STAGGING=
-VAPID_PUBLIC_KEY=
-VAPID_PRIVATE_KEY=
-VAPID_ADMIN_EMAIL=
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_STORAGE_BUCKET_NAME=
-CLIENT_ID=
-CLIENT_SECRET=
-AUTH_APP=
+SECRET_KEY="Update your key"
+DB_NAME=postgres
+DB_USER=gavindang
+DB_PASSWORD=123
+DB_HOST_STAGGING=db
+DB_PORT=5432 
+
+EMAIL_BACKEND="Update your email backend service"
+MAILGUN_ACCESS_KEY="Update your key"
+MAILGUN_SERVER_NAME="Update your key"
+EMAIL_PORT=587
+
+SENTRY_KEY_PRODUCTION=Update_your_key
+SENTRY_KEY_STAGGING=Update_your_key
+#Push notification
+VAPID_PUBLIC_KEY="Update_your_key"
+VAPID_PRIVATE_KEY="Update_your_key"
+VAPID_ADMIN_EMAIL="Update_your_key"
+ 
+AWS_ACCESS_KEY_ID=Update_your_key
+AWS_SECRET_ACCESS_KEY=Update_your_key
+AWS_STORAGE_BUCKET_NAME=Update_your_key
+#Auth with Google Account
+CLIENT_ID=Update_your_key
+CLIENT_SECRET=Update_your_key
+AUTH_APP=Update_your_key
+
+EMAIL_HOST_USER=Update_your_key
+EMAIL_HOST_PASSWORD=Update_your_key
+MAILGUN_API_KEY=Update_your_key
+MAILGUN_DOMAIN_NAME=Update_your_key
 ```
-3. Run docker-compose
+
+3. Configure the file  **manage.py**, make sure it points to the stagging environment
+
+4. Run docker-compose
 ```
 docker-compose up --build
+```
+
+5. Load sample data:
+```
+docker exec -it web bash
+python3 manager.py loaddata sample_data.json
 ```
 
 ### Running without Docker-Compose
@@ -111,23 +133,24 @@ docker-compose up --build
 virtualenv env
 source env/bin/activation
 ```
-4. Install lib and package
+
+4. Configure the file  **manage.py**, make sure it points to the local environment
+5. Install lib and package
 ```
 pip install -r requirements.txt
 ```
 
-5. Run the migrations
+6. Run the migrations
 ```
-python manage.py migrate
-python manage.py runserver
+python3 manage.py migrate
 ```
-6. Load data:
+7. Load data:
 ```
 python3 manage.py loaddata data_sample.json
 ```
-7. Runserver
+8. Runserver
 ```
-python manage.py runserver
+python3 manage.py runserver
 ```
 
 ## Project Status
