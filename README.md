@@ -6,13 +6,12 @@
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [System work flow](#system-work-flow)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
-
 * [Contact](#contact)
-<!-- * [License](#license) -->
 
 
 ## General Information
@@ -39,6 +38,8 @@ List the ready features here:
 - Push notification on system bar.
 - Learn progress overview
 
+## System work flow
+![system workflow](./img/systemsystem.png)
 
 ## Screenshots
 - Database
