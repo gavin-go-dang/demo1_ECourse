@@ -66,9 +66,9 @@ List the ready features here:
 ![Example screenshot](./img/exam.png)
 - Exam result
 ![Example screenshot](./img/exam_result.png)
--Test result summary
+- Test result summary
 ![Example screenshot](./img/test_result.png)
--Notification:
+- Notification:
 
 ![Example screenshot](./img/notification.png)
 
