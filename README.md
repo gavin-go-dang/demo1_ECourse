@@ -53,7 +53,7 @@ List the ready features here:
 - Login
 ![Example screenshot](./img/login.png)
 - Register
-- ![Example screenshot](./img/register.png)
+![Example screenshot](./img/register.png)
 - Profile
 ![Example screenshot](./img/profile.png)
 - Certificate
@@ -61,7 +61,7 @@ List the ready features here:
 - Summary
 ![Example screenshot](./img/summary.png)
 - Lesson
-![Example screenshot](./img/summary.png)
+![Example screenshot](./img/lesson.png)
 - Exam
 ![Example screenshot](./img/exam.png)
 - Exam result
