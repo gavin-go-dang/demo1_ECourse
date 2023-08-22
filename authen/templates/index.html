@@ -21,14 +21,14 @@
       <div class="hero_detail-box">
         <h3>
           Welcome to <br>
-          Best educations
+          Online course
         </h3>
         <h1>
-          school
+          Ecourse
         </h1>
         <p>
-          Online schooling is a revolutionary approach to education, seamlessly blending technology and learning.
-          It offers students the flexibility to study from anywhere, at any time.
+          Welcome to our online learning platform, your gateway to a world of knowledge and skill-building. 
+          Explore courses, enhance your expertise, and unlock your full potential today!
         </p>
         {% if not user.is_authenticated %}
         <div class="hero_btn-continer">
@@ -69,18 +69,10 @@
     <p class="text-center">
       We provide the online course. My service help you learn every time, every where, more convenient and free
     </p>
-    <div class="about_img-box ">
-      <img src="{% static 'assets/images/kids.jpg' %}" alt="" class="img-fluid w-100">
+    <div class="about_img-box">
+      <img src="{% static 'assets/images/quan-ly-lop-hoc-online-006.jpg' %}" alt="" class="img-fluid w-100 ">
     </div>
-    <div class="d-flex justify-content-center mt-5">
-      <a href="" class="call_to-btn  ">
 
-        <span>
-          Read More
-        </span>
-        <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
-      </a>
-    </div>
   </div>
 </section>
 
@@ -104,7 +96,7 @@
         <div class="container">
           <div class="row justify-content-center">
             {% for teacher in teacher_set %}
-            <div class="col-3">
+            <div class="col-3 carousel-teacher">
               <div class="container">
                 <div class="row">
                   <div class="col d-flex justify-content-center">
@@ -161,7 +153,7 @@
     <div class="teacher_confull_nametainer layout_padding2">
       <div class="card-deck">
         {% for course in top_course %}
-        <div class="card">
+        <div class="card top-course-div">
           <a href="/course/detail/{{ course.id }}">
 
             {% if course.cover_img %}
@@ -201,7 +193,7 @@
       for you explore
     </p>
     <div class="teacher_confull_nametainer ">
-      <div class="card-deck">
+      <div class="card-deck top-topic-div">
         {% for topic in top_topic %}
         <div class="card-body">
           <a href="/course/?topic={{topic}}">
@@ -211,18 +203,6 @@
         {% endfor %}
       </div>
     </div>
-  </div>
-
-
-  <div class="d-flex justify-content-center mt-3">
-    <a href="/course/" class="call_to-btn  ">
-
-      <span>
-        See More
-      </span>
-      <img src="{% static 'assets/images/right-arrow.png' %}" alt="">
-    </a>
-  </div>
   </div>
 </section>
 

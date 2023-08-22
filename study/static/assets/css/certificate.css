@@ -48,3 +48,7 @@
 #pdf-btn{
     margin-top: 1%;
 }
+
+.navbar-brand span{
+    color: black;
+}

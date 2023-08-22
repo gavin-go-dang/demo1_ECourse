@@ -19,3 +19,59 @@
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000   ' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
+
+.card-img-top {
+    width: 250px;
+    height: 250px;
+}
+
+
+.top-topic-div{
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .navbar-toggler {
+        background-color: gray;
+    }
+
+    .d-flex.ml-auto.flex-column.flex-lg-row.align-items-center{
+        margin-top: 3%;
+    }
+}
+
+
+@media (max-width:1000px) and (min-width: 600px){
+    .card-img-top {
+        width: 150%;
+    }
+
+    .carousel-control-next-icon{
+        margin-top: -100%;
+    }
+
+    .carousel-control-prev-icon{
+        margin-top: -100%;
+    }
+}
+
+
+@media (max-width:600px) {
+    .card-img-top {
+        width: 90px;
+        height: 90px;
+
+
+    }
+    .carousel-control-next-icon{
+        margin-top: -200%;
+    }
+
+    .carousel-control-prev-icon{
+        margin-top: -200%;
+    }
+    
+    .top-course-div{
+        text-align: center;
+    }
+}

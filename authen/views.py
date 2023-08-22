@@ -6,6 +6,7 @@ from django.core.cache import cache
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, View
+from django.urls import resolve
 
 from course_manager.models import Course, Register, Topic
 
@@ -57,6 +58,11 @@ class LoginView(LoginView):
         messages.error(self.request, "Invalid username or password")
         return super().form_invalid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["messages"] = messages.get_messages(self.request)
+        return context
+
     def form_valid(self, form):
         response = super().form_valid(form)
         return redirect("home")
@@ -66,6 +72,13 @@ class RegisterView(View):
     template_name = "registeration.html"
 
     def get(self, request):
+        current_url = resolve(request.path_info).url_name
+        if current_url == "account_signup":
+            context = {
+                "message": "Email already exists. Please use another email or register a new account"
+            }
+            return render(request, "registeration.html", context)
+
         if request.user.is_authenticated:
             return redirect("home")
         context = {"message": ""}

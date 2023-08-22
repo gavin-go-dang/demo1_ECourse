@@ -1,0 +1,11 @@
+[run]
+source = .
+omit =
+    */venv/*
+    */env/*
+    */site-packages/*
+    */static/*
+    manage.py
+    */migrations/*
+    */tests/*
+    */settings/*

@@ -6,13 +6,14 @@ from .models import User
 
 
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ("full_name", "date_of_birth", "type")
+    list_display = ("full_name", "email", "date_of_birth", "type")
     fieldsets = [
         (
             None,
             {
                 "fields": [
                     ("full_name"),
+                    ("email"),
                     ("date_of_birth"),
                     ("cover_img"),
                 ]

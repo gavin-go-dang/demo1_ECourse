@@ -19,3 +19,7 @@
 .question_answer{
     margin-bottom: 4%;
 }
+
+.navbar-brand span{
+    color: black;
+}

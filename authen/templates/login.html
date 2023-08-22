@@ -40,16 +40,22 @@
             <a class='forgotLink' href="{% provider_login_url 'google' %}" style="padding: 0px;">
                 <img src="{% static 'assets/img/google.svg' %}" width="25px" alt="">
             </a>
-            {% if message %}
+            {% if messages %}
             <div class="form-group" style="z-index: 5;">
-                <div class="alert alert-danger" role="alert">
-                    {{ message }} 
+                {% for message in messages %}
+                {% if message == 'Invalid username or password' %}
+                <div class="alert alert-danger invalid-text" role="alert">
+                    
+                    {{ message }}
+                    
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
             {% endif %}
-		    
+
         </form>
-        
-        
+
+
     </div>
     {% endblock %}
