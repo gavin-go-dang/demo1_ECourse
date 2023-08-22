@@ -1,0 +1,17 @@
+@media screen and (max-width: 1200px) {
+    .disable-mobile{
+        display: none;
+    }
+
+    .progress-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #333;
+        margin: 0 0 20px;
+        margin-bottom: 8%;
+    }
+
+    .top_container::before {
+        width: 100%;
+    }
+}
