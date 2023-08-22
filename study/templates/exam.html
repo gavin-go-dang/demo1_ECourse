@@ -74,8 +74,8 @@
           <div class="col-sm question">
             <div class="form-check">
               <input class="form-check-input" value="{{ question.choice_3 }}" type="radio" name={{question.id}}
-                id="flexRadioDefault2">
-              <label class="form-check-label" for="flexRadioDefault2">
+                id="flexRadioDefault3">
+              <label class="form-check-label" for="flexRadioDefault3">
                 {{ question.choice_3 }}
               </label>
             </div>
@@ -86,8 +86,8 @@
 
             <div class="form-check">
               <input class="form-check-input" value="{{ question.choice_4 }}" type="radio" name={{question.id}}
-                id="flexRadioDefault2">
-              <label class="form-check-label" for="flexRadioDefault2">
+                id="flexRadioDefault4">
+              <label class="form-check-label" for="flexRadioDefault4">
                 {{ question.choice_4 }}
               </label>
             </div>
@@ -96,7 +96,7 @@
       </div>
     </div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" disabled>Submit</button>
   </form>
 </div>
 {% include 'footer.html' %}
