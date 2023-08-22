@@ -11,6 +11,7 @@ Summary
 <!-- responsive style -->
 <link rel="stylesheet" href="{% static 'style.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/summary.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/summary_responsive.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -75,43 +76,44 @@ Summary
 
 <div class="container body-exam">
   <div class="row">
-      <div class="col-sm">
-          <h1 class="main-heading number_heading">Result test</h1>
-      </div>
+    <div class="col-sm">
+      <h1 class="main-heading number_heading">Result test</h1>
+    </div>
   </div>
-  <div>
-      <table class="table">
-          <thead>
-              <tr>
-                  <th scope="col" class="center-conter">#</th>
-                  <th scope="col" class="center-conter">Student</th>
-                  <th scope="col" class="center-conter">Course name</th>
-                  <th scope="col" class="center-conter">Exam</th>
-                  <th scope="col" class="center-conter">Score</th>
-                  <th scope="col" class="center-conter">Pass</th>
-              </tr>
-          </thead>
-          {% for result in object_list %}
-          <tbody>
-              <tr>
-                  <th scope="row">{{ forloop.counter }}</th>
-                  <td class="center-conter">{{ result.student }}</td>
-                  <td class="center-conter">{{ result.exam.course }}</td>
-                  <td class="center-conter">{{ result.exam }}</td>
-                  <td class="center-conter">{{ result.mark }}</td>
-                  {% if result.pass_exam %}
-                  <td class="center-conter">&#10004;</td>
-                  {% else %}
-                  <td class="center-conter">&#10008;</td>
-                  {% endif %}
-              </tr>
-          </tbody>
-          {% endfor %}
-      </table>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col-sm" class="center-conter">#</th>
+          <th scope="col-sm" class="center-conter">Student</th>
+          <th scope="col-sm" class="center-conter disable-mobile">Course name</th>
+          <th scope="col-sm" class="center-conter">Exam</th>
+          <th scope="col-sm" class="center-conter">Score</th>
+          <th scope="col-sm" class="center-conter disable-mobile">Pass</th>
+        </tr>
+      </thead>
+      {% for result in object_list %}
+      <tbody>
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td class="center-conter">{{ result.student }}</td>
+          <td class="center-conter disable-mobile">{{ result.exam.course }}</td>
+          <td class="center-conter">{{ result.exam }}</td>
+          <td class="center-conter">{{ result.mark }}</td>
+          {% if result.pass_exam %}
+          <td class="center-conter disable-mobile">&#10004;</td>
+          {% else %}
+          <td class="center-conter disable-mobile">&#10008;</td>
+          {% endif %}
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
   </div>
+
   <a href="/study/result/"><button type="button" class="btn btn-primary more-result">See more</button></a>
 </div>
-  <!-- about section -->
+<!-- about section -->
 
-  {% include 'footer.html' %}
-  {% endblock content %}
+{% include 'footer.html' %}
+{% endblock content %}
