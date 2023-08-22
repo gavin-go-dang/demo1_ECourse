@@ -10,6 +10,7 @@
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
+* [Unit test](#unit-test)
 * [Project Status](#project-status)
 * [Contact](#contact)
 
@@ -28,7 +29,8 @@
 - django-material-admin- verision 1.8.6
 - xhtml2pdf - version 0.2.11
 - django-webpush - version 0.3.5
-...
+- Pre-commit: black - version 23.3.0
+- Docker
 
 ## Features
 List the ready features here:
@@ -154,12 +156,13 @@ python3 manage.py loaddata data_sample.json
 python3 manage.py runserver
 ```
 
+## Unit test
+Unit test cover 85%
+
+![unit test](img/unittest.png)
+
 ## Project Status
 Project is: _in progress_ 
-
-
-
-
 
 
 ## Contact
