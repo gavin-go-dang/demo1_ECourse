@@ -430,4 +430,8 @@ a:focus {
   color: #fdfdfe;
 }
 
-/* end footer section*/
+@media (max-width: 1000px) {
+  .navbar-toggler {
+      background-color: gray;
+  }
+}

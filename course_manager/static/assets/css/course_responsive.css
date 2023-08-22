@@ -1,6 +1,6 @@
 @media screen and (max-width: 1200px) {
     .name-course-title {
-        white-space: nowrap;
+        /* white-space: nowrap; */
         overflow: hidden;
         text-overflow: ellipsis;
     }
