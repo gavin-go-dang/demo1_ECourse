@@ -29,7 +29,8 @@
 - django-material-admin- verision 1.8.6
 - xhtml2pdf - version 0.2.11
 - django-webpush - version 0.3.5
-- Pre-commit: black - version 23.3.0
+- Pre-commit for python: black - version 23.3.0
+- Pre-commit for Javascript: prettier - version 3.0.2
 - Docker
 
 ## Features
