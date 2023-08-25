@@ -1,0 +1,115 @@
+erDiagram
+    Course{
+        int id
+        string name_course
+        string description
+        int register
+        filefield cover_img
+        int teacher_id
+        string level
+        datetime created_at
+        datetime updated_at
+    }
+    Register{
+        int id
+        int course_id
+        int student_id
+    }
+
+    User {
+        int id
+        string username
+        string full_name
+        string lastname
+        string firstname
+        string email
+        string password
+        datetime last_login
+        string type
+        filefield cover_img
+        date date_join
+        date date_of_birth
+        datetime created_at
+        datetime updated_at
+        datetime last_login
+    }
+    
+
+    Topic{
+        int id
+        string name_topic
+        string description
+    }
+
+    Lesson {
+        int id 
+        string name_lesson
+        string description
+        filefield video
+        int view_time
+        int index
+        int course_id
+        datetime created_at
+        datetime updated_at
+    }
+    Question {
+        int id
+        string question_text 
+        string choice_1
+        string choice_2
+        string choice_3
+        string choice_4
+        string answer
+        int exam_id 
+    }
+
+    Exam{
+        int id
+        string name_exam
+        string description
+        int course_id
+    }
+
+
+    LessonLearned {
+        int id
+        datetime created_at
+        datetime updated_at
+        int lesson_id
+        int student_id
+    }
+
+    ResultTest{
+        int id
+        datetime created_at 
+        int mark
+        json student_answer 
+        int number_of_test
+        boolean pass_exam
+        int exam_id
+        int student_id
+    }
+
+    Certificate {
+        int id
+        datetime created_at
+        datetime updated_at
+        int score
+        string pdf_url
+        int course_id
+        int student_id
+    }
+
+
+    Course ||--o{ Register : ""
+    Course }o--|| Topic : ""
+    Register }o--|| User : ""
+    Course ||--|{ Lesson: ""
+    Course ||--|{ Exam : ""
+    Exam ||--|{ Question :""
+    LessonLearned }o--|| Lesson :""
+    ResultTest }o--|| Exam : ""
+    ResultTest }o--|| User : ""
+    Certificate }o--|| Course : ""
+    Certificate }o--|| User : ""
+    LessonLearned }o--|| User :""
