@@ -47,6 +47,8 @@ List the ready features here:
 ## Database
 Database diagram link: [_here_]( https://www.mermaidchart.com/raw/2f76a97a-6dbc-4f46-a8ea-ad516bb257db?version=v0.1&theme=light&format=svg). 
 ![database_diagram](./img/db.png)
+
+This diagram can be created on Mermaid with code in [db.txt](db.txt) file
 ## Screenshots
 - Home page
 ![homepage](./img/homepage.png)
