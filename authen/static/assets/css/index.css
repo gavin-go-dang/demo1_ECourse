@@ -60,7 +60,7 @@
     .card-img-top {
         width: 90px;
         height: 90px;
-
+        object-fit: cover;
 
     }
     .carousel-control-next-icon{
@@ -73,5 +73,9 @@
     
     .top-course-div{
         text-align: center;
+    }
+    #carouselExampleIndicators > div.carousel-inner > div.carousel-item.active > div{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
