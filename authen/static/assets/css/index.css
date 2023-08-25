@@ -38,6 +38,10 @@
     .d-flex.ml-auto.flex-column.flex-lg-row.align-items-center{
         margin-top: 3%;
     }
+    #carouselExampleIndicators > div.carousel-inner > div.carousel-item.active > div{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 
@@ -53,6 +57,14 @@
     .carousel-control-prev-icon{
         margin-top: -100%;
     }
+
+    .card-img-top {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+
+    }
+
 }
 
 
@@ -60,9 +72,10 @@
     .card-img-top {
         width: 90px;
         height: 90px;
-
+        object-fit: cover;
 
     }
+
     .carousel-control-next-icon{
         margin-top: -460%;
     }
